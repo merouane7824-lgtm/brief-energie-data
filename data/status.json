@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-27T14:39:45Z",
+ "generated_at": "2026-10-27T15:44:08Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -7,7 +7,42 @@
    "msg": ""
   },
   {
-   "step": "ENTSO-E production réalisée (A75)",
+   "step": "ENTSO-E production réalisée par filière (A75)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "  flux BE",
+   "ok": true,
+   "msg": "35 jours"
+  },
+  {
+   "step": "  flux DE",
+   "ok": true,
+   "msg": "35 jours"
+  },
+  {
+   "step": "  flux CH",
+   "ok": true,
+   "msg": "35 jours"
+  },
+  {
+   "step": "  flux IT",
+   "ok": true,
+   "msg": "35 jours"
+  },
+  {
+   "step": "  flux ES",
+   "ok": true,
+   "msg": "35 jours"
+  },
+  {
+   "step": "  flux GB",
+   "ok": true,
+   "msg": "34 jours"
+  },
+  {
+   "step": "ENTSO-E échanges physiques aux frontières (A11)",
    "ok": true,
    "msg": ""
   },
@@ -119,7 +154,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "2033 messages, 235 séries nucléaires"
+   "msg": "2039 messages, 235 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
@@ -134,7 +169,7 @@
   {
    "step": "  OMIP historique",
    "ok": true,
-   "msg": "475 séances lues, 464 au total"
+   "msg": "11 séances lues, 464 au total"
   }
  ]
 }
