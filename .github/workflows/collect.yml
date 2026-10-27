@@ -20,15 +20,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Collecte ENTSO-E et RTE
+        id: collect
+        continue-on-error: true
         env:
           ENTSOE_TOKEN: ${{ secrets.ENTSOE_TOKEN }}
           RTE_CLIENT_ID: ${{ secrets.RTE_CLIENT_ID }}
           RTE_CLIENT_SECRET: ${{ secrets.RTE_CLIENT_SECRET }}
-        run: python3 collect.py
-      - name: Enregistrer les données
+        run: python3 collect.py 2>&1 | tee data-run.log; exit ${PIPESTATUS[0]}
+      - name: Enregistrer les données (même en cas d'échec, pour le journal)
+        if: always()
         run: |
+          mkdir -p data && grep -E "^(OK|FAIL)|étapes" data-run.log > data/last-run.log || true
           git config user.name "brief-energie-bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data
           git diff --cached --quiet || git commit -m "Données du $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull --rebase -q || true
           git push
+      - name: Signaler un échec de collecte
+        if: steps.collect.outcome == 'failure'
+        run: exit 1
