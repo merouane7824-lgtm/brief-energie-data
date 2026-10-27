@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Prépare les écritures ArtifactData à partir de data/brief.json (collecteur ENTSO-E / RTE).
 
-Usage : python3 ingest.py brief.json existing_series_dir out_dir
+Usage : python3 ingest.py brief.json existing_series_dir out_dir [forwards.json]
 - existing_series_dir : documents "series" déjà lus (un JSON par jour, avec leur version dans versions.json)
 - out_dir : nuclear_latest.json, forecast.json, series_patch/<date>.json et writes.json (lot ArtifactData)
 Règle : les champs déjà présents dans "series" ne sont jamais écrasés, sauf spot_h incomplet.
@@ -53,5 +53,16 @@ fc = [{k: v for k, v in r.items() if k != "src"} for r in d.get("forecast", [])]
 srcs = sorted({s for r in d.get("forecast", []) for s in r.get("src", {}).values()})
 json.dump({"forecast": fc, "sources": srcs, "load_outlook": d.get("load_outlook", {})},
           open(os.path.join(out, "forecast.json"), "w"), ensure_ascii=False)
+# OMIP : dernière séance (semaines, week-ends, mois, Cal) et historique des Cal pour les moyennes TRVE
+om = d.get("omip") or {}
+if om.get("session"):
+    json.dump(om, open(os.path.join(out, "omip.json"), "w"), ensure_ascii=False)
+if len(sys.argv) > 4 and os.path.exists(sys.argv[4]):
+    fw = json.load(open(sys.argv[4], encoding="utf-8"))
+    y0 = int(d["today"][:4])
+    keep = {"cal" + str(y)[2:] for y in range(y0, y0 + 4)}
+    fw["prices"] = {k: {c: v for c, v in row.items() if c in keep} for k, row in fw.get("prices", {}).items()}
+    fw["prices"] = {k: v for k, v in fw["prices"].items() if v}
+    json.dump(fw, open(os.path.join(out, "forwards_latest.json"), "w"), ensure_ascii=False, separators=(",", ":"))
 json.dump(writes, open(os.path.join(out, "writes.json"), "w"), ensure_ascii=False)
 print(f"{len(writes)} écritures series, nucléaire : {len(nuc.get('daily', []))} jours, prévisions : {len(fc)} jours ({', '.join(srcs)})")
