@@ -1,0 +1,34 @@
+name: Collecte électricité France
+
+on:
+  schedule:
+    - cron: "35 5 * * *"    # 05:35 UTC = 6 h 35 (hiver) / 7 h 35 (été) à Paris, avant la tâche de 9 h 20
+    - cron: "35 12 * * *"   # 12:35 UTC : prix day-ahead du lendemain publiés
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: collect
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collecte ENTSO-E et RTE
+        env:
+          ENTSOE_TOKEN: ${{ secrets.ENTSOE_TOKEN }}
+          RTE_CLIENT_ID: ${{ secrets.RTE_CLIENT_ID }}
+          RTE_CLIENT_SECRET: ${{ secrets.RTE_CLIENT_SECRET }}
+        run: python3 collect.py
+      - name: Enregistrer les données
+        run: |
+          git config user.name "brief-energie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || git commit -m "Données du $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push
