@@ -263,16 +263,41 @@ def get_generation(today):
     return {k: daily_mean(v) for k, v in per_type.items()}
 
 
+DIAG: dict = {}
+
+
+def ts_summary(ts):
+    pers = children(ts, "Period")
+    out = {"psr": text(ts, "MktPSRType", "psrType"), "bt": text(ts, "businessType"), "curve": text(ts, "curveType"),
+           "in": text(ts, "inBiddingZone_Domain.mRID"), "out": text(ts, "outBiddingZone_Domain.mRID"), "periods": []}
+    for per in pers[:3]:
+        pts = children(per, "Point")
+        out["periods"].append({"start": text(per, "timeInterval", "start"), "end": text(per, "timeInterval", "end"),
+                               "res": text(per, "resolution"), "n": len(pts),
+                               "first": [text(p, "quantity") for p in pts[:3]], "max": max((float(text(p, "quantity", default="0")) for p in pts), default=None)})
+    return out
+
+
 def get_ws_forecast(today):
     a, b = window(0, 3, today)
-    docs = entsoe({"documentType": "A69", "processType": "A01", "in_Domain": FR,
-                   "periodStart": entsoe_period(a), "periodEnd": entsoe_period(b)})
-    per_type = defaultdict(list)
-    for ts in timeseries(docs):
-        k = PSR.get(text(ts, "MktPSRType", "psrType"))
-        if k:
-            per_type[k].extend(segments(ts))
-    return {k: daily_mean(v) for k, v in per_type.items()}
+    res = {}
+    for proc in ("A01", "A40", "A18"):  # day-ahead, intraday, current
+        try:
+            docs = entsoe({"documentType": "A69", "processType": proc, "in_Domain": FR,
+                           "periodStart": entsoe_period(a), "periodEnd": entsoe_period(b)})
+        except Exception as e:
+            DIAG[f"A69_{proc}"] = str(e)[:200]
+            continue
+        DIAG[f"A69_{proc}"] = [ts_summary(ts) for ts in timeseries(docs)][:8]
+        per_type = defaultdict(list)
+        for ts in timeseries(docs):
+            k = PSR.get(text(ts, "MktPSRType", "psrType"))
+            if k:
+                per_type[k].extend(segments(ts))
+        for k, v in per_type.items():
+            for d, mw in daily_mean(v, min_hours=20.0).items():
+                res.setdefault(k, {}).setdefault(d, (mw, proc))  # A01 prioritaire, puis A40, puis A18
+    return {k: {d: mw for d, (mw, _p) in dm.items()} for k, dm in res.items()}
 
 
 def get_load(today, process, days_back, days_fwd, min_hours=23.0):
@@ -421,6 +446,25 @@ def nuclear_availability(msgs, installed_mw, today, actual_daily, days_back=PAST
     return daily
 
 
+import re
+BOILER = re.compile(r"(recouplage|restart|remont|ramp-up|palier|load threshold|sous r[ée]serve|subject to|tso agreement|accord rte|reprogramm|likely to be|susceptible|^-+$)", re.I)
+
+
+def clean_reason(t):
+    if not t:
+        return None
+    t = t.split("\n-")[0]  # partie française avant la traduction
+    parts = [p.strip(" .-") for p in re.split(r"[\n.;]+", t) if p.strip(" .-")]
+    low = t.lower()
+    if "modulation" in low:
+        return "Modulation (conditions économiques)"
+    if "environnement" in low or "environmental" in low:
+        return "Contraintes environnementales"
+    keep = [p for p in parts if not BOILER.search(p)]
+    out = keep[0][:80] if keep else ""
+    return out or None
+
+
 def outage_table(msgs, now, days_fwd=NUC_AHEAD_DAYS, min_mw=100):
     rows = []
     horizon = now + dt.timedelta(days=days_fwd)
@@ -428,10 +472,13 @@ def outage_table(msgs, now, days_fwd=NUC_AHEAD_DAYS, min_mw=100):
         mx = max((m["nominal_mw"] - v for _, _, v in m["segs"]), default=0)
         if mx < min_mw or m["end"] < now or m["start"] > horizon:
             continue
+        dur_h = (m["end"] - m["start"]).total_seconds() / 3600
+        if dur_h < (4 if m["type"] == "forced" else 24):
+            continue  # essais et modulations de quelques heures : comptés dans les moyennes, pas listés
         rows.append({"unit": m["unit"], "type": m["type"], "unav_mw": round(mx), "nominal_mw": round(m["nominal_mw"]),
                      "start": m["start"].astimezone(PARIS).strftime("%Y-%m-%dT%H:%M"),
                      "end": m["end"].astimezone(PARIS).strftime("%Y-%m-%dT%H:%M"),
-                     "ongoing": m["start"] <= now, "reason": m["reason"]})
+                     "ongoing": m["start"] <= now, "reason": clean_reason(m["reason"])})
     # doublons (même unité, mêmes dates) : garder la plus forte indisponibilité
     best = {}
     for r in rows:
@@ -655,6 +702,7 @@ def run(today: dt.date | None = None):
             rows.append(row)
     data["forecast"] = rows
     data["status"] = STATUS
+    data["diag"] = DIAG
     return data
 
 
