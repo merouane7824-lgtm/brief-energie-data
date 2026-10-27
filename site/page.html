@@ -15,7 +15,7 @@
   --accent: #0f5c8c;
   --up: #b4381f;
   --down: #1f6e8c;
-  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s7: #4a3aa7; --band: #c9d3de;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s6: #008300; --s7: #4a3aa7; --s8: #e34948; --band: #c9d3de;
   --crit: #d03b3b; --serious: #ec835a; --warn: #fab219; --good: #0ca30c;
   --chip-bg: #eef1f4;
   --f-display: "Archivo Narrow", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
@@ -26,14 +26,14 @@
   :root:not([data-theme="light"]) {
     --bg: #0f1215; --surface: #171b20; --ink: #f2f4f6; --ink-2: #c1c7cf; --muted: #8a919b;
     --rule: #2a3038; --grid: #252a31; --accent: #6fb3e0; --up: #f08a6c; --down: #6fb3e0;
-    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s7: #9085e9; --band: #33404d; --chip-bg: #222831;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s6: #008300; --s7: #9085e9; --s8: #e66767; --band: #33404d; --chip-bg: #222831;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0f1215; --surface: #171b20; --ink: #f2f4f6; --ink-2: #c1c7cf; --muted: #8a919b;
   --rule: #2a3038; --grid: #252a31; --accent: #6fb3e0; --up: #f08a6c; --down: #6fb3e0;
-  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s7: #9085e9; --band: #33404d; --chip-bg: #222831;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s6: #008300; --s7: #9085e9; --s8: #e66767; --band: #33404d; --chip-bg: #222831;
   color-scheme: dark;
 }
 * { box-sizing: border-box; }
@@ -211,7 +211,10 @@ table.hm tfoot th, table.hm tfoot td { border-top: 4px solid var(--surface); }
 .seg[hidden] { display: none !important; }
 
 /* Fundamentals */
-.fd-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 16px; align-items: start; }
+.fd-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 16px; align-items: start; }
+.fd-side .kpis { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fd-side .kpi:last-child:nth-child(odd) { grid-column: auto; }
+@media (max-width: 760px) { .fd-side .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fd-side .kpi:last-child:nth-child(odd) { grid-column: 1 / -1; } }
 @media (max-width: 860px) { .fd-grid { grid-template-columns: minmax(0, 1fr); } }
 .fd-side { display: grid; gap: 10px; align-content: start; min-width: 0; }
 .kpi .srcs { margin-top: 4px; }
@@ -375,10 +378,11 @@ table.trve td, table.trve th { padding: 6px 8px; }
             <p class="fd-text" id="fd-text" hidden></p>
           </div>
           <div class="chart">
-            <h3>Production par filière et consommation, moyenne journalière</h3>
+            <h3>Mix électrique : production par filière, échanges et consommation</h3>
             <div class="legend" id="lg-fd"></div>
-            <div class="canvas-box"><canvas id="c-fd" role="img" aria-label="Production nucléaire, éolienne et solaire et consommation prévue en France, moyenne journalière en GW"></canvas></div>
+            <div class="canvas-box tall"><canvas id="c-fd" role="img" aria-label="Mix électrique France par filière, échanges aux frontières et consommation, moyenne journalière en GW"></canvas></div>
             <div class="cap" id="cap-fd"></div>
+            <div class="cap" id="fd-exch" hidden></div>
           </div>
         </div>
       </section>
@@ -980,9 +984,9 @@ table.trve td, table.trve th { padding: 6px 8px; }
       if (s.date > r.date || parseDate(s.date).getTime() < from) return;
       if (s.nuc_gw == null && s.wind_gw == null && s.solar_gw == null && s.cons_prev_gwh == null && s.load_gw == null) return;
       const o = byDate[s.date] || (byDate[s.date] = { date: s.date });
-      if (s.nuc_gw != null) o.nuc = Number(s.nuc_gw);
-      if (s.wind_gw != null) o.wind = Number(s.wind_gw);
-      if (s.solar_gw != null) o.solar = Number(s.solar_gw);
+      [["nuc", "nuc_gw"], ["hydro", "hydro_gw"], ["wind", "wind_gw"], ["solar", "solar_gw"], ["bio", "bio_gw"], ["gas", "gas_gw"], ["coal", "coal_gw"]].forEach(([k, fk]) => { if (s[fk] != null) o[k] = Number(s[fk]); });
+      if (s.exp_net_gw != null) { o.exch = -Number(s.exp_net_gw); o.borders = s.exp_borders || null; }
+      if (s.pump_gw != null) o.pump = -Number(s.pump_gw);
       if (s.load_gw != null && s.date < r.date) o.cons = Number(s.load_gw);
       else if (s.cons_prev_gwh != null) o.cons = Number(s.cons_prev_gwh) / 24;
     });
@@ -1002,9 +1006,11 @@ table.trve td, table.trve th { padding: 6px 8px; }
     const rowsAll = dates.map((d) => byDate[d] || { date: d });
     const fcStart = dates.indexOf(r.date);
     const isFc = (i) => fcStart >= 0 && i >= fcStart;
-    const s1 = css("--s1"), s3 = css("--s3"), s4 = css("--s4"), ink2 = css("--ink-2");
+    const s1 = css("--s1"), s2 = css("--s2"), s3 = css("--s3"), s4 = css("--s4"), s6 = css("--s6"), s7 = css("--s7"), s8 = css("--s8"), ink2 = css("--ink-2"), mut = css("--muted");
     const hasAv = rowsAll.some((o) => o.nucav != null);
-    legend("lg-fd", [["Nucléaire", s1], ["Éolien", s3], ["Solaire", s4], ["Consommation", ink2]].concat(hasAv ? [["Nucléaire disponible", s1]] : []));
+    const SER = [["Nucléaire", s1, "nuc"], ["Hydraulique", s7, "hydro"], ["Éolien", s3, "wind"], ["Solaire", s4, "solar"], ["Bioénergies et autres", s6, "bio"], ["Gaz", s2, "gas"], ["Charbon et fioul", s8, "coal"],
+      ["Échanges (exports < 0)", mut, "exch"], ["Pompage", s7 + "80", "pump"]].filter((x) => rowsAll.some((o) => o[x[2]] != null));
+    legend("lg-fd", SER.map((x) => [x[0], x[1]]).concat([["Consommation", ink2]]).concat(hasAv ? [["Nucléaire disponible", s1]] : []));
     if (hasAv) { const it = $("lg-fd").lastChild; if (it && it.firstChild) { it.firstChild.className = "dash"; it.firstChild.style.color = s1; } }
     const bar = (label, color, key) => ({
       type: "bar", label, stack: "prod", order: 2, data: rowsAll.map((o) => o[key] != null ? o[key] : null),
@@ -1027,13 +1033,16 @@ table.trve td, table.trve th { padding: 6px 8px; }
       ctx.fillText("Prévisions", Math.min(px + 4, a.right - 70), a.top + 4); ctx.restore();
     } };
     const o = baseOpts("GW");
-    o.scales.x.stacked = true; o.scales.y.stacked = true; o.scales.y.min = 0;
+    o.scales.x.stacked = true; o.scales.y.stacked = true;
+    if (!rowsAll.some((x) => (x.exch != null && x.exch < 0) || x.pump != null)) o.scales.y.min = 0;
     o.scales.x.ticks.maxTicksLimit = 9;
     o.plugins.tooltip.callbacks.title = (items) => { if (!items.length) return ""; const d = dates[items[0].dataIndex]; const k = dayKind(d); return longDate(d) + (k[0] === "ferie" ? " · férié" : k[0] === "we" ? " · week-end" : "") + (isFc(items[0].dataIndex) ? " · prévision" : ""); };
-    o.plugins.tooltip.callbacks.label = (c) => c.parsed.y == null ? null : " " + c.dataset.label + " : " + fmt(c.parsed.y, 1) + " GW";
+    const BN = { BE: "Belgique", DE: "Allemagne", CH: "Suisse", IT: "Italie", ES: "Espagne", GB: "Grande-Bretagne" };
+    o.plugins.tooltip.callbacks.label = (c) => { if (c.parsed.y == null) return null; const k = c.dataset._k; if (k === "exch") return " " + (c.parsed.y <= 0 ? "Exports nets" : "Imports nets") + " : " + fmt(Math.abs(c.parsed.y), 1) + " GW"; if (k === "pump") return " Pompage (STEP) : " + fmt(-c.parsed.y, 1) + " GW"; return " " + c.dataset.label + " : " + fmt(c.parsed.y, 1) + " GW"; };
+    o.plugins.tooltip.callbacks.afterBody = (items) => { const row = items.length ? rowsAll[items[0].dataIndex] : null; if (!row || !row.borders) return []; return ["Solde par frontière (+ = export) :"].concat(Object.keys(row.borders).map((b) => "  " + (BN[b] || b) + " : " + (row.borders[b] >= 0 ? "+" : "−") + fmt(Math.abs(row.borders[b]), 1) + " GW")); };
     o.plugins.tooltip.filter = (it) => it.parsed && it.parsed.y != null;
     draw("c-fd", { type: "bar", data: { labels: dates.map((d) => shortDate(d)), datasets: [
-      bar("Nucléaire", s1, "nuc"), bar("Éolien", s3, "wind"), bar("Solaire", s4, "solar"), consDs
+      ...SER.map((x) => Object.assign(bar(x[0], x[1], x[2]), { _k: x[2] })), consDs
     ].concat(hasAv ? [{ type: "line", label: "Nucléaire disponible", stack: "nucav", order: 0, data: rowsAll.map((o) => o.nucav != null ? o.nucav : null),
       borderColor: s1, backgroundColor: s1, borderWidth: 1.5, borderDash: [2, 3], pointRadius: 0, pointHoverRadius: 3, spanGaps: true, stepped: "middle" }] : []) }, options: o, plugins: [shade] });
     const lastReal = rowsAll.filter((x, i) => !isFc(i) && x.nuc != null).pop();
@@ -1041,6 +1050,14 @@ table.trve td, table.trve th { padding: 6px 8px; }
     const cap = $("cap-fd"); cap.textContent = "GW moyens par jour. Barres : production réalisée RTE (ENTSO-E, éCO2mix)" + (lastReal ? " jusqu'au " + shortDate(lastReal.date) : "") +
       " ; zone grisée : prévisions" + (lastFc ? " jusqu'au " + shortDate(lastFc) : " (consommation du jour seulement)") + ", barres pâles et courbe en pointillés. Consommation : réalisée (ENTSO-E) puis prévue (RTE J-1, J-2 et hebdomadaire). " + (hasAv ? "Pointillés bleus : capacité nucléaire disponible (ENTSO-E) ; la production nucléaire future n'est pas prévue, seule sa disponibilité l'est." : "");
     const fsc = srcChips(f && f.forecastSrc); if (fsc) { cap.appendChild(document.createTextNode(" ")); cap.appendChild(fsc); }
+    const lastEx = rowsAll.filter((x, i) => !isFc(i) && x.borders).pop();
+    const ex = $("fd-exch");
+    if (lastEx) {
+      const net = -lastEx.exch;
+      ex.textContent = (net >= 0 ? "Solde exportateur" : "Solde importateur") + " le " + shortDate(lastEx.date) + " : " + fmt(Math.abs(net), 1) + " GW (" +
+        Object.keys(lastEx.borders).map((b) => (BN[b] || b) + " " + (lastEx.borders[b] >= 0 ? "+" : "−") + fmt(Math.abs(lastEx.borders[b]), 1)).join(" · ") + ", + = export). Échanges physiques ENTSO-E ; le haut de la pile ≈ consommation + exports nets + pompage.";
+      ex.hidden = false;
+    } else ex.hidden = true;
   }
 
   // ---------- TRVE reference averages: Cal-Y settlements averaged over years Y-2 and Y-1 ----------

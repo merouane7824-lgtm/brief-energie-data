@@ -251,7 +251,7 @@ PSR = {"B14": "nuc", "B16": "solar", "B18": "wind_off", "B19": "wind_on"}
 MIX = {"B14": "nuc_gw", "B16": "solar_gw", "B18": "wind_gw", "B19": "wind_gw",
        "B10": "hydro_gw", "B11": "hydro_gw", "B12": "hydro_gw",
        "B04": "gas_gw", "B02": "coal_gw", "B05": "coal_gw", "B06": "coal_gw",
-       "B01": "bio_gw", "B09": "bio_gw", "B15": "bio_gw", "B17": "bio_gw", "B20": "bio_gw"}
+       "B01": "bio_gw", "B09": "bio_gw", "B15": "bio_gw", "B17": "bio_gw", "B20": "bio_gw", "B25": "bio_gw"}  # B25 = stockage (batteries)
 
 
 def get_generation(today):
