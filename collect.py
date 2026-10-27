@@ -575,6 +575,120 @@ def rte_generation_forecast(tok, today):
     return res
 
 
+# ----------------------------------------------------------------------- OMIP
+# OMIP publie chaque jour les prix de référence des futures France base (FFB), égaux aux règlements EEX.
+OMIP_URL = "https://www.omip.pt/en/dados-mercado?date={d}&product=EL&zone=FR&instrument=FFB&maturity={m}"
+UA = {"User-Agent": "Mozilla/5.0 (brief-energie-data; collecte quotidienne)", "Accept-Language": "en"}
+
+
+def parse_omip(t: str):
+    import re as _re
+    dates = _re.findall(r"transparency\?date=(\d{4}-\d{2}-\d{2})", t)
+    page_date = max(set(dates), key=dates.count) if dates else None
+    rows = []
+    for tr in _re.split(r"<tr class=\"(?:odd|even)\"", t)[1:]:
+        m = _re.search(r"</span>\s*(FFB [^<]+?)\s*</strong>", tr)
+        if not m:
+            continue
+        last = _re.search(r"Trading last day:</label>\s*(\d{4}-\d{2}-\d{2})", tr)
+        vals = _re.findall(r'<td width="">\s*([^<]*?)\s*</td>', tr)
+
+        def num(x):
+            x = (x or "").replace(",", "")
+            return float(x) if _re.fullmatch(r"-?\d+(\.\d+)?", x) else None
+        rows.append({"contract": m.group(1).strip(), "last_day": last.group(1) if last else None,
+                     "d": num(vals[9]) if len(vals) > 10 else None, "d1": num(vals[10]) if len(vals) > 10 else None})
+    return page_date, rows
+
+
+def omip_get(d: dt.date, maturity: str):
+    code, _ct, body = http(OMIP_URL.format(d=d.isoformat(), m=maturity), headers=UA, timeout=60)
+    if code != 200:
+        raise RuntimeError(f"OMIP HTTP {code}")
+    return parse_omip(body.decode("utf-8", "replace"))
+
+
+def omip_latest(today: dt.date):
+    """Dernière séance publiée : on remonte jour ouvré par jour ouvré jusqu'à trouver une table datée de ce jour."""
+    for k in range(0, 8):
+        d = today - dt.timedelta(days=k)
+        if d.weekday() >= 5:
+            continue
+        pd_, rows = omip_get(d, "Wk")
+        if pd_ == d.isoformat() and any(r["d"] is not None for r in rows):
+            return d
+        time.sleep(1)
+    return None
+
+
+MONTHS_EN = {m: i for i, m in enumerate(["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"], 1)}
+
+
+def omip_short_term(today: dt.date):
+    import re as _re
+    sess = omip_latest(today)
+    if not sess:
+        raise RuntimeError("aucune séance OMIP trouvée sur 8 jours")
+    out = {"session": sess.isoformat(), "weeks": [], "weekends": [], "months": [], "years": []}
+    for mat in ("Wk", "WE", "M", "YR"):
+        pd_, rows = omip_get(sess, mat)
+        time.sleep(1)
+        for r in rows:
+            c = r["contract"]
+            if mat == "Wk":
+                m = _re.match(r"FFB Wk(\d+)-(\d+)", c)
+                if not m:
+                    continue
+                wk, yy = int(m.group(1)), 2000 + int(m.group(2))
+                mon = dt.date.fromisocalendar(yy, wk, 1)
+                out["weeks"].append({"label": f"S{wk}", "from": mon.isoformat(), "to": (mon + dt.timedelta(days=6)).isoformat(),
+                                     "base": r["d"], "base_d1": r["d1"], "peak": None, "asof": pd_})
+            elif mat == "WE":
+                m = _re.match(r"FFB WE (\d+)(\w{3})-(\d+)", c)
+                if not m:
+                    continue
+                sat = dt.date(2000 + int(m.group(3)), MONTHS_EN[m.group(2)], int(m.group(1)))
+                out["weekends"].append({"label": c.replace("FFB ", ""), "from": sat.isoformat(), "to": (sat + dt.timedelta(days=1)).isoformat(),
+                                        "base": r["d"], "base_d1": r["d1"], "peak": None, "asof": pd_})
+            elif mat == "M":
+                out["months"].append({"contract": c.replace("FFB ", ""), "base": r["d"], "base_d1": r["d1"], "asof": pd_})
+            else:
+                out["years"].append({"contract": c.replace("FFB ", ""), "base": r["d"], "base_d1": r["d1"], "asof": pd_})
+    return out
+
+
+def omip_year_history(today: dt.date, path: str):
+    """Historique quotidien des Cal (YR) depuis le 1er janvier de l'année N-1 ; complété jour par jour."""
+    hist = {}
+    if os.path.exists(path):
+        try:
+            hist = json.load(open(path, encoding="utf-8")).get("prices", {})
+        except Exception:
+            hist = {}
+    start = dt.date(today.year - 1, 1, 1)
+    d, fetched, budget = start, 0, int(os.environ.get("OMIP_BUDGET", "600"))
+    while d <= today and fetched < budget:
+        if d.weekday() < 5 and d.isoformat() not in hist:
+            try:
+                pd_, rows = omip_get(d, "YR")
+                fetched += 1
+                if pd_ == d.isoformat():
+                    vals = {}
+                    for r in rows:
+                        yy = r["contract"].replace("FFB YR-", "")
+                        if yy.isdigit() and r["d"] is not None:
+                            vals["cal" + yy] = r["d"]
+                    if vals:
+                        hist[d.isoformat()] = vals
+                time.sleep(0.6)
+            except Exception as e:
+                log("OMIP historique " + d.isoformat(), False, str(e))
+                time.sleep(3)
+        d += dt.timedelta(days=1)
+    return {"source": "OMIP, prix de référence des futures France base (identiques aux règlements EEX)",
+            "asof": max(hist) if hist else None, "prices": {k: hist[k] for k in sorted(hist)}}, fetched
+
+
 # ----------------------------------------------------------------------- main
 def run(today: dt.date | None = None):
     now = dt.datetime.now(UTC)
@@ -702,6 +816,12 @@ def run(today: dt.date | None = None):
         if len(row) > 2:
             rows.append(row)
     data["forecast"] = rows
+    # --- OMIP : semaines, week-ends, mois, années (dernière séance) + historique des Cal
+    data["omip"] = step("OMIP séance la plus récente (semaines, week-ends, mois, années)", omip_short_term, today) or {}
+    fw = step("OMIP historique des Cal", omip_year_history, today, os.path.join(OUT_DIR, "forwards.json"))
+    if fw:
+        data["_forwards"], n_new = fw
+        log("  OMIP historique", True, f"{n_new} séances lues, {len(fw[0]['prices'])} au total")
     data["status"] = STATUS
     data["diag"] = DIAG
     return data
@@ -710,6 +830,10 @@ def run(today: dt.date | None = None):
 def main():
     data = run()
     os.makedirs(OUT_DIR, exist_ok=True)
+    fw = data.pop("_forwards", None)
+    if fw:
+        with open(os.path.join(OUT_DIR, "forwards.json"), "w", encoding="utf-8") as f:
+            json.dump(fw, f, ensure_ascii=False, separators=(",", ":"))
     with open(os.path.join(OUT_DIR, "brief.json"), "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=1)
     with open(os.path.join(OUT_DIR, "status.json"), "w", encoding="utf-8") as f:
