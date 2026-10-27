@@ -10,3 +10,10 @@ Collecte quotidienne des données électricité France pour le *Brief Marchés �
 
 Secrets attendus (Settings → Secrets and variables → Actions) : `ENTSOE_TOKEN`, `RTE_CLIENT_ID`, `RTE_CLIENT_SECRET`.
 Ils ne sont jamais écrits dans les fichiers ni dans les journaux.
+
+## Version publique (GitHub Pages)
+
+- `docs/index.html` : la page du brief en lecture seule, reconstruite par `python3 tools/build_site.py` à partir de `site/page.html`.
+- `docs/data/*.json` : éditions (10 dernières), séries, stockages, nucléaire, Cal ; écrits chaque matin par la tâche du brief
+  via `python3 tools/export_site.py <dossier_db>`.
+- À activer une fois : Settings → Pages → Deploy from a branch → `main` / `docs`.

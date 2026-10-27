@@ -1,0 +1,1489 @@
+<title>Brief Marchés Énergie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a trading-desk morning note — dated masthead, the call in two lines, a quote board, then charts and the risk register. */
+:root {
+  --bg: #f6f7f8;
+  --surface: #ffffff;
+  --ink: #111417;
+  --ink-2: #4a5059;
+  --muted: #7d838c;
+  --rule: #dde1e6;
+  --grid: #e6e9ed;
+  --accent: #0f5c8c;
+  --up: #b4381f;
+  --down: #1f6e8c;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s7: #4a3aa7; --band: #c9d3de;
+  --crit: #d03b3b; --serious: #ec835a; --warn: #fab219; --good: #0ca30c;
+  --chip-bg: #eef1f4;
+  --f-display: "Archivo Narrow", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+  --f-body: "Source Sans 3", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1215; --surface: #171b20; --ink: #f2f4f6; --ink-2: #c1c7cf; --muted: #8a919b;
+    --rule: #2a3038; --grid: #252a31; --accent: #6fb3e0; --up: #f08a6c; --down: #6fb3e0;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s7: #9085e9; --band: #33404d; --chip-bg: #222831;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1215; --surface: #171b20; --ink: #f2f4f6; --ink-2: #c1c7cf; --muted: #8a919b;
+  --rule: #2a3038; --grid: #252a31; --accent: #6fb3e0; --up: #f08a6c; --down: #6fb3e0;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s7: #9085e9; --band: #33404d; --chip-bg: #222831;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 15px; line-height: 1.5; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-inline: 20px; padding-block: 24px 48px; display: grid; gap: 28px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; margin: 0; letter-spacing: 0.005em; }
+.eyebrow { font-family: var(--f-data); font-size: 11px; letter-spacing: 0.09em; text-transform: uppercase; color: var(--muted); }
+.num { font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+
+/* Masthead */
+.mast { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 12px 24px; border-bottom: 2px solid var(--ink); padding-bottom: 12px; }
+.mast h1 { font-size: clamp(28px, 4.2vw, 40px); font-weight: 700; line-height: 1.05; }
+.mast .meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.mast label { font-size: 13px; color: var(--ink-2); }
+select { font: 500 14px var(--f-data); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 6px 10px; }
+select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* The call */
+.call { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 28px; }
+.call h2 { font-size: clamp(22px, 2.6vw, 28px); font-weight: 600; line-height: 1.2; margin-bottom: 12px; }
+.call ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; max-width: 68ch; }
+.call li::marker { color: var(--accent); }
+@media (max-width: 860px) { .call { grid-template-columns: minmax(0, 1fr); } }
+
+/* KPI board */
+.kpi:last-child:nth-child(odd) { grid-column: 1 / -1; }
+.kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; align-content: start; }
+.kpi { background: var(--surface); padding: 12px 14px; display: grid; gap: 2px; }
+.kpi .v { font-family: var(--f-data); font-size: 24px; font-weight: 500; }
+.kpi .v small { font-size: 12px; color: var(--muted); font-weight: 400; margin-left: 3px; }
+.kpi .l { font-size: 13px; color: var(--ink-2); }
+.chg { font-family: var(--f-data); font-size: 12px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.chg.up { color: var(--up); } .chg.down { color: var(--down); } .chg.flat { color: var(--muted); }
+
+/* Sections */
+section { display: grid; gap: 14px; }
+.sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; border-top: 1px solid var(--rule); padding-top: 14px; }
+.sec-head h2 { font-size: 20px; font-weight: 600; }
+.note { font-size: 13px; color: var(--muted); }
+
+/* Quote table */
+.tbl-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; }
+table { border-collapse: collapse; width: 100%; min-width: 620px; }
+th, td { padding: 8px 14px; text-align: left; border-bottom: 1px solid var(--grid); font-size: 14px; }
+th { font-family: var(--f-data); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+td.r, th.r { text-align: right; }
+tr.grp td { font-family: var(--f-display); font-weight: 600; font-size: 15px; background: var(--chip-bg); color: var(--ink); }
+tr:last-child td { border-bottom: 0; }
+table.pc { min-width: 640px; }
+table.pc th.grpcol { text-align: center; border-bottom: 1px solid var(--rule); }
+table.pc td.sep, table.pc th.sep { border-left: 1px solid var(--rule); }
+td .asof, .sources .asof { color: var(--muted); font-size: 12px; }
+
+/* Charts */
+.charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.chart { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px 10px; display: grid; gap: 8px; min-width: 0; }
+.chart.wide { grid-column: 1 / -1; }
+.chart h3 { font-size: 16px; font-weight: 600; }
+.chart .cap { font-size: 12.5px; color: var(--muted); }
+.legend { display: flex; gap: 14px; flex-wrap: wrap; font-size: 13px; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 14px; height: 3px; border-radius: 2px; display: inline-block; }
+.canvas-box { position: relative; height: 240px; }
+.st-grid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: 16px; }
+@media (max-width: 860px) { .st-grid { grid-template-columns: minmax(0, 1fr); } }
+.st-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.st-card h3 { font-size: 16px; font-weight: 600; }
+.st-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+.st-meta { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.st-meta.stale { color: var(--up); }
+.st-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn { font: 600 13px var(--f-body); color: var(--ink); background: var(--surface); border: 1px solid var(--rule); border-radius: 7px; padding: 6px 12px; cursor: pointer; }
+.btn:hover { background: var(--chip-bg); }
+.btn.primary { background: var(--ink); color: var(--surface); border-color: var(--ink); }
+.btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.tbl-wrap.flat { border: 0; border-radius: 0; background: transparent; }
+table.st-table { min-width: 340px; }
+table.st-table th, table.st-table td { padding: 7px 8px; }
+table.st-table tr.sep td { border-top: 2px solid var(--rule); }
+td.per { color: var(--muted); font-size: 13px; white-space: nowrap; }
+td.nil { color: var(--muted); }
+table.st-table td:first-child { white-space: nowrap; }
+.st-table input { width: 6.5em; font: 500 14px var(--f-data); text-align: right; color: var(--ink); background: var(--bg); border: 1px solid var(--rule); border-radius: 5px; padding: 4px 6px; }
+.st-table input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.st-msg { font-size: 13px; color: var(--ink-2); min-height: 1em; }
+.canvas-box.tall { height: 340px; }
+.sto-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.sto-stat { font-family: var(--f-data); font-size: 12.5px; color: var(--ink-2); margin-top: 4px; font-variant-numeric: tabular-nums; }
+.sto-stat b { color: var(--ink); font-weight: 500; }
+.seg { display: inline-flex; border: 1px solid var(--rule); border-radius: 7px; overflow: hidden; }
+.seg button { font: 500 13px var(--f-body); color: var(--ink-2); background: var(--surface); border: 0; padding: 6px 14px; cursor: pointer; }
+.seg button + button { border-left: 1px solid var(--rule); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: var(--surface); }
+.seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+.legend i.dash { width: 20px; height: 0; border-top: 2px dashed currentColor; background: none !important; }
+.legend i.band { height: 10px; opacity: .55; border-radius: 2px; }
+@media (max-width: 760px) { .canvas-box.tall { height: 280px; } }
+@media (max-width: 760px) { .charts { grid-template-columns: minmax(0, 1fr); } .canvas-box { height: 220px; } }
+
+/* Risks */
+.risks { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px; }
+.risk { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.risk .top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.risk h3 { font-size: 16px; font-weight: 600; }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-data); font-size: 11px; letter-spacing: 0.05em; text-transform: uppercase; padding: 3px 8px; border-radius: 999px; background: var(--chip-bg); color: var(--ink); white-space: nowrap; }
+.pill i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.risk p { margin: 0; color: var(--ink-2); font-size: 14px; }
+.trend { font-family: var(--f-data); font-size: 12px; color: var(--muted); }
+.srcs { display: inline-flex; flex-wrap: wrap; gap: 4px; vertical-align: 1px; }
+.risk > .srcs, .reg > .srcs { display: flex; margin-top: 2px; }
+.src-chip { display: inline-flex; align-items: center; gap: 3px; font: 500 11px var(--f-data); line-height: 1.5; padding: 1px 8px; border-radius: 999px; background: var(--chip-bg); color: var(--accent); border: 1px solid var(--rule); text-decoration: none; white-space: nowrap; }
+.src-chip::after { content: "↗"; font-size: 10px; opacity: .8; }
+.src-chip:hover { border-color: var(--accent); }
+.src-chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+@media (min-width: 760px) { .risk.span2 { grid-column: span 2; } }
+.risk.news { border-style: dashed; }
+.risk .kind { font-family: var(--f-data); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.rk-rows { display: grid; border-top: 1px solid var(--grid); margin-top: 4px; }
+.rk-row { display: grid; grid-template-columns: minmax(110px, 0.9fr) minmax(0, 2fr) auto; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px solid var(--grid); font-size: 13.5px; }
+.rk-row:last-child { border-bottom: 0; }
+.rk-l { font-weight: 600; color: var(--ink); }
+.rk-v { color: var(--ink-2); min-width: 0; }
+.rk-s { display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-data); font-size: 11px; color: var(--ink-2); white-space: nowrap; min-width: 128px; }
+.rk-s i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+@media (max-width: 520px) { .rk-row { grid-template-columns: minmax(0, 1fr) auto; } .rk-v { grid-column: 1 / -1; grid-row: 2; } }
+
+/* Regulation */
+.regs { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 12px; }
+.reg { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--accent); border-radius: 10px; padding: 14px 16px; display: grid; gap: 6px; align-content: start; min-width: 0; }
+.reg.eu { border-left-color: var(--s7); }
+.reg .top { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
+.reg h3 { font-size: 16px; font-weight: 600; }
+.reg .scope { font-family: var(--f-data); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.reg.eu .scope { color: var(--s7); }
+.reg .status { font-size: 13px; color: var(--ink-2); }
+.reg .status b { font-weight: 600; color: var(--ink); }
+.reg p { margin: 0; color: var(--ink-2); font-size: 14px; }
+.reg .due { font-family: var(--f-data); font-size: 12px; color: var(--muted); }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+@media (max-width: 860px) { .two { grid-template-columns: minmax(0, 1fr); } }
+.list { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.sources { margin: 0; padding-left: 18px; display: grid; gap: 4px; font-size: 13px; }
+a { color: var(--accent); }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.empty { background: var(--surface); border: 1px dashed var(--rule); border-radius: 10px; padding: 28px; color: var(--ink-2); }
+.empty h2 { font-size: 20px; margin-bottom: 6px; }
+
+/* Spot heatmap: hours x days, teal (cheap) -> cream -> brown (expensive) */
+.hm-card { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px 12px; display: grid; gap: 10px; min-width: 0; }
+.hm-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+.hm-title { font-family: var(--f-display); font-size: 17px; font-weight: 600; }
+.hm-sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+.hm-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+table.hm { border-collapse: separate; border-spacing: 1px; width: 100%; min-width: 900px; table-layout: fixed; background: var(--surface); }
+table.hm th, table.hm td { padding: 0; border: 0; text-align: center; font-family: var(--f-data); font-variant-numeric: tabular-nums; }
+table.hm td { height: 21px; font-size: 10px; line-height: 21px; border-radius: 2px; white-space: nowrap; overflow: hidden; }
+table.hm td.nil, table.hm tfoot td.nil { background: transparent; }
+table.hm th { font-size: 10.5px; font-weight: 500; color: var(--muted); letter-spacing: 0; text-transform: none; }
+table.hm thead th { height: 18px; }
+table.hm th.hm-corner { width: 34px; text-align: right; padding-right: 6px; vertical-align: bottom; font-size: 10px; }
+table.hm th.hm-h { width: 34px; text-align: right; padding-right: 6px; position: sticky; left: 0; background: var(--surface); z-index: 1; }
+table.hm thead th.hm-corner { position: sticky; left: 0; background: var(--surface); z-index: 2; }
+table.hm th.hm-d.cur { background: var(--ink); color: var(--surface); border-radius: 4px; }
+table.hm th.we { color: var(--accent); }
+table.hm th.hm-wd { font-size: 9.5px; height: 14px; }
+table.hm tfoot td { height: 22px; font-size: 10px; font-weight: 500; color: var(--ink); background: var(--chip-bg); }
+table.hm tfoot th, table.hm tfoot td { border-top: 4px solid var(--surface); }
+.hm-foot { display: flex; justify-content: space-between; align-items: flex-end; gap: 12px 24px; flex-wrap: wrap; }
+.hm-scale { width: min(340px, 100%); display: grid; gap: 3px; }
+.hm-bar { height: 10px; border-radius: 3px; }
+.hm-ticks { position: relative; height: 14px; font: 10px var(--f-data); color: var(--muted); }
+.hm-ticks span { position: absolute; transform: translateX(-50%); }
+.hm-foot .cap { max-width: 70ch; font-size: 12.5px; color: var(--muted); }
+.seg[hidden] { display: none !important; }
+
+/* Fundamentals */
+.fd-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: 16px; align-items: start; }
+@media (max-width: 860px) { .fd-grid { grid-template-columns: minmax(0, 1fr); } }
+.fd-side { display: grid; gap: 10px; align-content: start; min-width: 0; }
+.kpi .srcs { margin-top: 4px; }
+.fd-side .chg { white-space: normal; }
+.kpi { min-width: 0; }
+.kpi .src-chip { max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
+.fd-text { margin: 0; font-size: 14px; color: var(--ink-2); }
+
+/* Nuclear availability */
+.nu-grid { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+@media (max-width: 960px) { .nu-grid { grid-template-columns: minmax(0, 1fr); } }
+.nu-stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1px; background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden; }
+@media (max-width: 760px) { .nu-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.nu-stats .kpi .v { font-size: 22px; }
+.nu-stats .kpi { min-width: 0; }
+.nu-stats .chg { white-space: normal; }
+.nu-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; flex-wrap: wrap; }
+.legend i.area { height: 10px; border-radius: 2px; }
+table.nu-month td, table.nu-month th { padding: 6px 8px; }
+table.nu-month { min-width: 300px; }
+.nu-bar { display: inline-block; height: 8px; border-radius: 2px; background: var(--s1); vertical-align: middle; }
+.nu-out { min-width: 640px; }
+.nu-out td { font-size: 13.5px; }
+.nu-out td.r { white-space: nowrap; }
+.tag { display: inline-flex; align-items: center; gap: 5px; font: 500 11px var(--f-data); color: var(--ink-2); white-space: nowrap; }
+.tag i { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+.nu-more { font-size: 13px; color: var(--ink-2); }
+table.trve { min-width: 460px; }
+table.trve td, table.trve th { padding: 6px 8px; }
+.nu-more summary { cursor: pointer; color: var(--accent); padding: 8px 2px; }
+
+/* Day / night switch */
+.theme-tg { display: inline-flex; align-items: center; gap: 7px; padding: 5px 8px; border: 1px solid var(--rule); border-radius: 999px; background: var(--surface); color: var(--ink-2); cursor: pointer; }
+.theme-tg:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.theme-tg .tg-track { position: relative; width: 30px; height: 16px; border-radius: 999px; background: var(--chip-bg); border: 1px solid var(--rule); }
+.theme-tg .tg-knob { position: absolute; top: 1px; left: 1px; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); transition: transform .15s ease; }
+.theme-tg[aria-checked="true"] .tg-knob { transform: translateX(14px); }
+.theme-tg .ic-sun { color: #e0a100; } .theme-tg .ic-moon { color: var(--muted); }
+.theme-tg[aria-checked="true"] .ic-sun { color: var(--muted); } .theme-tg[aria-checked="true"] .ic-moon { color: #9fb7ff; }
+.mast .meta { margin-left: auto; }
+@media (max-width: 640px) { .mast { position: relative; } .mast > div:first-child { padding-right: 104px; } .theme-tg { position: absolute; top: 0; right: 0; } }
+@media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+  <header class="mast">
+    <div>
+      <div class="eyebrow">Gaz · Électricité · France &amp; Europe</div>
+      <h1>Brief Marchés Énergie</h1>
+    </div>
+    <div class="meta">
+      <label for="edition">Édition</label>
+      <select id="edition" aria-label="Choisir l'édition"><option>…</option></select>
+      <button type="button" class="theme-tg" id="theme-tg" role="switch" aria-checked="false" aria-label="Mode nuit" title="Mode nuit">
+        <svg class="ic-sun" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><circle cx="12" cy="12" r="4.2" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></g></svg>
+        <span class="tg-track"><span class="tg-knob"></span></span>
+        <svg class="ic-moon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a.6.6 0 0 0-.8-.7A9.6 9.6 0 1 0 20.9 15.4a.6.6 0 0 0-.7-.8Z"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div id="empty" class="empty">
+    <h2>Le brief du jour se charge</h2>
+    <p>Chaque jour ouvré vers 9 h 30, une nouvelle édition apparaît ici : l'essentiel, les prix gaz et électricité, les stocks, les graphes et le registre des risques pour un fournisseur.</p>
+  </div>
+
+  <main id="report" hidden>
+
+    <div style="display:grid; gap:28px;">
+      <div class="call">
+        <div>
+          <div class="eyebrow" id="r-date"></div>
+          <h2 id="r-headline"></h2>
+          <ul id="r-summary"></ul>
+        </div>
+        <div class="kpis" id="r-kpis"></div>
+      </div>
+
+      <section>
+        <div class="sec-head"><h2>Prix</h2><span class="note" id="r-prices-note"></span></div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Produit</th><th class="r">Dernier</th><th>Unité</th><th class="r">1 séance</th><th class="r">1 semaine</th><th>Date</th></tr></thead>
+            <tbody id="r-prices"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="sec-pc" hidden>
+        <div class="sec-head"><h2>Électricité France à terme : base et pointe</h2><span class="note" id="r-pc-note"></span></div>
+        <div class="tbl-wrap">
+          <table class="pc">
+            <thead>
+              <tr><th></th><th class="grpcol" colspan="3">Base</th><th class="grpcol sep" colspan="3">Pointe</th><th class="r sep">Écart</th></tr>
+              <tr><th>Échéance</th><th class="r">Dernier</th><th class="r">1 séance</th><th class="r">1 semaine</th><th class="r sep">Dernier</th><th class="r">1 séance</th><th class="r">1 semaine</th><th class="r sep">Pointe − base</th></tr>
+            </thead>
+            <tbody id="r-pc"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="court-terme">
+        <div class="sec-head"><h2>Court terme</h2><span class="note">Électricité France, €/MWh</span></div>
+        <div class="st-grid">
+          <div class="st-card">
+            <div class="st-head">
+              <div>
+                <h3>Semaines et week-ends</h3>
+                <div class="st-meta" id="st-meta"></div>
+              </div>
+              <div class="st-actions">
+                <button type="button" class="btn" id="st-edit">Saisir les cotations</button>
+                <button type="button" class="btn primary" id="st-save" hidden>Enregistrer</button>
+                <button type="button" class="btn" id="st-cancel" hidden>Annuler</button>
+              </div>
+            </div>
+            <div class="tbl-wrap flat">
+              <table class="st-table">
+                <thead><tr><th>Livraison</th><th>Période</th><th class="r">Base</th><th class="r">Peak</th><th class="r">Peak − base</th><th>Séance</th></tr></thead>
+                <tbody id="st-rows"></tbody>
+              </table>
+            </div>
+            <div class="st-msg" id="st-msg" role="status"></div>
+          </div>
+          <div class="st-card">
+            <h3>Repères automatiques</h3>
+            <div class="tbl-wrap flat">
+              <table class="st-table">
+                <thead><tr><th>Produit</th><th class="r">Base</th><th class="r">Peak</th><th>Date</th></tr></thead>
+                <tbody id="st-auto"></tbody>
+              </table>
+            </div>
+            <div class="cap">Peak = 8 h-20 h les jours ouvrés. Day-ahead EPEX ; mensuels EEX (dernière séance publiée) ; week-ends réalisés = moyenne spot samedi-dimanche.</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-heat" hidden>
+        <div class="sec-head"><h2>Spot France heure par heure</h2><span class="note">Day-ahead EPEX, heure de Paris</span></div>
+        <div class="hm-card">
+          <div class="hm-top">
+            <div>
+              <div class="hm-title" id="hm-title"></div>
+              <div class="hm-sub" id="hm-sub"></div>
+            </div>
+            <div class="seg" role="group" aria-label="Mois" id="hm-months" hidden></div>
+          </div>
+          <div class="hm-scroll"><table class="hm" id="hm" aria-label="Prix spot horaire France par jour du mois"></table></div>
+          <div class="hm-foot">
+            <div class="hm-scale" aria-hidden="true"><div class="hm-bar" id="hm-bar"></div><div class="hm-ticks" id="hm-ticks"></div></div>
+            <div class="cap" id="hm-cap"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-fund" hidden>
+        <div class="sec-head"><h2>Production et consommation France</h2><span class="note" id="fd-note"></span></div>
+        <div class="fd-grid">
+          <div class="fd-side">
+            <div class="kpis" id="fd-kpis"></div>
+            <p class="fd-text" id="fd-text" hidden></p>
+          </div>
+          <div class="chart">
+            <h3>Production par filière et consommation, moyenne journalière</h3>
+            <div class="legend" id="lg-fd"></div>
+            <div class="canvas-box"><canvas id="c-fd" role="img" aria-label="Production nucléaire, éolienne et solaire et consommation prévue en France, moyenne journalière en GW"></canvas></div>
+            <div class="cap" id="cap-fd"></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="sec-nuc" hidden>
+        <div class="sec-head"><h2>Disponibilité nucléaire France</h2><span class="note" id="nu-note"></span></div>
+        <div class="nu-stats" id="nu-stats"></div>
+        <div class="nu-grid">
+          <div class="chart">
+            <div class="nu-top">
+              <h3 id="nu-title">Capacité nucléaire disponible, moyenne journalière</h3>
+              <div class="seg" role="group" aria-label="Horizon">
+                <button type="button" id="nu-r90" aria-pressed="false">3 mois</button>
+                <button type="button" id="nu-rall" aria-pressed="true">Tout l'horizon</button>
+              </div>
+            </div>
+            <div class="legend" id="lg-nu"></div>
+            <div class="canvas-box tall"><canvas id="c-nu" role="img" aria-label="Capacité nucléaire disponible, arrêts programmés et fortuits, production réalisée"></canvas></div>
+            <div class="cap" id="cap-nu"></div>
+          </div>
+          <div class="st-card">
+            <h3>Disponibilité moyenne par mois</h3>
+            <div class="tbl-wrap flat">
+              <table class="st-table nu-month">
+                <thead><tr><th>Mois</th><th class="r">Dispo.</th><th class="r">Min.</th><th class="r">Arrêts</th><th></th></tr></thead>
+                <tbody id="nu-months"></tbody>
+              </table>
+            </div>
+            <div class="cap">GW, moyenne des jours du mois couverts par les données ; « Arrêts » = indisponibilité moyenne programmée + fortuite.</div>
+          </div>
+        </div>
+        <div class="st-card">
+          <h3 id="nu-out-title">Arrêts en cours et à venir</h3>
+          <div class="tbl-wrap flat">
+            <table class="st-table nu-out">
+              <thead><tr><th>Réacteur</th><th>Type</th><th class="r">Indispo.</th><th>Début</th><th>Fin prévue</th><th>Motif</th></tr></thead>
+              <tbody id="nu-out"></tbody>
+            </table>
+          </div>
+          <details class="nu-more" id="nu-more" hidden><summary id="nu-more-sum"></summary>
+            <div class="tbl-wrap flat"><table class="st-table nu-out"><tbody id="nu-out2"></tbody></table></div>
+          </details>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-head"><h2>Graphes</h2><span class="note">Historique construit jour après jour</span></div>
+        <div class="charts">
+          <div class="chart wide sto-card">
+            <div class="sto-head">
+              <div>
+                <h3>Stockages de gaz : saison en cours et années passées</h3>
+                <div class="sto-stat" id="sto-stat"></div>
+              </div>
+              <div class="seg" role="group" aria-label="Zone">
+                <button type="button" id="sto-eu" aria-pressed="true">UE</button>
+                <button type="button" id="sto-fr" aria-pressed="false">France</button>
+              </div>
+            </div>
+            <div class="legend" id="lg-sto"></div>
+            <div class="canvas-box tall"><canvas id="c-sto" role="img" aria-label="Taux de remplissage des stockages de gaz par année gazière"></canvas></div>
+            <div class="cap" id="cap-sto">% de la capacité utile, par année gazière d'avril à mars : remplissage l'été, soutirage l'hiver. Source GIE AGSI+.</div>
+          </div>
+          <div class="chart">
+            <h3>Gaz PEG à terme</h3>
+            <div class="legend" id="lg-gas"></div>
+            <div class="canvas-box"><canvas id="c-gas" role="img" aria-label="Prix à terme du gaz PEG"></canvas></div>
+            <div class="cap">€/MWh, prix de règlement EEX. Mois prochain : contrat novembre jusqu'au 31/10.</div>
+          </div>
+          <div class="chart">
+            <h3>Électricité France à terme, base</h3>
+            <div class="legend" id="lg-pow"></div>
+            <div class="canvas-box"><canvas id="c-pow" role="img" aria-label="Prix à terme de l'électricité France"></canvas></div>
+            <div class="cap" id="cap-pow">€/MWh, prix de règlement EEX.</div>
+          </div>
+          <div class="chart wide" id="trve-card" hidden>
+            <h3>Moyennes des Cal pour le TRVE</h3>
+            <div class="tbl-wrap flat"  id="trve-wrap">
+              <table class="st-table trve">
+                <thead><tr><th>Moyenne TRVE</th><th>Fenêtre</th><th class="r">Moyenne</th><th class="r">Séances</th><th class="r">Dernier</th><th class="r">Écart</th></tr></thead>
+                <tbody id="trve-rows"></tbody>
+              </table>
+            </div>
+            <div class="cap" id="cap-trve"></div>
+          </div>
+          <div class="chart">
+            <h3>Courbe à terme PEG</h3>
+            <div class="canvas-box"><canvas id="c-curve" role="img" aria-label="Courbe à terme du gaz PEG par échéance"></canvas></div>
+            <div class="cap" id="cap-curve">€/MWh par échéance, dernière séance.</div>
+          </div>
+          <div class="chart">
+            <h3>Stockages par pays</h3>
+            <div class="canvas-box"><canvas id="c-ctry" role="img" aria-label="Remplissage des stockages par pays"></canvas></div>
+            <div class="cap" id="cap-ctry">% de la capacité utile.</div>
+          </div>
+          <div class="chart wide">
+            <h3>Spot France day-ahead</h3>
+            <div class="legend" id="lg-spot"></div>
+            <div class="canvas-box"><canvas id="c-spot" role="img" aria-label="Prix spot day-ahead France, moyenne journalière"></canvas></div>
+            <div class="cap">€/MWh, moyenne journalière EPEX, par jour de livraison. Couleur selon le type de jour (ouvré, week-end, férié) ; ligne pointillée : moyenne de la période affichée.</div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="sec-head"><h2>Actualité des marchés et risques</h2><span class="note">Niveau = probabilité × impact sur le prix d'approvisionnement</span></div>
+        <div class="risks" id="r-risks"></div>
+      </section>
+
+      <section id="sec-reg">
+        <div class="sec-head"><h2 id="reg-title">Réglementation</h2><span class="note" id="reg-note">Du plus récent au plus ancien · impact sur l'activité de fourniture</span></div>
+        <div class="regs" id="r-reg"></div>
+        <ul class="list" id="r-pricing" hidden></ul>
+      </section>
+
+      <section>
+        <div class="sec-head"><h2>À surveiller</h2></div>
+        <ul class="list" id="r-watch"></ul>
+      </section>
+
+      <section>
+        <div class="sec-head"><h2>Sources</h2></div>
+        <ul class="sources" id="r-sources"></ul>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
+<script>
+(function () {
+  const $ = (id) => document.getElementById(id);
+  const MONTHS = ["janv.", "févr.", "mars", "avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc."];
+  const DAYS = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
+  const fmt = (v, d = 2) => (v == null || isNaN(v)) ? "—" : Number(v).toLocaleString("fr-FR", { minimumFractionDigits: d, maximumFractionDigits: d });
+  const parseDate = (s) => { const [y, m, d] = String(s).split("-").map(Number); return new Date(Date.UTC(y, m - 1, d, 12)); };
+  const shortDate = (s) => { if (!s) return ""; const d = parseDate(s); return d.getUTCDate() + " " + MONTHS[d.getUTCMonth()]; };
+  const longDate = (s) => { const d = parseDate(s); return DAYS[d.getUTCDay()] + " " + d.getUTCDate() + " " + MONTHS[d.getUTCMonth()] + " " + d.getUTCFullYear(); };
+  const dayFr = (s) => { const d = parseDate(s); return (d.getUTCDate() === 1 ? "1er" : d.getUTCDate()) + " " + MONTHS[d.getUTCMonth()] + " " + d.getUTCFullYear(); };
+  const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+  const css = (name) => getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  // French public holidays (fixed dates + Easter-based)
+  const HOLI = {};
+  function holidayFR(ds) {
+    const y = Number(String(ds).slice(0, 4));
+    if (!HOLI[y]) {
+      const a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4, f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3);
+      const h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451);
+      const mo = Math.floor((h + l - 7 * m + 114) / 31), da = ((h + l - 7 * m + 114) % 31) + 1;
+      const ea = Date.UTC(y, mo - 1, da, 12), dd = (n) => new Date(ea + n * 864e5).toISOString().slice(0, 10);
+      const H = {};
+      H[y + "-01-01"] = "Jour de l'an"; H[dd(1)] = "lundi de Pâques"; H[y + "-05-01"] = "fête du Travail"; H[y + "-05-08"] = "Victoire 1945";
+      H[dd(39)] = "Ascension"; H[dd(50)] = "lundi de Pentecôte"; H[y + "-07-14"] = "Fête nationale"; H[y + "-08-15"] = "Assomption";
+      H[y + "-11-01"] = "Toussaint"; H[y + "-11-11"] = "Armistice"; H[y + "-12-25"] = "Noël";
+      HOLI[y] = H;
+    }
+    return HOLI[y][String(ds).slice(0, 10)] || null;
+  }
+  // "ouvre" | "we" | "ferie", with label
+  const dayKind = (ds) => { const hol = holidayFR(ds); if (hol) return ["ferie", hol]; const wd = parseDate(ds).getUTCDay(); return (wd === 0 || wd === 6) ? ["we", wd === 6 ? "samedi" : "dimanche"] : ["ouvre", ""]; };
+
+  // source bubbles: src = [{title, url, date?}] ; label = part of the title before " – ", else the domain
+  function srcChips(src) {
+    const list = (Array.isArray(src) ? src : []).filter((s) => s && /^https?:\/\//.test(String(s.url || "")));
+    if (!list.length) return null;
+    const box = el("span", "srcs");
+    list.forEach((s) => {
+      let host = ""; try { host = new URL(s.url).hostname.replace(/^www\./, ""); } catch (e) {}
+      const name = String(s.title || "").split(" – ")[0].trim() || host;
+      const a = el("a", "src-chip", name.length > 26 ? name.slice(0, 25) + "…" : name);
+      a.href = s.url; a.target = "_blank"; a.rel = "noopener";
+      a.title = (s.title || host) + (s.date ? " · " + dayFr(s.date) : "");
+      a.setAttribute("aria-label", "Source : " + (s.title || host));
+      box.appendChild(a);
+    });
+    return box;
+  }
+  function itemLi(t) {
+    const li = el("li");
+    if (t && typeof t === "object") { li.appendChild(document.createTextNode(String(t.text || "").replace(/-(?=\d)/g, "-\u2060").replace(/(\d) (?=%|€|\$|GW|TWh|Mt|pt)/g, "$1\u00a0"))); const sc = srcChips(t.src); if (sc) { li.appendChild(document.createTextNode(" ")); li.appendChild(sc); } }
+    else li.textContent = t == null ? "" : String(t);
+    return li;
+  }
+
+  function chg(v, unit) {
+    const s = el("span", "chg");
+    if (v == null || isNaN(v)) { s.classList.add("flat"); s.textContent = "—"; return s; }
+    const n = Number(v);
+    s.classList.add(n > 0 ? "up" : n < 0 ? "down" : "flat");
+    s.textContent = (n > 0 ? "▲ +" : n < 0 ? "▼ " : "■ ") + fmt(n, 1) + (unit || " %");
+    return s;
+  }
+
+  let reports = [];
+  let series = [];
+  let current = null;
+  const charts = {};
+
+  function renderEditions() {
+    const sel = $("edition");
+    const keep = current;
+    sel.textContent = "";
+    reports.forEach((r) => { const o = el("option", null, longDate(r.date)); o.value = r.date; sel.appendChild(o); });
+    if (!reports.length) { sel.appendChild(el("option", null, "Aucune édition")); return; }
+    current = reports.some((r) => r.date === keep) ? keep : reports[0].date;
+    sel.value = current;
+  }
+
+  function renderReport() {
+    const r = reports.find((x) => x.date === current);
+    $("empty").hidden = !!r;
+    $("report").hidden = !r;
+    if (!r) return;
+    $("r-date").textContent = longDate(r.date) + (r.time ? " · " + r.time : "");
+    const nb = (t) => String(t || "").replace(/-(?=\d)/g, "-\u2060").replace(/(\d) (?=%|€|\$|GW|TWh|Mt|pt)/g, "$1\u00a0");
+    $("r-headline").textContent = nb(r.headline);
+    const sum = $("r-summary"); sum.textContent = "";
+    (r.summary || []).forEach((t) => sum.appendChild(itemLi(t)));
+
+    const k = $("r-kpis"); k.textContent = "";
+    (r.kpis || []).forEach((x) => {
+      const d = el("div", "kpi");
+      d.appendChild(el("div", "l", x.label));
+      const v = el("div", "v", x.text != null ? x.text : fmt(x.value, x.decimals != null ? x.decimals : 2));
+      if (x.unit) v.appendChild(el("small", null, x.unit));
+      d.appendChild(v);
+      const row = el("div");
+      if (x.d1 != null || x.w1 != null) {
+        if (x.d1 != null) { row.appendChild(chg(x.d1, x.d1unit)); row.appendChild(document.createTextNode(" ")); }
+        if (x.w1 != null) { const w = chg(x.w1, x.w1unit); w.textContent += " 7 j"; row.appendChild(w); }
+      } else if (x.sub) { row.appendChild(el("span", "chg flat", x.sub)); }
+      d.appendChild(row);
+      k.appendChild(d);
+    });
+
+    $("r-prices-note").textContent = r.pricesNote || "";
+    const tb = $("r-prices"); tb.textContent = "";
+    let lastGroup = null;
+    (r.prices || []).forEach((p) => {
+      if (p.group && p.group !== lastGroup) {
+        const g = el("tr", "grp"); const td = el("td", null, p.group); td.colSpan = 6; g.appendChild(td); tb.appendChild(g); lastGroup = p.group;
+      }
+      const tr = el("tr");
+      tr.appendChild(el("td", null, p.label));
+      tr.appendChild(el("td", "r num", p.text != null ? p.text : fmt(p.value, p.decimals != null ? p.decimals : 2)));
+      tr.appendChild(el("td", "asof", p.unit || ""));
+      const a = el("td", "r"); a.appendChild(chg(p.d1, p.d1unit)); tr.appendChild(a);
+      const b = el("td", "r"); b.appendChild(chg(p.w1, p.w1unit)); tr.appendChild(b);
+      const c = el("td"); c.appendChild(el("span", "asof", p.asof ? shortDate(p.asof) : "")); tr.appendChild(c);
+      tb.appendChild(tr);
+    });
+
+    const pc = r.powerCurve || null;
+    const pcRows = pc && Array.isArray(pc.rows) ? pc.rows : [];
+    $("sec-pc").hidden = !pcRows.length;
+    $("r-pc-note").textContent = pc ? ("€/MWh, règlements EEX" + (pc.asof ? " de la séance du " + dayFr(pc.asof) : "") + (pc.note ? " · " + pc.note : "")) : "";
+    const pb = $("r-pc"); pb.textContent = "";
+    let lastT = null;
+    pcRows.forEach((x) => {
+      if (x.type && x.type !== lastT) { const g = el("tr", "grp"); const td = el("td", null, x.type); td.colSpan = 8; g.appendChild(td); pb.appendChild(g); lastT = x.type; }
+      const tr = el("tr");
+      tr.appendChild(el("td", null, x.label));
+      tr.appendChild(el("td", "r num", fmt(x.base, 2)));
+      const a1 = el("td", "r"); a1.appendChild(chg(x.base_d1)); tr.appendChild(a1);
+      const a2 = el("td", "r"); a2.appendChild(chg(x.base_w1)); tr.appendChild(a2);
+      tr.appendChild(el("td", "r num sep", fmt(x.peak, 2)));
+      const b1 = el("td", "r"); b1.appendChild(chg(x.peak_d1)); tr.appendChild(b1);
+      const b2 = el("td", "r"); b2.appendChild(chg(x.peak_w1)); tr.appendChild(b2);
+      const sp = (x.base != null && x.peak != null) ? Number(x.peak) - Number(x.base) : null;
+      tr.appendChild(el("td", "r num sep", sp == null ? "—" : (sp > 0 ? "+" : "") + fmt(sp, 2)));
+      pb.appendChild(tr);
+    });
+
+    const LV = { "élevé": "--crit", "modéré": "--serious", "faible": "--warn" };
+    const TR = { up: "↗ en hausse", down: "↘ en baisse", stable: "→ stable" };
+    const rk = $("r-risks"); rk.textContent = "";
+    const ST = { ok: ["En service", "--good"], ramp: ["Montée en charge", "--s1"], maint: ["Maintenance", "--warn"], down: ["Arrêt", "--crit"], info: ["", "--muted"] };
+    const riskList = (r.risks || []).slice().sort((a, b) => (a.type === "news" ? 1 : 0) - (b.type === "news" ? 1 : 0));
+    riskList.forEach((x) => {
+      const c = el("article", "risk" + (Array.isArray(x.rows) && x.rows.length ? " span2" : "") + (x.type === "news" ? " news" : ""));
+      if (x.type === "news") c.appendChild(el("div", "kind", "Événement de marché"));
+      const top = el("div", "top");
+      top.appendChild(el("h3", null, x.title));
+      const pill = el("span", "pill");
+      const dot = el("i"); dot.style.background = "var(" + (LV[String(x.level).toLowerCase()] || "--muted") + ")";
+      pill.appendChild(dot); pill.appendChild(document.createTextNode(x.level || ""));
+      top.appendChild(pill);
+      c.appendChild(top);
+      if (x.asof) c.appendChild(el("div", "trend", "Information du " + dayFr(x.asof)));
+      if (x.trend) c.appendChild(el("div", "trend", "Tendance depuis l'édition précédente : " + (TR[x.trend] || x.trend)));
+      c.appendChild(el("p", null, x.text || ""));
+      if (Array.isArray(x.rows) && x.rows.length) {
+        const box = el("div", "rk-rows");
+        x.rows.forEach((row) => {
+          const line = el("div", "rk-row");
+          line.appendChild(el("span", "rk-l", row.label || ""));
+          line.appendChild(el("span", "rk-v", row.value || ""));
+          const s = ST[row.status] || null;
+          const chip = el("span", "rk-s");
+          if (s && s[0]) { const d = el("i"); d.style.background = "var(" + s[1] + ")"; chip.appendChild(d); chip.appendChild(document.createTextNode(s[0])); }
+          line.appendChild(chip);
+          box.appendChild(line);
+        });
+        c.appendChild(box);
+      }
+      const sc = srcChips(x.src); if (sc) c.appendChild(sc);
+      rk.appendChild(c);
+    });
+
+    const fill = (id, arr) => { const u = $(id); u.textContent = ""; (arr || []).forEach((t) => u.appendChild(itemLi(t))); };
+    fill("r-watch", r.watch);
+    const regBox = $("r-reg"); regBox.textContent = "";
+    const regs = Array.isArray(r.regulation) ? r.regulation.slice() : [];
+    const isEU = (x) => /^(ue|eu|europe)/i.test(String(x.scope || ""));
+    regs.sort((a, b) => String(b.asof || "").localeCompare(String(a.asof || "")) || ((isEU(a) ? 1 : 0) - (isEU(b) ? 1 : 0)));
+    const legacy = !regs.length && Array.isArray(r.pricing) && r.pricing.length;
+    $("reg-title").textContent = legacy ? "Pour le pricing" : "Réglementation";
+    $("reg-note").hidden = !!legacy;
+    regBox.hidden = !!legacy;
+    $("r-pricing").hidden = !legacy;
+    fill("r-pricing", legacy ? r.pricing : []);
+    $("sec-reg").hidden = !regs.length && !legacy;
+    regs.forEach((x) => {
+      const c = el("article", "reg" + (isEU(x) ? " eu" : ""));
+      const top = el("div", "top");
+      const head = el("div");
+      head.appendChild(el("div", "scope", x.scope || ""));
+      head.appendChild(el("h3", null, x.title || ""));
+      top.appendChild(head);
+      if (x.impact) {
+        const pill = el("span", "pill");
+        const dot = el("i"); dot.style.background = "var(" + (LV[String(x.impact).toLowerCase()] || "--muted") + ")";
+        pill.appendChild(dot); pill.appendChild(document.createTextNode("Impact " + String(x.impact).toLowerCase()));
+        top.appendChild(pill);
+      }
+      c.appendChild(top);
+      if (x.asof) c.appendChild(el("div", "due", "Information du " + dayFr(x.asof)));
+      if (x.status) { const s = el("div", "status"); s.appendChild(el("b", null, "Statut : ")); s.appendChild(document.createTextNode(x.status)); c.appendChild(s); }
+      c.appendChild(el("p", null, x.text || ""));
+      if (x.next) c.appendChild(el("div", "due", "Prochaine étape : " + x.next));
+      const rsc = srcChips(x.src); if (rsc) c.appendChild(rsc);
+      regBox.appendChild(c);
+    });
+    const src = $("r-sources"); src.textContent = "";
+    (r.sources || []).forEach((s) => {
+      const li = el("li"); const a = el("a", null, s.title || s.url);
+      a.href = s.url; a.target = "_blank"; a.rel = "noopener"; li.appendChild(a);
+      if (s.date) li.appendChild(el("span", "asof", " · " + dayFr(s.date)));
+      src.appendChild(li);
+    });
+    renderShortTerm(r);
+    renderHeat(r);
+    renderFund(r);
+    renderNuc(r);
+    renderCharts(r);
+  }
+
+  // ---------- charts ----------
+  function baseOpts(yTitle) {
+    const muted = css("--muted"), grid = css("--grid"), ink = css("--ink"), surface = css("--surface"), rule = css("--rule");
+    return {
+      responsive: true, maintainAspectRatio: false, animation: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          backgroundColor: surface, titleColor: ink, bodyColor: ink, borderColor: rule, borderWidth: 1,
+          padding: 10, titleFont: { family: "IBM Plex Mono", size: 12 }, bodyFont: { family: "IBM Plex Mono", size: 12 },
+          callbacks: { label: (c) => " " + c.dataset.label + " : " + fmt(c.parsed.y, 2) + (yTitle ? " " + yTitle : "") }
+        }
+      },
+      scales: {
+        x: { grid: { display: false }, border: { color: rule }, ticks: { color: muted, font: { family: "IBM Plex Mono", size: 11 }, maxRotation: 0, autoSkipPadding: 14 } },
+        y: { grid: { color: grid }, border: { display: false }, ticks: { color: muted, font: { family: "IBM Plex Mono", size: 11 }, callback: (v) => fmt(v, 0) } }
+      }
+    };
+  }
+  function timeX(opts, minTs) {
+    opts.scales.x.type = "linear";
+    if (minTs) opts.scales.x.min = minTs;
+    opts.scales.x.ticks.callback = (v) => { const d = new Date(v); return d.getUTCDate() + " " + MONTHS[d.getUTCMonth()]; };
+    opts.scales.x.ticks.maxTicksLimit = 6;
+    opts.plugins.tooltip.callbacks.title = (items) => items.length ? shortDate(new Date(items[0].parsed.x).toISOString().slice(0, 10)) : "";
+    opts.interaction = { mode: "nearest", axis: "x", intersect: false };
+    return opts;
+  }
+  function line(label, color, key, rows) {
+    return {
+      label, borderColor: color, backgroundColor: color, borderWidth: 2, pointRadius: 0, pointHoverRadius: 4,
+      spanGaps: true, tension: 0,
+      data: rows.filter((s) => s[key] != null).map((s) => ({ x: parseDate(s.date).getTime(), y: Number(s[key]) }))
+    };
+  }
+  function endpoint(ds) {
+    // emphasize last point
+    ds.pointRadius = ds.data.map((_, i) => i === ds.data.length - 1 ? 4 : 0);
+    ds.pointBackgroundColor = ds.borderColor; ds.pointBorderColor = css("--surface"); ds.pointBorderWidth = 2;
+    return ds;
+  }
+  function legend(id, items) {
+    const box = $(id); box.textContent = "";
+    items.forEach(([label, color]) => { const s = el("span"); const i = el("i"); i.style.background = color; s.appendChild(i); s.appendChild(document.createTextNode(label)); box.appendChild(s); });
+  }
+  function draw(id, cfg) {
+    if (charts[id]) charts[id].destroy();
+    charts[id] = new Chart($(id), cfg);
+  }
+
+  function renderCharts(r) {
+    if (typeof Chart === "undefined") return;
+    const s1 = css("--s1"), s2 = css("--s2"), s3 = css("--s3");
+    const upTo = (rows) => rows.filter((s) => s.date <= r.date);
+    const rows = upTo(series);
+    const sixty = parseDate(r.date).getTime() - 60 * 864e5;
+    const win = rows.filter((s) => parseDate(s.date).getTime() >= sixty);
+
+    // Gas
+    legend("lg-gas", [["Mois prochain", s1], ["Cal-27", s2], ["Cal-28", s3]]);
+    draw("c-gas", { type: "line", data: { datasets: [
+      endpoint(line("Mois prochain", s1, "peg_mfront", win)), endpoint(line("Cal-27", s2, "peg_cal27", win)), endpoint(line("Cal-28", s3, "peg_cal28", win))
+    ] }, options: timeX(baseOpts("€/MWh")) });
+
+    // Power + TRVE running averages (mean of Cal-Y settlements over Y-2 and Y-1)
+    const tr = trveCalc(r.date);
+    const ink = css("--ink");
+    const trDs = tr.filter((x) => x.curve.length).map((x, i) => ({
+      label: "Moyenne TRVE " + x.label, data: x.curve.filter((p) => p.x >= sixty), borderColor: ink, backgroundColor: ink,
+      borderWidth: 2, borderDash: i === 0 ? [] : [6, 4], pointRadius: 0, pointHoverRadius: 3, tension: 0, spanGaps: true
+    }));
+    legend("lg-pow", [["Q1-27", s1], ["Cal-27", s2], ["Cal-28", s3]].concat(trDs.map((d) => [d.label, ink])));
+    trDs.forEach((d, i) => { const it = $("lg-pow").children[3 + i]; if (it && it.firstChild && i > 0) { it.firstChild.className = "dash"; it.firstChild.style.color = ink; } });
+    const fwWin = fwd && fwd.prices ? Object.keys(fwd.prices).sort().filter((d) => d <= r.date && parseDate(d).getTime() >= sixty).map((d) => Object.assign({ date: d }, fwd.prices[d])) : [];
+    const calLine = (lab, col, sKey, fKey) => fwWin.some((x) => x[fKey] != null) ? line(lab, col, fKey, fwWin) : line(lab, col, sKey, win);
+    draw("c-pow", { type: "line", data: { datasets: [
+      endpoint(line("Q1-27", s1, "el_q1_base", win)), endpoint(calLine("Cal-27", s2, "el_cal27_base", "cal27")), endpoint(calLine("Cal-28", s3, "el_cal28_base", "cal28"))
+    ].concat(trDs) }, options: timeX(baseOpts("€/MWh")) });
+    renderTrve(r, tr);
+
+    // Spot
+    const spot = win.filter((s) => s.spot_fr != null).slice(-30);
+    const avg = spot.length ? spot.reduce((a, s) => a + Number(s.spot_fr), 0) / spot.length : null;
+    const so = baseOpts("€/MWh");
+    so.plugins.tooltip.callbacks.label = (c) => c.dataset.type === "line" ? " Moyenne : " + fmt(c.parsed.y, 0) + " €/MWh" : " Spot : " + fmt(c.parsed.y, 0) + " €/MWh";
+    so.plugins.tooltip.callbacks.title = (items) => { const s = items.length ? spot[items[0].dataIndex] : null; if (!s) return ""; const k = dayKind(s.date); return longDate(s.date) + (k[0] === "ferie" ? " · férié (" + k[1] + ")" : k[0] === "we" ? " · week-end" : ""); };
+    so.scales.x.ticks.maxTicksLimit = 8;
+    const kCol = { ouvre: s1, we: css("--s7"), ferie: s2 };
+    legend("lg-spot", [["Jour ouvré", s1], ["Week-end", kCol.we], ["Jour férié", s2]]);
+    draw("c-spot", { type: "bar", data: { labels: spot.map((s) => shortDate(s.date)), datasets: [
+      { label: "Spot", data: spot.map((s) => Number(s.spot_fr)), backgroundColor: spot.map((s, i) => { const c = kCol[dayKind(s.date)[0]]; return i === spot.length - 1 ? c : c + "99"; }), borderRadius: { topLeft: 3, topRight: 3 }, borderSkipped: "bottom", maxBarThickness: 18 },
+      { type: "line", label: "Moyenne", data: spot.map(() => avg), borderColor: css("--ink-2"), borderDash: [4, 4], borderWidth: 1.5, pointRadius: 0 }
+    ] }, options: so });
+
+    renderStorage(r);
+
+    // Forward curve
+    const curve = r.gasCurve || [];
+    const co = baseOpts("€/MWh");
+    co.scales.x.ticks.autoSkip = false; co.scales.x.ticks.maxRotation = 45; co.scales.x.ticks.minRotation = 0;
+    $("cap-curve").textContent = "€/MWh par échéance, séance du " + shortDate(r.curveAsOf || r.date) + " ; mois puis trimestres.";
+    draw("c-curve", { type: "bar", data: { labels: curve.map((c) => c.label), datasets: [
+      { label: "PEG", data: curve.map((c) => c.value), backgroundColor: curve.map((c) => c.winter ? s1 : css("--s1") + "66"), borderRadius: { topLeft: 3, topRight: 3 }, borderSkipped: "bottom", maxBarThickness: 26 }
+    ] }, options: co });
+
+    // Countries
+    const st = r.storage || {};
+    const ctry = (st.countries || []).slice().sort((a, b) => b.pct - a.pct);
+    const cy = baseOpts("%");
+    cy.indexAxis = "y";
+    cy.scales.x = { min: 0, max: 100, grid: { color: css("--grid") }, border: { display: false }, ticks: { color: css("--muted"), font: { family: "IBM Plex Mono", size: 11 }, callback: (v) => v + " %" } };
+    cy.scales.y = { grid: { display: false }, border: { color: css("--rule") }, ticks: { color: css("--ink-2"), font: { family: "Source Sans 3", size: 12 }, autoSkip: false } };
+    cy.plugins.tooltip.callbacks.label = (c) => " " + fmt(c.parsed.x, 1) + " %";
+    cy.interaction = { mode: "nearest", axis: "y", intersect: false };
+    $("cap-ctry").textContent = "% de la capacité utile au " + shortDate(st.asof || r.date) + (st.eu != null ? " ; moyenne UE " + fmt(st.eu, 1) + " %" + (st.euYearAgo != null ? " (" + fmt(st.euYearAgo, 1) + " % un an plus tôt)." : ".") : ".");
+    draw("c-ctry", { type: "bar", data: { labels: ctry.map((c) => c.name), datasets: [
+      { label: "Remplissage", data: ctry.map((c) => c.pct), backgroundColor: ctry.map((c) => c.name === "France" ? s2 : s1), borderRadius: { topRight: 3, bottomRight: 3 }, borderSkipped: "left", maxBarThickness: 16 }
+    ] }, options: cy });
+    $("c-ctry").parentElement.style.height = Math.max(220, ctry.length * 24 + 40) + "px";
+  }
+
+
+  // ---------- spot heatmap: hours x days of the month ----------
+  const MONTHS_LONG = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
+  const WD1 = ["D", "L", "M", "M", "J", "V", "S"];
+  const HSTOPS = [[-50, [10, 92, 84]], [0, [31, 158, 142]], [50, [93, 188, 172]], [100, [160, 215, 205]], [150, [221, 239, 233]], [185, [244, 236, 222]], [220, [233, 205, 168]], [260, [215, 162, 114]], [300, [194, 110, 72]], [350, [125, 45, 26]]];
+  function heatRGB(v) {
+    if (v <= HSTOPS[0][0]) return HSTOPS[0][1];
+    for (let i = 1; i < HSTOPS.length; i++) {
+      const [x1, c1] = HSTOPS[i];
+      if (v <= x1) { const [x0, c0] = HSTOPS[i - 1]; const t = (v - x0) / (x1 - x0); return c0.map((c, k) => Math.round(c + (c1[k] - c) * t)); }
+    }
+    return HSTOPS[HSTOPS.length - 1][1];
+  }
+  const lum = (c) => (0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]) / 255;
+  let heatMonth = null;
+  function renderHeat(r) {
+    const withH = series.filter((s) => Array.isArray(s.spot_h) && s.spot_h.length >= 23 && s.date <= r.date);
+    $("sec-heat").hidden = !withH.length;
+    if (!withH.length) return;
+    const months = Array.from(new Set(withH.map((s) => s.date.slice(0, 7)))).sort();
+    const edMonth = r.date.slice(0, 7);
+    if (!heatMonth || months.indexOf(heatMonth) < 0) heatMonth = months.indexOf(edMonth) >= 0 ? edMonth : months[months.length - 1];
+    const mb = $("hm-months"); mb.textContent = ""; mb.hidden = months.length < 2;
+    months.slice(-6).forEach((m) => {
+      const b = el("button", null, MONTHS[Number(m.slice(5)) - 1] + " " + m.slice(2, 4)); b.type = "button";
+      b.setAttribute("aria-pressed", String(m === heatMonth));
+      b.addEventListener("click", () => { heatMonth = m; renderHeat(r); });
+      mb.appendChild(b);
+    });
+    const Y = Number(heatMonth.slice(0, 4)), M = Number(heatMonth.slice(5, 7));
+    const nDays = new Date(Date.UTC(Y, M, 0)).getUTCDate();
+    const byDay = {};
+    withH.forEach((s) => { if (s.date.slice(0, 7) === heatMonth) byDay[Number(s.date.slice(8, 10))] = s.spot_h.map(Number); });
+    const mName = MONTHS_LONG[M - 1].charAt(0).toUpperCase() + MONTHS_LONG[M - 1].slice(1);
+    $("hm-title").textContent = "France — " + mName + " " + Y + " · prix horaire moyen par jour (€/MWh)";
+    const all = [].concat.apply([], Object.keys(byDay).map((k) => byDay[k]));
+    const nNeg = all.filter((v) => v <= 0).length;
+    const mx = Math.max.apply(null, all), mn = Math.min.apply(null, all);
+    $("hm-sub").textContent = Object.keys(byDay).length + " jours · de " + fmt(mn, mn < 0 && mn > -1 ? 2 : 0) + " à " + fmt(mx, 0) + " €/MWh" + (nNeg ? " · " + nNeg + " heure" + (nNeg > 1 ? "s" : "") + " à zéro ou négative" + (nNeg > 1 ? "s" : "") : "");
+
+    const t = $("hm"); t.textContent = "";
+    const thead = el("thead"), h1 = el("tr"), h2 = el("tr");
+    const corner = el("th", "hm-corner", "Heure"); corner.rowSpan = 2; h1.appendChild(corner);
+    for (let d = 1; d <= nDays; d++) {
+      const iso = heatMonth + "-" + String(d).padStart(2, "0");
+      const wd = parseDate(iso).getUTCDay(), hol = holidayFR(iso), we = wd === 0 || wd === 6 || !!hol;
+      const th = el("th", "hm-d" + (we ? " we" : "") + (iso === r.date ? " cur" : ""), String(d)); th.scope = "col";
+      th.title = longDate(iso) + (hol ? " · férié (" + hol + ")" : "") + (iso === r.date ? " · jour de l'édition" : "");
+      h1.appendChild(th);
+      const wdc = el("th", "hm-wd" + (we ? " we" : ""), hol ? "F" : WD1[wd]); if (hol) wdc.title = "Férié : " + hol;
+      h2.appendChild(wdc);
+    }
+    thead.appendChild(h1); thead.appendChild(h2); t.appendChild(thead);
+    const tb = el("tbody");
+    for (let h = 0; h < 24; h++) {
+      const tr = el("tr");
+      const th = el("th", "hm-h", String(h)); th.scope = "row"; tr.appendChild(th);
+      for (let d = 1; d <= nDays; d++) {
+        const arr = byDay[d], v = arr ? arr[h] : null, td = el("td");
+        if (v != null && !isNaN(v)) {
+          const c = heatRGB(v);
+          td.style.background = "rgb(" + c.join(",") + ")";
+          td.style.color = lum(c) < 0.52 ? "#ffffff" : "#1b2626";
+          const rv = Math.round(v); td.textContent = String(rv === 0 ? 0 : rv);
+          td.title = d + " " + MONTHS[M - 1] + ", " + h + " h-" + (h + 1) + " h : " + fmt(v, Number.isInteger(v) ? 0 : 2) + " €/MWh";
+        } else td.className = "nil";
+        tr.appendChild(td);
+      }
+      tb.appendChild(tr);
+    }
+    t.appendChild(tb);
+    const tf = el("tfoot"), trm = el("tr"), thm = el("th", "hm-h", "Moy."); thm.scope = "row"; trm.appendChild(thm);
+    for (let d = 1; d <= nDays; d++) {
+      const arr = byDay[d], td = el("td", arr ? null : "nil");
+      if (arr) { const m = arr.reduce((a, b) => a + b, 0) / arr.length; td.textContent = String(Math.round(m)); td.title = "Moyenne (base) du " + d + " " + MONTHS[M - 1] + " : " + fmt(m, 1) + " €/MWh"; }
+      trm.appendChild(td);
+    }
+    tf.appendChild(trm); t.appendChild(tf);
+    const sc = t.parentElement, curTh = t.querySelector("th.cur");
+    if (sc && sc.scrollWidth > sc.clientWidth + 4) { const target = curTh ? curTh.offsetLeft - sc.clientWidth + 80 : sc.scrollWidth; sc.scrollLeft = Math.max(0, target); }
+
+    // colour scale 0 -> 350
+    const lo = 0, hi = 350;
+    $("hm-bar").style.background = "linear-gradient(90deg, " + HSTOPS.filter((s) => s[0] >= lo).map((s) => "rgb(" + s[1].join(",") + ") " + ((s[0] - lo) / (hi - lo) * 100).toFixed(1) + "%").join(", ") + ")";
+    const tk = $("hm-ticks"); tk.textContent = "";
+    [0, 50, 100, 150, 200, 250, 300, 350].forEach((v) => { const sp = el("span", null, String(v)); sp.style.left = ((v - lo) / (hi - lo) * 100) + "%"; tk.appendChild(sp); });
+    $("hm-cap").textContent = "€/MWh, prix day-ahead EPEX SPOT France par tranche horaire (h = de h à h+1), heure de Paris. Ligne « Moy. » : moyenne des 24 heures. Source : pages quotidiennes Selectra (données EPEX SPOT)." + (heatMonth === "2026-10" ? " 25 oct. : passage à l'heure d'hiver." : "");
+  }
+
+  // ---------- fundamentals: RTE production & consumption ----------
+  function fundTile(x) {
+    const d = el("div", "kpi");
+    d.appendChild(el("div", "l", x.label || ""));
+    const v = el("div", "v", x.text != null ? x.text : fmt(x.value, x.decimals != null ? x.decimals : 1));
+    if (x.unit) v.appendChild(el("small", null, x.unit));
+    d.appendChild(v);
+    if (x.sub) { const row = el("div"); row.appendChild(el("span", "chg flat", x.sub)); d.appendChild(row); }
+    const sc = srcChips(x.src); if (sc) d.appendChild(sc);
+    return d;
+  }
+  function renderFund(r) {
+    const f = r.fundamentals || null;
+    const rows = series.filter((s) => s.date <= r.date && (s.nuc_gw != null || s.wind_gw != null || s.solar_gw != null));
+    const tiles = f && Array.isArray(f.tiles) ? f.tiles : [];
+    $("sec-fund").hidden = !tiles.length && !rows.length;
+    if ($("sec-fund").hidden) return;
+    $("fd-note").textContent = (f && f.note) || "RTE éCO2mix, production réalisée";
+    const k = $("fd-kpis"); k.textContent = "";
+    tiles.forEach((x) => k.appendChild(fundTile(x)));
+    k.hidden = !tiles.length;
+    const tx = $("fd-text"); tx.textContent = "";
+    if (f && f.text) { tx.appendChild(document.createTextNode(f.text)); const sc = srcChips(f.src); if (sc) { tx.appendChild(document.createTextNode(" ")); tx.appendChild(sc); } }
+    tx.hidden = !(f && f.text);
+    if (typeof Chart === "undefined") return;
+    const from = parseDate(r.date).getTime() - 30 * 864e5;
+    // production chart horizon = days with a consumption / wind / solar forecast (nuclear availability alone does not extend it)
+    const fc = f && Array.isArray(f.forecast) ? f.forecast.filter((x) => x && x.date && x.date >= r.date && (x.cons_gw != null || x.wind_gw != null || x.solar_gw != null)) : [];
+    const byDate = {};
+    series.forEach((s) => {
+      if (s.date > r.date || parseDate(s.date).getTime() < from) return;
+      if (s.nuc_gw == null && s.wind_gw == null && s.solar_gw == null && s.cons_prev_gwh == null && s.load_gw == null) return;
+      const o = byDate[s.date] || (byDate[s.date] = { date: s.date });
+      if (s.nuc_gw != null) o.nuc = Number(s.nuc_gw);
+      if (s.wind_gw != null) o.wind = Number(s.wind_gw);
+      if (s.solar_gw != null) o.solar = Number(s.solar_gw);
+      if (s.load_gw != null && s.date < r.date) o.cons = Number(s.load_gw);
+      else if (s.cons_prev_gwh != null) o.cons = Number(s.cons_prev_gwh) / 24;
+    });
+    fc.forEach((x) => {
+      const o = byDate[x.date] || (byDate[x.date] = { date: x.date });
+      [["nuc", "nuc_gw"], ["wind", "wind_gw"], ["solar", "solar_gw"], ["cons", "cons_gw"]].forEach(([k, fk]) => { if (x[fk] != null && o[k] == null) o[k] = Number(x[fk]); });
+    });
+    const nucAv = {};
+    if (nuc && Array.isArray(nuc.daily)) nuc.daily.forEach((x) => { if (x.avail_gw != null) nucAv[x.date] = Number(x.avail_gw); });
+    const fcLast = fc.length ? fc.map((x) => x.date).sort().pop() : null;
+    const firstReal = Object.keys(byDate).sort()[0] || r.date;
+    Object.keys(nucAv).forEach((dd) => { if (dd >= firstReal && (dd <= r.date || (fcLast && dd <= fcLast))) { const o = byDate[dd] || (byDate[dd] = { date: dd }); o.nucav = nucAv[dd]; } });
+    const keys = Object.keys(byDate).sort();
+    if (!keys.length) return;
+    const dates = [];
+    for (let t = parseDate(keys[0]).getTime(), t1 = parseDate(keys[keys.length - 1]).getTime(); t <= t1; t += 864e5) dates.push(new Date(t).toISOString().slice(0, 10));
+    const rowsAll = dates.map((d) => byDate[d] || { date: d });
+    const fcStart = dates.indexOf(r.date);
+    const isFc = (i) => fcStart >= 0 && i >= fcStart;
+    const s1 = css("--s1"), s3 = css("--s3"), s4 = css("--s4"), ink2 = css("--ink-2");
+    const hasAv = rowsAll.some((o) => o.nucav != null);
+    legend("lg-fd", [["Nucléaire", s1], ["Éolien", s3], ["Solaire", s4], ["Consommation", ink2]].concat(hasAv ? [["Nucléaire disponible", s1]] : []));
+    if (hasAv) { const it = $("lg-fd").lastChild; if (it && it.firstChild) { it.firstChild.className = "dash"; it.firstChild.style.color = s1; } }
+    const bar = (label, color, key) => ({
+      type: "bar", label, stack: "prod", order: 2, data: rowsAll.map((o) => o[key] != null ? o[key] : null),
+      backgroundColor: rowsAll.map((o, i) => isFc(i) ? color + "4d" : color),
+      borderColor: rowsAll.map((o, i) => isFc(i) ? color : "rgba(0,0,0,0)"), borderWidth: rowsAll.map((o, i) => isFc(i) ? 1.5 : 0),
+      borderSkipped: false, maxBarThickness: 22, categoryPercentage: 0.82, barPercentage: 0.92
+    });
+    const consDs = {
+      type: "line", label: "Consommation", stack: "cons", order: 1, data: rowsAll.map((o) => o.cons != null ? o.cons : null),
+      borderColor: ink2, backgroundColor: ink2, borderWidth: 2, tension: 0, spanGaps: true,
+      pointRadius: rowsAll.map((o, i) => o.cons != null && isFc(i) ? 3 : 0), pointHoverRadius: 4,
+      segment: { borderDash: (ctx) => isFc(ctx.p1DataIndex) ? [5, 4] : undefined }
+    };
+    const shade = { id: "fcShade", beforeDatasetsDraw(chart) {
+      if (fcStart < 0) return;
+      const x = chart.scales.x, a = chart.chartArea, step = dates.length > 1 ? x.getPixelForValue(1) - x.getPixelForValue(0) : (a.right - a.left);
+      const px = Math.max(a.left, x.getPixelForValue(fcStart) - step / 2), ctx = chart.ctx;
+      ctx.save(); ctx.fillStyle = css("--chip-bg"); ctx.fillRect(px, a.top, a.right - px, a.bottom - a.top);
+      ctx.fillStyle = css("--muted"); ctx.font = "11px 'IBM Plex Mono', ui-monospace, monospace"; ctx.textAlign = "left"; ctx.textBaseline = "top";
+      ctx.fillText("Prévisions", Math.min(px + 4, a.right - 70), a.top + 4); ctx.restore();
+    } };
+    const o = baseOpts("GW");
+    o.scales.x.stacked = true; o.scales.y.stacked = true; o.scales.y.min = 0;
+    o.scales.x.ticks.maxTicksLimit = 9;
+    o.plugins.tooltip.callbacks.title = (items) => { if (!items.length) return ""; const d = dates[items[0].dataIndex]; const k = dayKind(d); return longDate(d) + (k[0] === "ferie" ? " · férié" : k[0] === "we" ? " · week-end" : "") + (isFc(items[0].dataIndex) ? " · prévision" : ""); };
+    o.plugins.tooltip.callbacks.label = (c) => c.parsed.y == null ? null : " " + c.dataset.label + " : " + fmt(c.parsed.y, 1) + " GW";
+    o.plugins.tooltip.filter = (it) => it.parsed && it.parsed.y != null;
+    draw("c-fd", { type: "bar", data: { labels: dates.map((d) => shortDate(d)), datasets: [
+      bar("Nucléaire", s1, "nuc"), bar("Éolien", s3, "wind"), bar("Solaire", s4, "solar"), consDs
+    ].concat(hasAv ? [{ type: "line", label: "Nucléaire disponible", stack: "nucav", order: 0, data: rowsAll.map((o) => o.nucav != null ? o.nucav : null),
+      borderColor: s1, backgroundColor: s1, borderWidth: 1.5, borderDash: [2, 3], pointRadius: 0, pointHoverRadius: 3, spanGaps: true, stepped: "middle" }] : []) }, options: o, plugins: [shade] });
+    const lastReal = rowsAll.filter((x, i) => !isFc(i) && x.nuc != null).pop();
+    const lastFc = fc.length ? fc.map((x) => x.date).sort().pop() : null;
+    const cap = $("cap-fd"); cap.textContent = "GW moyens par jour. Barres : production réalisée RTE (ENTSO-E, éCO2mix)" + (lastReal ? " jusqu'au " + shortDate(lastReal.date) : "") +
+      " ; zone grisée : prévisions" + (lastFc ? " jusqu'au " + shortDate(lastFc) : " (consommation du jour seulement)") + ", barres pâles et courbe en pointillés. Consommation : réalisée (ENTSO-E) puis prévue (RTE J-1, J-2 et hebdomadaire). " + (hasAv ? "Pointillés bleus : capacité nucléaire disponible (ENTSO-E) ; la production nucléaire future n'est pas prévue, seule sa disponibilité l'est." : "");
+    const fsc = srcChips(f && f.forecastSrc); if (fsc) { cap.appendChild(document.createTextNode(" ")); cap.appendChild(fsc); }
+  }
+
+  // ---------- TRVE reference averages: Cal-Y settlements averaged over years Y-2 and Y-1 ----------
+  let fwd = null;   // {source, asof, prices: {"2026-10-26": {cal27, cal28, cal29}, ...}}
+  function trveCalc(edDate) {
+    const out = [];
+    const P = fwd && fwd.prices ? fwd.prices : null;
+    const y0 = Number(String(edDate).slice(0, 4));
+    [y0 + 1, y0 + 2, y0 + 3].forEach((Y) => {
+      const key = "cal" + String(Y).slice(2), label = "Cal-" + String(Y).slice(2);
+      const from = (Y - 2) + "-01-01", to = (Y - 1) + "-12-31";
+      const dates = P ? Object.keys(P).filter((d) => d >= from && d <= to && d <= edDate && P[d] && P[d][key] != null).sort() : [];
+      let sum = 0; const curve = [];
+      dates.forEach((d, i) => { sum += Number(P[d][key]); curve.push({ x: parseDate(d).getTime(), y: sum / (i + 1) }); });
+      const lastD = P ? Object.keys(P).filter((d) => d <= edDate && P[d] && P[d][key] != null).sort().pop() : null;
+      const total = Math.round((parseDate(to).getTime() - parseDate(from).getTime()) / 864e5) + 1;
+      const elapsed = Math.max(0, Math.min(total, Math.round((parseDate(edDate).getTime() - parseDate(from).getTime()) / 864e5) + 1));
+      out.push({ Y, key, label, from, to, n: dates.length, avg: dates.length ? sum / dates.length : null, curve,
+        last: lastD ? Number(P[lastD][key]) : null, lastDate: lastD, started: edDate >= from, pct: elapsed / total });
+    });
+    return out;
+  }
+  function renderTrve(r, tr) {
+    const has = fwd && fwd.prices && tr.some((x) => x.n || x.last != null);
+    $("trve-card").hidden = !has;
+    if (!has) { $("cap-pow").textContent = "€/MWh, prix de règlement EEX."; return; }
+    const tb = $("trve-rows"); tb.textContent = "";
+    tr.forEach((x) => {
+      const row = el("tr");
+      row.appendChild(el("td", null, x.label + " (TRVE " + x.Y + ")"));
+      row.appendChild(el("td", "per", "1er janv. " + String(x.Y - 2).slice(2) + " → 31 déc. " + String(x.Y - 1).slice(2) + (x.started ? " · " + Math.round(x.pct * 100) + " %" : " · débute le 1er janv. " + (x.Y - 2))));
+      row.appendChild(el("td", "r num", x.avg != null ? fmt(x.avg, 2) : "—"));
+      row.appendChild(el("td", "r num", x.n ? String(x.n) : "—"));
+      const last = el("td", "r num", x.last != null ? fmt(x.last, 2) : "—"); if (x.lastDate) last.title = "Séance du " + dayFr(x.lastDate); row.appendChild(last);
+      const gap = (x.avg != null && x.last != null) ? x.last - x.avg : null;
+      const g = el("td", "r num", gap == null ? "—" : (gap >= 0 ? "+" : "−") + fmt(Math.abs(gap), 2)); if (gap != null) g.style.color = gap > 0 ? "var(--up)" : "var(--down)";
+      row.appendChild(g);
+      tb.appendChild(row);
+    });
+    const live = tr.filter((x) => x.curve.length).map((x) => x.label);
+    $("cap-pow").textContent = "€/MWh, prix de règlement EEX." + (live.length ? " Courbes noires : moyenne cumulée des cotations " + live.join(" et ") + " depuis le début de leur fenêtre TRVE (trait plein puis pointillé)." : "");
+    const cap = $("cap-trve"); cap.textContent = "Moyenne arithmétique des cotations quotidiennes du produit calendaire France base de l'année Y sur les années Y-2 et Y-1 : c'est la référence de prix de marché lissée sur deux ans utilisée pour le TRVE de l'année Y (méthode indiquée par toi, à valider avec la délibération CRE). Écart = dernier cours − moyenne. Cotations : " + (fwd.source || "OMIP") + (fwd.asof ? ", dernière séance le " + dayFr(fwd.asof) : "") + ".";
+  }
+
+  // ---------- nuclear availability (ENTSO-E outages, collected daily) ----------
+  let nuc = null;
+  let nuRange = "all";
+  try { const v = localStorage.getItem("brief-nu-range"); if (v === "90" || v === "all") nuRange = v; } catch (e) {}
+  // date (and time when close to the edition date)
+  const fmtDT = (s, ref) => { if (!s) return ""; const d = String(s).slice(0, 10), t = String(s).slice(11, 16); const near = ref && Math.abs(parseDate(d).getTime() - parseDate(ref).getTime()) <= 3 * 864e5; return shortDate(d) + (d.slice(0, 4) !== String(ref || "").slice(0, 4) ? " " + d.slice(0, 4) : "") + (near && t && t !== "00:00" ? " " + t.replace(":", " h ") : ""); };
+  function renderNuc(r) {
+    const N = nuc;
+    $("sec-nuc").hidden = !(N && Array.isArray(N.daily) && N.daily.length);
+    if ($("sec-nuc").hidden) return;
+    const today = r.date;
+    const daily = N.daily.filter((x) => x && x.date);
+    const byD = {}; daily.forEach((x) => { byD[x.date] = x; });
+    const cur = byD[today] || daily.filter((x) => x.date <= today).pop() || daily[0];
+    const fut = daily.filter((x) => x.date >= today);
+    const next30 = fut.slice(0, 30);
+    const minNext = next30.reduce((m, x) => (x.avail_gw != null && (!m || x.avail_gw < m.avail_gw)) ? x : m, null);
+    const last = daily[daily.length - 1];
+    const lastReal = daily.filter((x) => x.actual_gw != null).pop();
+    $("nu-note").textContent = "ENTSO-E (déclarations EDF), mise à jour du " + (N.asof ? dayFr(String(N.asof).slice(0, 10)) : "?") + (N.n_units ? " · " + N.n_units + " réacteurs avec un arrêt déclaré" : "");
+    const st = $("nu-stats"); st.textContent = "";
+    const tile = (label, value, unit, sub, dec) => { const d = el("div", "kpi"); d.appendChild(el("div", "l", label)); const v = el("div", "v", value == null ? "—" : fmt(value, dec == null ? 1 : dec)); if (unit) v.appendChild(el("small", null, unit)); d.appendChild(v); if (sub) { const w = el("div"); w.appendChild(el("span", "chg flat", sub)); d.appendChild(w); } st.appendChild(d); };
+    tile("Disponible, " + shortDate(cur.date), cur.avail_gw, "GW", N.installed_gw ? "sur " + fmt(N.installed_gw, 1) + " GW installés" : null);
+    tile("Arrêts, " + shortDate(cur.date), cur.unav_gw, "GW", "dont fortuits " + fmt(cur.unav_forced_gw || 0, 1) + " GW");
+    tile("Minimum sur 30 jours", minNext ? minNext.avail_gw : null, "GW", minNext ? "le " + shortDate(minNext.date) : null);
+    tile("Production réalisée", lastReal ? lastReal.actual_gw : null, "GW moy.", lastReal ? shortDate(lastReal.date) + (lastReal.avail_gw ? " · " + Math.round(lastReal.actual_gw / lastReal.avail_gw * 100) + " % du disponible" : "") : null);
+
+    // chart
+    $("nu-r90").setAttribute("aria-pressed", String(nuRange === "90"));
+    $("nu-rall").setAttribute("aria-pressed", String(nuRange === "all"));
+    const t0 = parseDate(today).getTime();
+    const endTs = nuRange === "90" ? t0 + 90 * 864e5 : parseDate(last.date).getTime();
+    const rows = daily.filter((x) => parseDate(x.date).getTime() <= endTs);
+    const s1 = css("--s1"), band = css("--band"), crit = css("--crit"), ink = css("--ink");
+    const pt = (k) => rows.filter((x) => x[k] != null).map((x) => ({ x: parseDate(x.date).getTime(), y: Number(x[k]) }));
+    const avail = rows.map((x) => ({ x: parseDate(x.date).getTime(), y: x.avail_gw }));
+    const plan = rows.map((x) => ({ x: parseDate(x.date).getTime(), y: (x.avail_gw || 0) + (x.unav_planned_gw || 0) }));
+    const forc = rows.map((x) => ({ x: parseDate(x.date).getTime(), y: (x.avail_gw || 0) + (x.unav_planned_gw || 0) + (x.unav_forced_gw || 0) }));
+    legend("lg-nu", [["Disponible", s1], ["Arrêts programmés", band], ["Arrêts fortuits", crit], ["Production réalisée", ink]]);
+    const lg = $("lg-nu").children; if (lg[1]) lg[1].firstChild.className = "area"; if (lg[2]) lg[2].firstChild.className = "area";
+    const ds = [
+      { label: "Disponible", data: avail, borderColor: s1, backgroundColor: s1 + "40", fill: "origin", borderWidth: 1.8, pointRadius: 0, stepped: false, order: 3, _k: "avail_gw" },
+      { label: "Arrêts programmés", data: plan, borderColor: "transparent", backgroundColor: band, fill: "-1", borderWidth: 0, pointRadius: 0, order: 4, _k: "unav_planned_gw" },
+      { label: "Arrêts fortuits", data: forc, borderColor: "transparent", backgroundColor: crit + "99", fill: "-1", borderWidth: 0, pointRadius: 0, order: 5, _k: "unav_forced_gw" },
+      { label: "Production réalisée", data: pt("actual_gw"), borderColor: ink, backgroundColor: ink, borderWidth: 1.6, pointRadius: 0, fill: false, order: 1, _k: "actual_gw" }
+    ];
+    const todayLine = { id: "nuToday", afterDatasetsDraw(chart) {
+      const x = chart.scales.x, a = chart.chartArea, px = x.getPixelForValue(t0); if (px < a.left || px > a.right) return;
+      const c = chart.ctx; c.save(); c.strokeStyle = css("--ink-2"); c.setLineDash([3, 3]); c.beginPath(); c.moveTo(px, a.top); c.lineTo(px, a.bottom); c.stroke();
+      c.setLineDash([]); c.fillStyle = css("--ink-2"); c.font = "11px 'IBM Plex Mono', ui-monospace, monospace"; c.textBaseline = "top";
+      c.fillText("aujourd'hui", Math.min(px + 4, a.right - 76), a.top + 2); c.restore();
+    } };
+    const o = timeX(baseOpts("GW"), parseDate(rows[0].date).getTime());
+    o.scales.x.max = endTs;
+    o.scales.x.ticks.maxTicksLimit = nuRange === "90" ? 7 : 8;
+    o.scales.x.ticks.callback = (v) => { const d = new Date(v); return (nuRange === "90" ? d.getUTCDate() + " " : "") + MONTHS[d.getUTCMonth()] + (nuRange === "90" ? "" : " " + String(d.getUTCFullYear()).slice(2)); };
+    o.scales.y.min = 0;
+    if (N.installed_gw) o.scales.y.max = Math.ceil(N.installed_gw / 5) * 5 + 5;
+    o.interaction = { mode: "x", intersect: false };
+    o.plugins.tooltip.filter = (it) => it.dataset._k !== undefined;
+    o.plugins.tooltip.itemSort = (a, b) => a.dataset.order - b.dataset.order;
+    o.plugins.tooltip.callbacks.label = (c) => { const d = new Date(c.parsed.x).toISOString().slice(0, 10); const row = byD[d]; if (!row) return null; const v = row[c.dataset._k]; return v == null ? null : " " + c.dataset.label + " : " + fmt(v, 1) + " GW"; };
+    draw("c-nu", { type: "line", data: { datasets: ds }, options: o, plugins: [todayLine] });
+    const capEl = $("cap-nu"); capEl.textContent = "GW, moyenne journalière. Disponible = capacité installée" + (N.installed_gw ? " (" + fmt(N.installed_gw, 1) + " GW)" : "") + " moins les indisponibilités déclarées par EDF sur la plateforme de transparence ENTSO-E, jusqu'au " + dayFr(last.date) +
+      (N.horizon_end && N.horizon_end > last.date ? " (arrêt le plus lointain déclaré : fin le " + dayFr(N.horizon_end) + ")" : "") + ". Production réalisée : RTE via ENTSO-E. Au-delà de quelques semaines, seuls les arrêts programmés sont connus.";
+
+    // monthly table
+    const mb = $("nu-months"); mb.textContent = "";
+    const byM = {};
+    fut.forEach((x) => { const m = x.date.slice(0, 7); (byM[m] = byM[m] || []).push(x); });
+    const maxAv = N.installed_gw || Math.max.apply(null, fut.map((x) => x.avail_gw || 0));
+    Object.keys(byM).sort().forEach((m) => {
+      const a = byM[m], n = a.length, av = a.reduce((s, x) => s + (x.avail_gw || 0), 0) / n, mn = Math.min.apply(null, a.map((x) => x.avail_gw || 0)), un = a.reduce((s, x) => s + (x.unav_gw || 0), 0) / n;
+      const tr = el("tr");
+      tr.appendChild(el("td", null, MONTHS[Number(m.slice(5)) - 1] + " " + m.slice(2, 4) + (n < 28 ? " *" : "")));
+      tr.appendChild(el("td", "r num", fmt(av, 1)));
+      tr.appendChild(el("td", "r num", fmt(mn, 1)));
+      tr.appendChild(el("td", "r num", fmt(un, 1)));
+      const tdb = el("td"); const b = el("span", "nu-bar"); b.style.width = Math.max(2, Math.round(av / maxAv * 56)) + "px"; tdb.appendChild(b); tr.appendChild(tdb);
+      if (n < 28) tr.title = n + " jours couverts";
+      mb.appendChild(tr);
+    });
+
+    // outages table
+    const outs = Array.isArray(N.outages) ? N.outages.slice() : [];
+    const soon = parseDate(today).getTime() + 60 * 864e5;
+    const first = outs.filter((x) => x.ongoing || parseDate(String(x.start).slice(0, 10)).getTime() <= soon);
+    const rest = outs.filter((x) => first.indexOf(x) < 0);
+    const nOn = outs.filter((x) => x.ongoing).length;
+    $("nu-out-title").textContent = "Arrêts en cours (" + nOn + ") et à venir sous 60 jours (" + (first.length - nOn) + ")";
+    const rowOut = (x) => {
+      const tr = el("tr");
+      tr.appendChild(el("td", null, String(x.unit || "").replace(/\s+/g, " ")));
+      const tg = el("span", "tag"); const dot = el("i"); dot.style.background = "var(" + (x.type === "forced" ? "--crit" : "--muted") + ")"; tg.appendChild(dot); tg.appendChild(document.createTextNode(x.type === "forced" ? "Fortuit" : "Programmé")); const tdt = el("td"); tdt.appendChild(tg); tr.appendChild(tdt);
+      tr.appendChild(el("td", "r num", fmt(x.unav_mw, 0) + " MW"));
+      tr.appendChild(el("td", "per", x.ongoing ? "en cours depuis le " + fmtDT(x.start, today) : fmtDT(x.start, today)));
+      tr.appendChild(el("td", "per", fmtDT(x.end, today)));
+      tr.appendChild(el("td", "per", x.reason || ""));
+      return tr;
+    };
+    const tb = $("nu-out"); tb.textContent = "";
+    first.forEach((x) => tb.appendChild(rowOut(x)));
+    if (!first.length) { const tr = el("tr"); const td = el("td", "nil", "Aucun arrêt en cours ni prévu sous 60 jours."); td.colSpan = 6; tr.appendChild(td); tb.appendChild(tr); }
+    $("nu-more").hidden = !rest.length;
+    $("nu-more-sum").textContent = "Arrêts programmés plus tard (" + rest.length + ") jusqu'au " + (rest.length ? dayFr(rest.map((x) => String(x.end).slice(0, 10)).sort().pop()) : "");
+    const tb2 = $("nu-out2"); tb2.textContent = ""; rest.forEach((x) => tb2.appendChild(rowOut(x)));
+  }
+  const setNuRange = (v) => { nuRange = v; try { localStorage.setItem("brief-nu-range", v); } catch (e) {} const r = reports.find((x) => x.date === current); if (r) renderNuc(r); };
+  $("nu-r90").addEventListener("click", () => setNuRange("90"));
+  $("nu-rall").addEventListener("click", () => setNuRange("all"));
+
+  // ---------- storage: gas years overlaid ----------
+  let hist = null;
+  let zone = "eu";
+  try { const z = localStorage.getItem("brief-zone"); if (z === "fr" || z === "eu") zone = z; } catch (e) {}
+  const MSTART = [0, 30, 61, 91, 122, 153, 183, 214, 245, 275, 306, 334];
+  const MLAB = ["avr.", "mai", "juin", "juil.", "août", "sept.", "oct.", "nov.", "déc.", "janv.", "févr.", "mars"];
+  const gyOf = (ds) => { const d = parseDate(ds); return d.getUTCMonth() >= 3 ? d.getUTCFullYear() : d.getUTCFullYear() - 1; };
+  const dayOf = (ds) => { const g = gyOf(ds); return Math.round((parseDate(ds).getTime() - Date.UTC(g, 3, 1, 12)) / 864e5); };
+  const dateOf = (g, k) => new Date(Date.UTC(g, 3, 1, 12) + k * 864e5).toISOString().slice(0, 10);
+  const gyLabel = (g) => g + "-" + String((g + 1) % 100).padStart(2, "0");
+
+  function yearArray(z, g, upto) {
+    // daily array for gas year g: history doc first, then daily series points on top
+    const key = z === "fr" ? "stock_fr" : "stock_eu";
+    const base = (hist && hist[z] && hist[z][String(g)]) ? hist[z][String(g)].slice() : [];
+    series.forEach((s) => {
+      if (s[key] == null || gyOf(s.date) !== g || (upto && s.date > upto)) return;
+      if (hist && hist.lastDate && hist[z] && hist[z][String(g)] && s.date <= hist.lastDate) return;
+      const k = dayOf(s.date); while (base.length <= k) base.push(null); base[k] = Number(s[key]);
+    });
+    return base;
+  }
+  const toPts = (arr, g) => arr.map((v, k) => v == null ? null : { x: k, y: v, date: dateOf(g, k) }).filter(Boolean);
+
+  function renderStorage(r) {
+    const z = zone;
+    $("sto-eu").setAttribute("aria-pressed", String(z === "eu"));
+    $("sto-fr").setAttribute("aria-pressed", String(z === "fr"));
+    const gy = gyOf(r.date);
+    const s1 = css("--s1"), s2 = css("--s2"), s3 = css("--s3"), s7 = css("--s7"), band = css("--band"), ink2 = css("--ink-2");
+    const sparseZ = !(hist && hist[z] && Object.keys(hist[z]).length);
+    const cur = yearArray(z, gy, r.date);
+    const past = [1, 2, 3].map((n) => ({ g: gy - n, arr: yearArray(z, gy - n) }));
+    const pastColors = [s2, s3, s7];
+
+    // 5-year min/max band from the five previous gas years
+    const fiveY = [1, 2, 3, 4, 5].map((n) => yearArray(z, gy - n));
+    const full = fiveY.filter((a) => a.filter((v) => v != null).length > 300);
+    const bandLo = [], bandHi = [], avg = [];
+    if (full.length >= 3) {
+      for (let k = 0; k < 365; k++) {
+        const vals = full.map((a) => a[k]).filter((v) => v != null);
+        if (vals.length >= 3) {
+          bandLo.push({ x: k, y: Math.min(...vals) }); bandHi.push({ x: k, y: Math.max(...vals) });
+          avg[k] = vals.reduce((a, b) => a + b, 0) / vals.length;
+        }
+      }
+    }
+    const ds = [];
+    if (bandLo.length) {
+      ds.push({ label: "min 5 ans", data: bandLo, borderWidth: 0, pointRadius: 0, fill: false, borderColor: "transparent", backgroundColor: "transparent", _band: true, order: 9 });
+      ds.push({ label: "Fourchette " + gyLabel(gy - 5) + " → " + gyLabel(gy - 1), data: bandHi, borderWidth: 0, pointRadius: 0, fill: "-1", borderColor: "transparent", backgroundColor: band + "aa", _band: true, order: 9 });
+    }
+    past.forEach((p, i) => {
+      const pts = toPts(p.arr, p.g);
+      if (!pts.length) return;
+      ds.push({ label: gyLabel(p.g), data: pts, borderColor: pastColors[i], backgroundColor: pastColors[i], borderWidth: 1.6,
+        borderDash: [5, 4], pointRadius: sparseZ ? 2 : 0, pointHoverRadius: 3, cubicInterpolationMode: "monotone", spanGaps: true, order: 3 });
+    });
+    // target window: 90 % between 1 Oct and 1 Dec
+    ds.push({ label: "Cible UE 90 % (1er oct.–1er déc.)", data: [{ x: 183, y: 90 }, { x: 244, y: 90 }], borderColor: ink2, borderWidth: 1.5,
+      borderDash: [2, 3], pointRadius: 0, _target: true, order: 2 });
+    const curPts = toPts(cur, gy);
+    const sparse = curPts.length && curPts.length < 60;
+    const curDs = endpoint({ label: gyLabel(gy) + " (en cours)", data: curPts, borderColor: s1, backgroundColor: s1, borderWidth: 3,
+      pointRadius: 0, pointHoverRadius: 4, cubicInterpolationMode: "monotone", spanGaps: true, order: 1 });
+    if (sparseZ) {
+      const n = curDs.data.length - 1;
+      curDs.pointRadius = curDs.data.map((_, i) => i === n ? 4 : 2.5);
+      curDs.pointBorderWidth = curDs.data.map((_, i) => i === n ? 2 : 0);
+      curDs.spanGaps = 45;
+      ds.forEach((d) => { if (!d._band && !d._target) d.spanGaps = 45; });
+    }
+    ds.push(curDs);
+
+    // legend
+    const lg = $("lg-sto"); lg.textContent = "";
+    const item = (label, color, cls) => { const sp = el("span"); const i = el("i", cls || ""); i.style.background = color; i.style.color = color; sp.appendChild(i); sp.appendChild(document.createTextNode(label)); lg.appendChild(sp); };
+    item(gyLabel(gy) + " (en cours)", s1);
+    past.forEach((p, i) => { if (p.arr.some((v) => v != null)) item(gyLabel(p.g), pastColors[i], "dash"); });
+    if (bandLo.length) item("Fourchette 5 ans", band, "band");
+    item("Cible 90 %", ink2, "dash");
+
+    // headline stat
+    const last = curPts[curPts.length - 1];
+    const st = $("sto-stat"); st.textContent = "";
+    if (last) {
+      const prev = past[0].arr[last.x];
+      const parts = [["Au " + shortDate(last.date) + " : ", null], [fmt(last.y, 1) + " %", true]];
+      if (prev != null) parts.push([" · " + (last.y - prev >= 0 ? "+" : "−") + fmt(Math.abs(last.y - prev), 1) + " pt vs " + gyLabel(gy - 1), null]);
+      if (avg[last.x] != null) parts.push([" · " + (last.y - avg[last.x] >= 0 ? "+" : "−") + fmt(Math.abs(last.y - avg[last.x]), 1) + " pt vs moyenne 5 ans", null]);
+      parts.forEach(([t, bold]) => { const n = bold ? el("b", null, t) : document.createTextNode(t); st.appendChild(n); });
+    }
+    const hasHist = hist && hist[z] && Object.keys(hist[z]).length;
+    $("cap-sto").textContent = "% de la capacité utile, par année gazière d'avril à mars : remplissage l'été, soutirage l'hiver. Source " +
+      (hist && hist.source && hasHist ? hist.source.split(" (")[0] : "GIE AGSI+") + ", donnée journalière" +
+      (z === "fr" && !hasHist ? ". France : relevés ponctuels (AGSI+ via les articles Selectra, CRE, presse), pas encore d'historique journalier complet ; chaque point est un relevé." : (sparse ? ". Saison en cours : relevés espacés." : "."));
+
+    const o = baseOpts("%");
+    o.interaction = { mode: "x", intersect: false };
+    o.scales.x.type = "linear"; o.scales.x.min = 0; o.scales.x.max = 364;
+    o.scales.x.afterBuildTicks = (axis) => { axis.ticks = MSTART.map((v) => ({ value: v })); };
+    o.scales.x.ticks.callback = (v) => { const i = MSTART.indexOf(v); return i >= 0 ? MLAB[i] : ""; };
+    o.scales.x.grid = { display: true, color: css("--grid"), drawTicks: false };
+    o.scales.y.min = 0; o.scales.y.max = 100;
+    o.scales.y.ticks.stepSize = 20;
+    o.scales.y.ticks.callback = (v) => v + " %";
+    o.plugins.tooltip.filter = (it) => !it.dataset._band && !it.dataset._target && it.dataIndex != null;
+    o.plugins.tooltip.itemSort = (a, b) => (a.dataset.order || 0) - (b.dataset.order || 0);
+    o.plugins.tooltip.callbacks.title = (items) => { const it = items[0]; if (!it) return ""; const d = dateOf(gy, Math.round(it.parsed.x)); return shortDate(d); };
+    o.plugins.tooltip.callbacks.label = (c) => " " + c.dataset.label.replace(" (en cours)", "") + " : " + fmt(c.parsed.y, 1) + " %";
+    draw("c-sto", { type: "line", data: { datasets: ds }, options: o });
+  }
+  const setZone = (z) => { zone = z; try { localStorage.setItem("brief-zone", z); } catch (e) {} const r = reports.find((x) => x.date === current); if (r && typeof Chart !== "undefined") renderStorage(r); };
+  $("sto-eu").addEventListener("click", () => setZone("eu"));
+  $("sto-fr").addEventListener("click", () => setZone("fr"));
+
+  // ---------- short term: weeks, weekends, automatic references ----------
+  let quotesList = [];   // manual quotes docs, newest first
+  let quotes = null;
+  let dbRef = null;
+  let editing = false;
+  const DAY = 864e5;
+  const isoWeek = (t) => { const d = new Date(t); const day = (d.getUTCDay() + 6) % 7; d.setUTCDate(d.getUTCDate() - day + 3); const fy = new Date(Date.UTC(d.getUTCFullYear(), 0, 4)); return 1 + Math.round(((d - fy) / DAY - 3 + ((fy.getUTCDay() + 6) % 7)) / 7); };
+  const iso = (t) => new Date(t).toISOString().slice(0, 10);
+  const dm = (t) => { const d = new Date(t); return d.getUTCDate() + " " + MONTHS[d.getUTCMonth()]; };
+  function stProducts(dateStr) {
+    const t0 = parseDate(dateStr).getTime();
+    const dow = (new Date(t0).getUTCDay() + 6) % 7;            // 0 = lundi
+    const nextMon = t0 + (7 - dow) * DAY;
+    const out = [];
+    for (let i = 0; i < 4; i++) {
+      const a = nextMon + i * 7 * DAY, b = a + 6 * DAY;
+      out.push({ key: "S" + isoWeek(a), kind: "week", label: "S" + isoWeek(a), from: iso(a), to: iso(b), per: dm(a) + " – " + dm(b) });
+    }
+    let sat = t0 + ((5 - dow + 7) % 7) * DAY;                  // samedi qui vient (aujourd'hui si samedi)
+    if (dow >= 5) sat += 7 * DAY;
+    for (let i = 0; i < 3; i++) {
+      const a = sat + i * 7 * DAY, b = a + DAY;
+      out.push({ key: "WE" + iso(a), kind: "we", label: "WE " + new Date(a).getUTCDate() + "-" + dm(b), from: iso(a), to: iso(b), per: "sam. " + dm(a) + " – dim. " + dm(b) });
+    }
+    return out;
+  }
+  // manual quotes win when at least as recent as the automatic ones
+  const manualFresh = (r) => { const st = r.shortTerm || {}; return !!(quotes && quotes.date && (!st.weeksAsOf || String(quotes.date) >= String(st.weeksAsOf))); };
+  function stValue(r, p) {
+    const fromQuotes = quotes && quotes.items && quotes.items[p.key];
+    const hasQ = fromQuotes && (fromQuotes.base != null || fromQuotes.peak != null);
+    if (hasQ && manualFresh(r)) return { base: fromQuotes.base, peak: fromQuotes.peak, src: "q", asof: quotes.date };
+    const st = r.shortTerm || {};
+    const list = p.kind === "week" ? (st.weeks || []) : (st.weekends || []);
+    const hit = list.find((x) => x.from === p.from || x.label === p.label);
+    if (hit) return { base: hit.base, peak: hit.peak, d1: hit.base_d1, src: "auto", asof: hit.asof || st.weeksAsOf };
+    return hasQ ? { base: fromQuotes.base, peak: fromQuotes.peak, src: "q", asof: quotes.date } : { base: null, peak: null };
+  }
+  const num = (v) => (v == null || v === "" || isNaN(v)) ? null : Number(v);
+  function renderShortTerm(r) {
+    quotes = quotesList.find((q) => q.date === r.date) || quotesList.find((q) => q.date < r.date) || null;
+    if (editing && $("st-rows").querySelector("input")) return;   // keep what is being typed
+    const prods = stProducts(r.date);
+    const tb = $("st-rows"); tb.textContent = "";
+    prods.forEach((p, i) => {
+      const v = stValue(r, p);
+      const tr = el("tr"); if (i === 4) tr.className = "sep";
+      tr.appendChild(el("td", null, p.label));
+      tr.appendChild(el("td", "per", p.per));
+      ["base", "peak"].forEach((f) => {
+        const td = el("td", "r num");
+        if (editing) {
+          const inp = document.createElement("input");
+          inp.type = "text"; inp.inputMode = "decimal"; inp.id = "q-" + p.key + "-" + f;
+          inp.setAttribute("aria-label", p.label + " " + f);
+          inp.value = v[f] != null ? String(v[f]).replace(".", ",") : "";
+          td.appendChild(inp);
+        } else {
+          td.textContent = v[f] != null ? fmt(v[f], 2) : "—";
+          if (v[f] == null) td.classList.add("nil");
+          if (f === "base" && v.d1 != null && v[f] != null) td.title = "Séance précédente : " + fmt(v.d1, 2) + " €/MWh (" + (v[f] - v.d1 >= 0 ? "+" : "−") + fmt(Math.abs(v[f] - v.d1), 2) + ")";
+        }
+        tr.appendChild(td);
+      });
+      const sp = el("td", "r num", (v.base != null && v.peak != null && !editing) ? ((v.peak - v.base >= 0 ? "+" : "−") + fmt(Math.abs(v.peak - v.base), 2)) : "—");
+      tr.appendChild(sp);
+      const sd = el("td", "per", (v.base != null || v.peak != null) && v.asof ? shortDate(v.asof) + (v.src === "q" ? " (saisie)" : "") : "");
+      tr.appendChild(sd);
+      tb.appendChild(tr);
+    });
+    const meta = $("st-meta"); meta.classList.remove("stale");
+    const st0 = r.shortTerm || {};
+    if (quotes && quotes.date && manualFresh(r)) {
+      meta.textContent = "Cotations EEX saisies le " + shortDate(quotes.date) + (quotes.time ? " à " + quotes.time : "");
+      if (quotes.date < r.date) { meta.textContent += " : pas encore mises à jour pour cette édition"; meta.classList.add("stale"); }
+    } else if (st0.weeksSource) {
+      meta.textContent = "Source : " + st0.weeksSource;
+      if (st0.weeksAsOf && st0.monthsAsOf && st0.weeksAsOf < st0.monthsAsOf) { meta.textContent += " (plus ancienne que la séance EEX du " + shortDate(st0.monthsAsOf) + ")"; meta.classList.add("stale"); }
+      const wsc = srcChips(st0.weeksSrc); if (wsc) { meta.appendChild(document.createTextNode(" ")); meta.appendChild(wsc); }
+    } else {
+      meta.textContent = "Pas de cotation publique gratuite pour ces produits : saisis-les depuis ton écran EEX.";
+    }
+    $("st-edit").hidden = editing || !dbRef || !!dbRef.readOnly; $("st-save").hidden = !editing; $("st-cancel").hidden = !editing;
+
+    // automatic references
+    const st = r.shortTerm || {};
+    const au = $("st-auto"); au.textContent = "";
+    const row = (label, base, peak, date, sep) => {
+      const tr = el("tr"); if (sep) tr.className = "sep";
+      tr.appendChild(el("td", null, label));
+      [base, peak].forEach((v) => { const td = el("td", "r num", v != null ? fmt(v, 2) : "—"); if (v == null) td.classList.add("nil"); tr.appendChild(td); });
+      tr.appendChild(el("td", "per", date ? shortDate(date) : ""));
+      au.appendChild(tr);
+    };
+    if (st.dayAhead) row("Day-ahead livré ce jour", st.dayAhead.base, st.dayAhead.peak, st.dayAhead.date);
+    (st.weekendsRealized || []).forEach((w, i) => row(w.label + " (réalisé)", w.base, null, w.date, i === 0));
+    (st.months || []).forEach((m, i) => row("Mois " + m.label, m.base, m.peak, st.monthsAsOf, i === 0));
+    if (!au.children.length) { const tr = el("tr"); const td = el("td", "nil", "Pas encore de données court terme dans cette édition."); td.colSpan = 4; tr.appendChild(td); au.appendChild(tr); }
+  }
+  $("st-edit").addEventListener("click", () => { editing = true; $("st-msg").textContent = "Saisis les prix en €/MWh (virgule acceptée). Les cases vides restent vides."; const r = reports.find((x) => x.date === current); if (r) renderShortTerm(r); const f = document.querySelector("#st-rows input"); if (f) f.focus(); });
+  $("st-cancel").addEventListener("click", () => { editing = false; $("st-msg").textContent = ""; $("st-rows").textContent = ""; renderReport(); });
+  $("st-save").addEventListener("click", async () => {
+    const r = reports.find((x) => x.date === current); if (!r || !dbRef) return;
+    const items = {};
+    let bad = false;
+    stProducts(r.date).forEach((p) => {
+      const o = {};
+      ["base", "peak"].forEach((f) => {
+        const raw = ($("q-" + p.key + "-" + f) || {}).value || "";
+        const t = raw.trim().replace(/\s/g, "").replace(",", ".");
+        if (t === "") { o[f] = null; return; }
+        const n = Number(t); if (isNaN(n)) { bad = true; o[f] = null; } else o[f] = n;
+      });
+      items[p.key] = Object.assign({ label: p.label, from: p.from, to: p.to }, o);
+    });
+    if (bad) { $("st-msg").textContent = "Un des prix n'est pas un nombre. Corrige la case puis enregistre."; return; }
+    const now = new Date();
+    const time = now.toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit", timeZone: "Europe/Paris" }).replace(":", " h ");
+    try {
+      $("st-save").disabled = true;
+      const doc = { date: r.date, time, items };
+      await dbRef.collection("quotes").doc(r.date).set(doc);
+      quotesList = [doc].concat(quotesList.filter((q) => q.date !== r.date));
+      editing = false; $("st-rows").textContent = ""; $("st-msg").textContent = "Cotations enregistrées.";
+    } catch (e) {
+      $("st-msg").textContent = "Enregistrement impossible (" + (e && e.code || "erreur") + "). Réessaie dans un instant.";
+    } finally { $("st-save").disabled = false; renderReport(); }
+  });
+
+  $("edition").addEventListener("change", (e) => { current = e.target.value; renderReport(); });
+
+  const rerender = () => { if (current) renderReport(); };
+  try { window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", rerender); } catch (e) {}
+  new MutationObserver(rerender).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+  // ---------- day / night switch (remembered on this device) ----------
+  (function () {
+    const btn = $("theme-tg"), root = document.documentElement, mq = window.matchMedia ? window.matchMedia("(prefers-color-scheme: dark)") : null;
+    let saved = null; try { saved = localStorage.getItem("brief-theme"); } catch (e) {}
+    const isDark = () => root.getAttribute("data-theme") ? root.getAttribute("data-theme") === "dark" : !!(mq && mq.matches);
+    const sync = () => { const d = isDark(); btn.setAttribute("aria-checked", String(d)); btn.title = d ? "Passer en mode jour" : "Passer en mode nuit"; btn.setAttribute("aria-label", btn.title); };
+    if (saved === "dark" || saved === "light") root.setAttribute("data-theme", saved);
+    sync();
+    btn.addEventListener("click", () => { const next = isDark() ? "light" : "dark"; root.setAttribute("data-theme", next); try { localStorage.setItem("brief-theme", next); } catch (e) {} sync(); });
+    if (mq && mq.addEventListener) mq.addEventListener("change", sync);
+  })();
+
+
+  async function start() {
+    const db = window.claude && window.claude.use ? await window.claude.use("db") : null;
+    if (!db) {
+      $("empty").querySelector("h2").textContent = "Brief indisponible dans cette vue";
+      $("empty").querySelector("p").textContent = "Ouvre la page en étant connecté à ton compte pour lire les éditions.";
+      return;
+    }
+    const onErr = (e) => { $("empty").querySelector("p").textContent = "Lecture des éditions impossible pour le moment (" + (e && e.code || "erreur") + "). Recharge la page."; };
+    db.collection("reports").orderBy("date", "desc").limit(120).onSnapshot((snap) => {
+      reports = snap.docs.filter((d) => d.exists).map((d) => d.data()).filter((d) => d && d.date);
+      renderEditions(); renderReport();
+    }, onErr);
+    dbRef = db;
+    db.collection("quotes").orderBy("date", "desc").limit(30).onSnapshot((snap) => { quotesList = snap.docs.filter((x) => x.exists).map((x) => x.data()); renderReport(); }, onErr);
+    db.doc("history/storage").onSnapshot((snap) => { hist = snap.exists ? snap.data() : null; renderReport(); }, onErr);
+    db.doc("nuclear/latest").onSnapshot((snap) => { nuc = snap.exists ? snap.data() : null; renderReport(); }, () => {});
+    db.doc("forwards/latest").onSnapshot((snap) => { fwd = snap.exists ? snap.data() : null; renderReport(); }, () => {});
+    db.collection("series").orderBy("date", "asc").limit(1000).onSnapshot((snap) => {
+      series = snap.docs.filter((d) => d.exists).map((d) => d.data()).filter((d) => d && d.date);
+      renderReport();
+    }, onErr);
+  }
+  start();
+})();
+</script>
+
+</body></html>
