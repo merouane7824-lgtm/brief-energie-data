@@ -247,20 +247,59 @@ def get_prices(today):
 
 
 PSR = {"B14": "nuc", "B16": "solar", "B18": "wind_off", "B19": "wind_on"}
+# toutes les filières pour le mix complet (codes ENTSO-E psrType)
+MIX = {"B14": "nuc_gw", "B16": "solar_gw", "B18": "wind_gw", "B19": "wind_gw",
+       "B10": "hydro_gw", "B11": "hydro_gw", "B12": "hydro_gw",
+       "B04": "gas_gw", "B02": "coal_gw", "B05": "coal_gw", "B06": "coal_gw",
+       "B01": "bio_gw", "B09": "bio_gw", "B15": "bio_gw", "B17": "bio_gw", "B20": "bio_gw"}
 
 
 def get_generation(today):
+    """Production réalisée moyenne par jour et par filière (MW) ; le pompage (consommation des STEP) à part."""
     a, b = window(PAST_DAYS, 1, today)
     docs = entsoe({"documentType": "A75", "processType": "A16", "in_Domain": FR,
                    "periodStart": entsoe_period(a), "periodEnd": entsoe_period(b)})
-    per_type = defaultdict(list)
+    per_key = defaultdict(list)
+    seen = set()
+    per_psr = defaultdict(list)
     for ts in timeseries(docs):
-        if child(ts, "outBiddingZone_Domain.mRID") is not None and child(ts, "inBiddingZone_Domain.mRID") is None:
-            continue  # consommation (pompage)
-        k = PSR.get(text(ts, "MktPSRType", "psrType"))
-        if k:
-            per_type[k].extend(segments(ts))
-    return {k: daily_mean(v) for k, v in per_type.items()}
+        psr = text(ts, "MktPSRType", "psrType")
+        seen.add(psr)
+        consumption = child(ts, "outBiddingZone_Domain.mRID") is not None and child(ts, "inBiddingZone_Domain.mRID") is None
+        key = "pump_gw" if consumption and psr == "B10" else (None if consumption else MIX.get(psr))
+        if key:
+            per_psr[(key, psr, consumption)].extend(segments(ts))
+    DIAG["A75_psr"] = sorted(x for x in seen if x)
+    # moyenne journalière par type puis somme par filière (éolien terrestre + en mer, hydro fil de l'eau + lacs + STEP…)
+    per_key = defaultdict(dict)
+    for (key, _psr, _c), segs in per_psr.items():
+        for d, mw in daily_mean(segs).items():
+            per_key[key][d] = per_key[key].get(d, 0.0) + mw
+    return per_key
+
+
+NEIGHBOURS = {"BE": "10YBE----------2", "DE": "10Y1001A1001A82H", "CH": "10YCH-SWISSGRIDZ",
+              "IT": "10Y1001A1001A73I", "ES": "10YES-REE------0", "GB": "10YGB----------A"}
+
+
+def get_flows(today):
+    """Flux physiques transfrontaliers (A11) : exports nets journaliers de la France, par frontière (MW, + = export)."""
+    a, b = window(PAST_DAYS, 1, today)
+    res = {}
+    for name, eic in NEIGHBOURS.items():
+        try:
+            out_docs = entsoe({"documentType": "A11", "out_Domain": FR, "in_Domain": eic,
+                               "periodStart": entsoe_period(a), "periodEnd": entsoe_period(b)})
+            in_docs = entsoe({"documentType": "A11", "out_Domain": eic, "in_Domain": FR,
+                              "periodStart": entsoe_period(a), "periodEnd": entsoe_period(b)})
+            exp = daily_mean([sg for ts in timeseries(out_docs) for sg in segments(ts)])
+            imp = daily_mean([sg for ts in timeseries(in_docs) for sg in segments(ts)])
+            res[name] = {d: exp.get(d, 0.0) - imp.get(d, 0.0) for d in set(exp) | set(imp) if d in exp and d in imp}
+            log(f"  flux {name}", True, f"{len(res[name])} jours")
+        except Exception as e:
+            log(f"  flux {name}", False, str(e))
+        time.sleep(1)
+    return res
 
 
 DIAG: dict = {}
@@ -712,17 +751,20 @@ def run(today: dt.date | None = None):
             series[d]["spot_h"] = arr
             vals = [v for v in arr if v is not None]
             series[d]["spot_fr"] = round(sum(vals) / len(vals), 2)
-    gen = step("ENTSO-E production réalisée (A75)", get_generation, today) or {}
+    gen = step("ENTSO-E production réalisée par filière (A75)", get_generation, today) or {}
     for k, dm in gen.items():
         for d, mw in dm.items():
             if d < today.isoformat():
-                series[d][{"nuc": "nuc_gw", "solar": "solar_gw", "wind_on": "_won", "wind_off": "_woff"}[k]] = mw / 1000
-    for d, row in series.items():
-        if "_won" in row or "_woff" in row:
-            row["wind_gw"] = row.pop("_won", 0.0) + row.pop("_woff", 0.0)
-        for k in ("nuc_gw", "wind_gw", "solar_gw"):
-            if k in row:
-                row[k] = r1(row[k], 1)
+                series[d][k] = r1(mw / 1000, 1 if k in ("nuc_gw", "wind_gw", "solar_gw") else 2)
+    flows = step("ENTSO-E échanges physiques aux frontières (A11)", get_flows, today) or {}
+    days = set(d for v in flows.values() for d in v)
+    for d in days:
+        if d >= today.isoformat():
+            continue
+        per = {n: r1(v[d] / 1000, 2) for n, v in flows.items() if d in v}
+        if len(per) == len(flows) and per:  # toutes les frontières renseignées ce jour-là
+            series[d]["exp_borders"] = per
+            series[d]["exp_net_gw"] = r1(sum(per.values()), 2)
     actual_load = step("ENTSO-E consommation réalisée (A65 A16)", get_load, today, "A16", PAST_DAYS, 1)
     if actual_load:
         segs = [s for v in actual_load[0].values() for s in v]
@@ -753,7 +795,9 @@ def run(today: dt.date | None = None):
     for k, dm in ws.items():
         for d, mw in dm.items():
             if d >= today.isoformat():
-                fc[d][{"nuc": "_nuc", "solar": "solar_gw", "wind_on": "_won", "wind_off": "_woff"}[k]] = (mw / 1000, "ENTSO-E day-ahead")
+                key = {"nuc": "_nuc", "solar": "solar_gw", "wind_on": "_won", "wind_off": "_woff"}.get(k)
+                if key:
+                    fc[d][key] = (mw / 1000, "ENTSO-E day-ahead")
 
     rte_ok = bool(secret("RTE_CLIENT_ID") and secret("RTE_CLIENT_SECRET"))
     if rte_ok:

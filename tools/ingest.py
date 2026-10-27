@@ -16,7 +16,8 @@ vp = os.path.join(ser_dir, "versions.json")
 if os.path.exists(vp):
     versions = json.load(open(vp))
 
-FIELDS = ("spot_h", "spot_fr", "nuc_gw", "wind_gw", "solar_gw", "load_gw")
+FIELDS = ("spot_h", "spot_fr", "nuc_gw", "wind_gw", "solar_gw", "load_gw",
+          "hydro_gw", "gas_gw", "coal_gw", "bio_gw", "pump_gw", "exp_net_gw", "exp_borders")
 writes = []
 for date, row in sorted(d.get("series", {}).items()):
     p = os.path.join(ser_dir, date + ".json")
