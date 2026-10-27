@@ -16,7 +16,7 @@ SHIM = r"""<script>
 window.claude = { use: async function (cap) {
   if (cap !== "db") return null;
   var cache = {};
-  function load(f) { if (!f) return Promise.resolve(null); return cache[f] || (cache[f] = fetch("data/" + f + "?v=" + Date.now()).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })); }
+  function load(f) { if (!f) return Promise.resolve(null); return cache[f] || (cache[f] = fetch("__DATA__" + f + "?v=" + Date.now()).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; })); }
   var FILES = { reports: "reports.json", series: "series.json", quotes: "quotes.json" };
   var DOCS = { "history/storage": "history-storage.json", "nuclear/latest": "nuclear.json", "forwards/latest": "forwards.json" };
   function snapOf(a) { return { docs: (a || []).map(function (d) { return { exists: true, data: function () { return d; } }; }) }; }
@@ -52,6 +52,8 @@ head = ('<!doctype html>\n<html lang="fr">\n<head>\n<meta charset="utf-8">\n'
 j = page.index('<div class="wrap">')
 out = head + page[:j] + "<style>body{margin:0}</style>\n</head>\n<body>\n" + page[j:].rstrip() + "\n</body>\n</html>\n"
 os.makedirs(os.path.join(ROOT, "docs"), exist_ok=True)
-open(os.path.join(ROOT, "docs", "index.html"), "w", encoding="utf-8").write(out)
+# même page à deux endroits : racine du site (Pages sur « / (root) ») et docs/ (Pages sur « /docs »)
+open(os.path.join(ROOT, "docs", "index.html"), "w", encoding="utf-8").write(out.replace("__DATA__", "data/"))
+open(os.path.join(ROOT, "index.html"), "w", encoding="utf-8").write(out.replace("__DATA__", "docs/data/"))
 open(os.path.join(ROOT, "docs", ".nojekyll"), "w").write("")
-print("docs/index.html", len(out))
+print("index.html et docs/index.html", len(out))
