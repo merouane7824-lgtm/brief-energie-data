@@ -292,8 +292,9 @@ def get_ws_forecast(today):
         per_type = defaultdict(list)
         for ts in timeseries(docs):
             k = PSR.get(text(ts, "MktPSRType", "psrType"))
-            if k:
-                per_type[k].extend(segments(ts))
+            segs = segments(ts)
+            if k and segs and max(v for _a, _b, v, _s in segs) > 0:  # série vide publiée à 0 : ignorée
+                per_type[k].extend(segs)
         for k, v in per_type.items():
             for d, mw in daily_mean(v, min_hours=20.0).items():
                 res.setdefault(k, {}).setdefault(d, (mw, proc))  # A01 prioritaire, puis A40, puis A18
@@ -447,7 +448,7 @@ def nuclear_availability(msgs, installed_mw, today, actual_daily, days_back=PAST
 
 
 import re
-BOILER = re.compile(r"(recouplage|restart|remont|ramp-up|palier|load threshold|sous r[ée]serve|subject to|tso agreement|accord rte|reprogramm|likely to be|susceptible|^-+$)", re.I)
+BOILER = re.compile(r"(recouplage|restart|remont|ramp-up|palier|load threshold|sous r[ée]serve|subject to|tso agreement|accord rte|reprogramm|resched|may be|likely to be|susceptible|^-+$)", re.I)
 
 
 def clean_reason(t):

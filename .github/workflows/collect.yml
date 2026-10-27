@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: "35 5 * * *"    # 05:35 UTC = 6 h 35 (hiver) / 7 h 35 (été) à Paris, avant la tâche de 9 h 20
     - cron: "35 12 * * *"   # 12:35 UTC : prix day-ahead du lendemain publiés
+    - cron: "35 17 * * *"   # 17:35 UTC : prévisions éolien/solaire du lendemain publiées
   workflow_dispatch:
 
 permissions:
