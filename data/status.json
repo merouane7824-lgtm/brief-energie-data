@@ -1,0 +1,125 @@
+{
+ "generated_at": "2026-10-27T13:49:58Z",
+ "steps": [
+  {
+   "step": "ENTSO-E prix day-ahead (A44)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "ENTSO-E production réalisée (A75)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "ENTSO-E consommation réalisée (A65 A16)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "ENTSO-E prévision conso J/J+1 (A65 A01)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "ENTSO-E prévision conso semaine (A65 A31)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "ENTSO-E prévision conso mois (A65 A32)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "ENTSO-E prévision conso année (A65 A33)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "ENTSO-E prévision éolien/solaire (A69)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "RTE jeton OAuth",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "RTE consommation J/J+1",
+   "ok": true,
+   "msg": "3 jours"
+  },
+  {
+   "step": "RTE consommation hebdomadaire",
+   "ok": true,
+   "msg": "15 jours"
+  },
+  {
+   "step": "RTE prévision SOLAR D-1",
+   "ok": false,
+   "msg": "HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''"
+  },
+  {
+   "step": "RTE prévision SOLAR D-2",
+   "ok": false,
+   "msg": "HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''"
+  },
+  {
+   "step": "RTE prévision SOLAR D-3",
+   "ok": false,
+   "msg": "HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''"
+  },
+  {
+   "step": "RTE prévision WIND_ONSHORE D-1",
+   "ok": false,
+   "msg": "HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''"
+  },
+  {
+   "step": "RTE prévision WIND_ONSHORE D-2",
+   "ok": false,
+   "msg": "HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''"
+  },
+  {
+   "step": "RTE prévision WIND_ONSHORE D-3",
+   "ok": false,
+   "msg": "HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''"
+  },
+  {
+   "step": "RTE prévision WIND_OFFSHORE D-1",
+   "ok": false,
+   "msg": "HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''"
+  },
+  {
+   "step": "RTE prévision WIND_OFFSHORE D-2",
+   "ok": false,
+   "msg": "HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''"
+  },
+  {
+   "step": "RTE prévision WIND_OFFSHORE D-3",
+   "ok": false,
+   "msg": "HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''"
+  },
+  {
+   "step": "RTE prévisions éolien/solaire",
+   "ok": false,
+   "msg": ""
+  },
+  {
+   "step": "ENTSO-E capacité nucléaire installée (A68)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "ENTSO-E indisponibilités unités de production (A80)",
+   "ok": true,
+   "msg": ""
+  },
+  {
+   "step": "  nucléaire A80",
+   "ok": true,
+   "msg": "2030 messages, 199 séries nucléaires"
+  }
+ ]
+}
