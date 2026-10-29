@@ -26,6 +26,12 @@ jobs:
           repository: merouane7824-lgtm/brief-energie-prive
           token: ${{ secrets.PRIVE_TOKEN }}
           path: prive
+      - name: Vérifier l'accès en écriture au dépôt privé
+        working-directory: prive
+        run: git push --dry-run origin HEAD:refs/heads/main
+      - name: Vérifier l'accès à EEX
+        working-directory: prive
+        run: timeout 300 python3 tools/eex_live.py 2>&1 | grep -E "^(OK|FAIL)"; test ${PIPESTATUS[0]} -eq 0
       - name: Relevés toutes les 15 minutes jusqu'à 19 h (Paris, hiver)
         working-directory: prive
         run: |
@@ -36,7 +42,7 @@ jobs:
           close=$(date -u -d "today 18:00" +%s)
           [ $close -lt $stop ] && stop=$close
           while [ $(date -u +%s) -lt $stop ]; do
-            python3 tools/eex_live.py 2>&1 | grep -E "^(OK|FAIL)" || true
+            timeout 400 python3 tools/eex_live.py 2>&1 | grep -E "^(OK|FAIL)" || true
             git add data/eex_live.json
             if ! git diff --cached --quiet; then
               git commit -q -m "EEX $(date -u +%H:%MZ) [skip ci]"
