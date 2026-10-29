@@ -1,6 +1,7 @@
 name: Relevé EEX intraday (vers le dépôt privé)
 
-# Deux lancements par jour ; chaque lancement tourne en continu (jusqu'à ~5 h 45)
+# Deux lancements par jour ; chaque lancement commence par la collecte ENTSO-E / RTE / OMIP (data/ de ce dépôt),
+# puis tourne en continu (jusqu'à ~5 h 45)
 # et relève EEX toutes les 15 minutes. Les prix sont écrits UNIQUEMENT dans le dépôt privé
 # brief-energie-prive : rien n'est enregistré ni affiché dans ce dépôt public.
 on:
@@ -10,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: eex-relay
@@ -21,6 +22,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 355
     steps:
+      - uses: actions/checkout@v4
+      - name: Collecte ENTSO-E, RTE et OMIP (production de la veille complète)
+        continue-on-error: true
+        env:
+          ENTSOE_TOKEN: ${{ secrets.ENTSOE_TOKEN }}
+          RTE_CLIENT_ID: ${{ secrets.RTE_CLIENT_ID }}
+          RTE_CLIENT_SECRET: ${{ secrets.RTE_CLIENT_SECRET }}
+        run: |
+          timeout 1500 python3 collect.py > data-run.log 2>&1 || true
+          mkdir -p data && grep -E "^(OK|FAIL)|étapes" data-run.log > data/last-run.log || true
+          git config user.name "brief-energie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git diff --cached --quiet || git commit -q -m "Données du $(date -u +%Y-%m-%dT%H:%MZ)"
+          git pull --rebase -q || true
+          git push -q
       - uses: actions/checkout@v4
         with:
           repository: merouane7824-lgtm/brief-energie-prive
