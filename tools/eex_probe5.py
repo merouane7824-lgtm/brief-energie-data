@@ -21,16 +21,17 @@ out["datefmt"] = tpl[i: i + 600] if i >= 0 else ""
 CU = "https://api.eex-group.com/pub/customise-widget"
 B = "https://api.eex-group.com/pub/market-data"
 contracts = [{"commodity": "All", "pricing": "All", "area": "All", "product": "All", "productSpecific": "All", "maturityType": "All"}]
-cands = [{"contracts": contracts}, {"contracts": contracts, "upcomingAreas": [], "upcomingProducts": []}, contracts]
+cands = [contracts]
 rows = None
 for k, p in enumerate(cands):
     enc = base64.b64encode(json.dumps(p, separators=(",", ":")).encode()).decode()
     try:
         st, b = req(CU + "/filter-data-with-scope?data=" + urllib.parse.quote(enc), {"data": enc})
         j = json.loads(b)
-        out["filter"][k] = {"status": st, "header": j.get("header"), "n": len(j.get("data") or j.get("rows") or [])}
-        if rows is None and j.get("header"):
-            hd = j["header"]; data = j.get("data") or j.get("rows") or []
+        lk = [x for x, v in j.items() if isinstance(v, list) and x != "header"]
+        out["filter"][k] = {"status": st, "keys": list(j.keys()), "listkeys": lk, "raw": b[:1500]}
+        if rows is None and j.get("header") and lk:
+            hd = j["header"]; data = j[lk[0]]
             rows = [dict(zip(hd, r)) for r in data]
     except Exception as e:
         out["filter"][k] = {"error": str(e)[:300]}
@@ -40,7 +41,7 @@ if rows:
     out["sample_rows"] = rows[:5]
     # cotations : année, trimestre, mois en base et pointe
     d = date.today()
-    fmt = lambda x: x.strftime("%Y/%m/%d")
+    fmt = lambda x: x.strftime("%Y-%m-%d")
     for r in fr:
         if r.get("pricing") not in (None, "Futures", "F") and "futur" not in str(r.get("pricing", "")).lower():
             continue
