@@ -1,0 +1,49 @@
+name: Relevé EEX intraday (vers le dépôt privé)
+
+# Deux lancements par jour ; chaque lancement tourne en continu (jusqu'à ~5 h 45)
+# et relève EEX toutes les 15 minutes. Les prix sont écrits UNIQUEMENT dans le dépôt privé
+# brief-energie-prive : rien n'est enregistré ni affiché dans ce dépôt public.
+on:
+  schedule:
+    - cron: "3 7 * * 1-5"    # 8 h 03 à Paris (hiver)
+    - cron: "3 12 * * 1-5"   # 13 h 03 à Paris : prend le relais (attend la fin du premier s'il tourne encore)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: eex-relay
+  cancel-in-progress: false
+
+jobs:
+  releve:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: merouane7824-lgtm/brief-energie-prive
+          token: ${{ secrets.PRIVE_TOKEN }}
+          path: prive
+      - name: Relevés toutes les 15 minutes jusqu'à 19 h (Paris, hiver)
+        working-directory: prive
+        run: |
+          git config user.name "brief-energie-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          start=$(date -u +%s)
+          stop=$(( start + 345*60 ))
+          close=$(date -u -d "today 18:00" +%s)
+          [ $close -lt $stop ] && stop=$close
+          while [ $(date -u +%s) -lt $stop ]; do
+            python3 tools/eex_live.py 2>&1 | grep -E "^(OK|FAIL)" || true
+            git add data/eex_live.json
+            if ! git diff --cached --quiet; then
+              git commit -q -m "EEX $(date -u +%H:%MZ) [skip ci]"
+              git pull -q --rebase origin main && git push -q origin main || echo "FAIL envoi"
+            fi
+            now=$(date -u +%s); next=$(( (now/900 + 1)*900 + 120 ))
+            [ $next -ge $stop ] && break
+            sleep $(( next - now ))
+          done
+          echo "Fin des relevés à $(date -u +%H:%MZ)"
