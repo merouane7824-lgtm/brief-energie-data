@@ -1,0 +1,235 @@
+{
+ "snippets": {
+  "2243": "id=\"snippet-2243\" class=\"snippet d-block\">\n\t\t\t\t\t<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\r\n<meta http-equiv='content-type' content='text/html; charset=UTF-8'>\r\n\r\n<script type='text/javascript' src='https://eds.eex-group.com/widgets/pub/lib/v1/jquery/jquery-3.6.4.min.js'></script>\r\n\r\n<div id='eex_customWidget_1760458976696'>\r\n</div>\r\n\r\n<script type='text/javascript'>\r\n  fetch('https://eds.eex-group.com/widgets/pub/ee7aff9c-287d-4d4d-a509-ec628bd35ea5/metadata.html')\r\n    .then((response) => {\r\n      return response.text();\r\n    }).then((html) => {\r\n    const rootDiv = $('#eex_customWidget_1760458976696');\r\n    const libsWrapper = document.createElement('div');\r\n    rootDiv.append(libsWrapper);\r\n\r\n    const wrapper = document.createElement('div');\r\n    wrapper.innerHTML = html;\r\n\r\n    const loadedScriptSrcs = new Set();\r\n    loadedScriptSrcs.add('https://eds.eex-group.com/widgets/pub/lib/v1/jquery/jquery-3.6.4.min.js');\r\n    const originalAppendChild  = Node.prototype.appendChild;\r\n    const originalInsertBefore = Node.prototype.insertBefore;\r\n\r\n    const shouldSkipScript = node => {\r\n      if (!node || node.tagName !== 'SCRIPT' || !node.src) {\r\n        return false;\r\n      }\r\n\r\n      const normalized = node.src;\r\n      if (loadedScriptSrcs.has(normalized)) {\r\n        return true;\r\n      }\r\n\r\n      loadedScriptSrcs.add(normalized);\r\n      return false;\r\n    };\r\n\r\n    Node.prototype.appendChild = function appendChildPatched(node) "
+ },
+ "eds_urls": [
+  "https://eds.eex-group.com/widgets/pub/ee7aff9c-287d-4d4d-a509-ec628bd35ea5/metadata.html",
+  "https://eds.eex-group.com/widgets/pub/lib/v1/jquery/jquery-3.6.4.min.js"
+ ],
+ "fetched": {
+  "https://eds.eex-group.com/widgets/pub/ee7aff9c-287d-4d4d-a509-ec628bd35ea5/metadata.html": {
+   "status": 200,
+   "ct": "text/html",
+   "len": 21496,
+   "head": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<meta http-equiv='content-type' content='text/html; charset=UTF-8'>\n\n<script type='text/javascript' src='https://eds.eex-group.com/widgets/pub/lib/v1/jquery/jquery-3.6.4.min.js'></script>\n\n<div id='eex_marketDataHub_1765265036641'>\n</div>\n\n<script type='text/javascript'>\n\n  let eex_marketDataHub_1765265036641 = {\n    rootDiv: undefined,\n    generatedId: 'eex_marketDataHub_1765265036641',\n    baseUrl: 'https://api.eex-group.com/pub/market-data',\n    customizeUrl: 'https://api.eex-group.com/pub/customise-widget',\n    appliedParameters: {\n      contracts: [{commodity: \"All\",pricing: \"All\",area: \"All\",product: \"All\",productSpecific: \"All\",maturityType: \"All\",}],\n      upcomingAreas: [],\n      upcomingProducts: [],\n\n      withOverview: true,\n      withTableView: true,\n      withChartView: true,\n      withOpenInterestGross: true,\n      withOpenInterestInLots: true,\n      withVolume: true,\n      withLots: true,\n\n      marketDataHubMainBgColor: '#ffffff',\n      filterPanelBgColor: '#e2e2e2',\n      filterPanelLabelsColor: '#000000',\n      filterPanelGoBtnColor: '#eb1000',\n      filterPanelGoBtnTextColor: '#ffffff',\n      filterPanelResetBtnColor: '#3c3c3c',\n      filterPanelResetBtnTextColor: '#ffffff',\n      filterPanelRadioBtnColor: '#eb1000',\n\n      marketDataHubNavigationActiveBtnColor: '#eb1000',\n      marketDataHubNavigationActiveBtnTextColor: '#ffffff',\n      marketDataHubNavigationBtnCol",
+   "ctx": [
+    "rketDataHub_1765265036641.generatedId + '_0';\n      eex_marketDataHub_1765265036641.rootDiv = $('#eex_marketDataHub_1765265036641');\n      eex_marketDataHub_1765265036641.rootDiv.hide();\n\n      await fetch('https://eds.eex-group.com/widgets/pub/lib/v1/templates/customized-solution/marketDataHubTemplate.html')\n        .then((res) => res.text())\n        .then(async (responseText) => {\n          const contractsToBeLoaded = [];\n          for (let i = 0; i < eex_marketDataHub_1765265036641.appliedParameter"
+   ],
+   "links": [
+    "https://eds.eex-group.com/widgets/pub/lib/v1/jquery/jquery-3.6.4.min.js",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/templates/customized-solution/marketDataHubTemplate.html"
+   ]
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/jquery/jquery-3.6.4.min.js": {
+   "status": 200,
+   "ct": "application/javascript",
+   "len": 89795,
+   "head": "",
+   "ctx": [
+    "at({value:\" \"===e[s-2].type?\"*\":\"\"})).replace(B,\"$1\"),t,s<n&&Ee(e.slice(s,n)),n<r&&Ee(e=e.slice(n)),n<r&&xe(e))}c.push(t)}return we(c)}return me.prototype=b.filters=b.pseudos,b.setFilters=new me,h=se.tokenize=function(e,t){var n,r,i,o,a,s,u,l=x[e+\" \"];if(l)return t?0:l.slice(0);a=e,s=[],u=b.preFilter;while(a){for(o in n&&!(r=_.exec(a))||(r&&(a=a.slice(r[0].length)||a),s.push(i=[])),n=!1,(r=z.exec(a))&&(n=r.shift(),i.push({value:n,type:r[0].replace(B,\" \")}),a=a.slice(n.length)),b.filter)!(r=G[o].exec(",
+    "ach(t[e]||[],function(e,t){var n=t(i,o,a);return\"string\"!=typeof n||u||s[n]?u?!(r=n):void 0:(i.dataTypes.unshift(n),l(n),!1)}),r}return l(i.dataTypes[0])||!s[\"*\"]&&l(\"*\")}function Bt(e,t){var n,r,i=S.ajaxSettings.flatOptions||{};for(n in t)void 0!==t[n]&&((i[n]?e:r||(r={}))[n]=t[n]);return r&&S.extend(!0,e,r),e}Wt.href=Tt.href,S.extend({active:0,lastModified:{},etag:{},ajaxSettings:{url:Tt.href,type:\"GET\",isLocal:/^(?:about|app|app-storage|.+-extension|file|res|widget):$/.test(Tt.protocol),global:!0",
+    "unction Bt(e,t){var n,r,i=S.ajaxSettings.flatOptions||{};for(n in t)void 0!==t[n]&&((i[n]?e:r||(r={}))[n]=t[n]);return r&&S.extend(!0,e,r),e}Wt.href=Tt.href,S.extend({active:0,lastModified:{},etag:{},ajaxSettings:{url:Tt.href,type:\"GET\",isLocal:/^(?:about|app|app-storage|.+-extension|file|res|widget):$/.test(Tt.protocol),global:!0,processData:!0,async:!0,contentType:\"application/x-www-form-urlencoded; charset=UTF-8\",accepts:{\"*\":It,text:\"text/plain\",html:\"text/html\",xml:\"application/xml, text/xml\",j",
+    "/},responseFields:{xml:\"responseXML\",text:\"responseText\",json:\"responseJSON\"},converters:{\"* text\":String,\"text html\":!0,\"text json\":JSON.parse,\"text xml\":S.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(e,t){return t?Bt(Bt(e,S.ajaxSettings),t):Bt(S.ajaxSettings,e)},ajaxPrefilter:Ft(Rt),ajaxTransport:Ft(Mt),ajax:function(e,t){\"object\"==typeof e&&(t=e,e=void 0),t=t||{};var c,f,p,n,d,r,h,g,i,o,y=S.ajaxSetup({},t),v=y.context||y,m=y.context&&(v.nodeType||v.jquery)?S(v):S.event,x=S.Deferr",
+    "responseText\",json:\"responseJSON\"},converters:{\"* text\":String,\"text html\":!0,\"text json\":JSON.parse,\"text xml\":S.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(e,t){return t?Bt(Bt(e,S.ajaxSettings),t):Bt(S.ajaxSettings,e)},ajaxPrefilter:Ft(Rt),ajaxTransport:Ft(Mt),ajax:function(e,t){\"object\"==typeof e&&(t=e,e=void 0),t=t||{};var c,f,p,n,d,r,h,g,i,o,y=S.ajaxSetup({},t),v=y.context||y,m=y.context&&(v.nodeType||v.jquery)?S(v):S.event,x=S.Deferred(),b=S.Callbacks(\"once memory\"),w=y.statu",
+    "sponseJSON\"},converters:{\"* text\":String,\"text html\":!0,\"text json\":JSON.parse,\"text xml\":S.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(e,t){return t?Bt(Bt(e,S.ajaxSettings),t):Bt(S.ajaxSettings,e)},ajaxPrefilter:Ft(Rt),ajaxTransport:Ft(Mt),ajax:function(e,t){\"object\"==typeof e&&(t=e,e=void 0),t=t||{};var c,f,p,n,d,r,h,g,i,o,y=S.ajaxSetup({},t),v=y.context||y,m=y.context&&(v.nodeType||v.jquery)?S(v):S.event,x=S.Deferred(),b=S.Callbacks(\"once memory\"),w=y.statusCode||{},a={},s={},u=",
+    "erters:{\"* text\":String,\"text html\":!0,\"text json\":JSON.parse,\"text xml\":S.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(e,t){return t?Bt(Bt(e,S.ajaxSettings),t):Bt(S.ajaxSettings,e)},ajaxPrefilter:Ft(Rt),ajaxTransport:Ft(Mt),ajax:function(e,t){\"object\"==typeof e&&(t=e,e=void 0),t=t||{};var c,f,p,n,d,r,h,g,i,o,y=S.ajaxSetup({},t),v=y.context||y,m=y.context&&(v.nodeType||v.jquery)?S(v):S.event,x=S.Deferred(),b=S.Callbacks(\"once memory\"),w=y.statusCode||{},a={},s={},u=\"canceled\",T={rea",
+    "ng,\"text html\":!0,\"text json\":JSON.parse,\"text xml\":S.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(e,t){return t?Bt(Bt(e,S.ajaxSettings),t):Bt(S.ajaxSettings,e)},ajaxPrefilter:Ft(Rt),ajaxTransport:Ft(Mt),ajax:function(e,t){\"object\"==typeof e&&(t=e,e=void 0),t=t||{};var c,f,p,n,d,r,h,g,i,o,y=S.ajaxSetup({},t),v=y.context||y,m=y.context&&(v.nodeType||v.jquery)?S(v):S.event,x=S.Deferred(),b=S.Callbacks(\"once memory\"),w=y.statusCode||{},a={},s={},u=\"canceled\",T={readyState:0,getResponse",
+    "xt json\":JSON.parse,\"text xml\":S.parseXML},flatOptions:{url:!0,context:!0}},ajaxSetup:function(e,t){return t?Bt(Bt(e,S.ajaxSettings),t):Bt(S.ajaxSettings,e)},ajaxPrefilter:Ft(Rt),ajaxTransport:Ft(Mt),ajax:function(e,t){\"object\"==typeof e&&(t=e,e=void 0),t=t||{};var c,f,p,n,d,r,h,g,i,o,y=S.ajaxSetup({},t),v=y.context||y,m=y.context&&(v.nodeType||v.jquery)?S(v):S.event,x=S.Deferred(),b=S.Callbacks(\"once memory\"),w=y.statusCode||{},a={},s={},u=\"canceled\",T={readyState:0,getResponseHeader:function(e){va",
+    "tion(e,t){return t?Bt(Bt(e,S.ajaxSettings),t):Bt(S.ajaxSettings,e)},ajaxPrefilter:Ft(Rt),ajaxTransport:Ft(Mt),ajax:function(e,t){\"object\"==typeof e&&(t=e,e=void 0),t=t||{};var c,f,p,n,d,r,h,g,i,o,y=S.ajaxSetup({},t),v=y.context||y,m=y.context&&(v.nodeType||v.jquery)?S(v):S.event,x=S.Deferred(),b=S.Callbacks(\"once memory\"),w=y.statusCode||{},a={},s={},u=\"canceled\",T={readyState:0,getResponseHeader:function(e){var t;if(h){if(!n){n={};while(t=Ht.exec(p))n[t[1].toLowerCase()+\" \"]=(n[t[1].toLowerCase()+\"",
+    "h(e){y.crossDomain=!0}}if(y.data&&y.processData&&\"string\"!=typeof y.data&&(y.data=S.param(y.data,y.traditional)),$t(Rt,y,t,T),h)return T;for(i in(g=S.event&&y.global)&&0==S.active++&&S.event.trigger(\"ajaxStart\"),y.type=y.type.toUpperCase(),y.hasContent=!Ot.test(y.type),f=y.url.replace(qt,\"\"),y.hasContent?y.data&&y.processData&&0===(y.contentType||\"\").indexOf(\"application/x-www-form-urlencoded\")&&(y.data=y.data.replace(Dt,\"+\")):(o=y.url.slice(f.length),y.data&&(y.processData||\"string\"==typeof y.data)",
+    "r(i,y.headers[i]);if(y.beforeSend&&(!1===y.beforeSend.call(v,T,y)||h))return T.abort();if(u=\"abort\",b.add(y.complete),T.done(y.success),T.fail(y.error),c=$t(Mt,y,t,T)){if(T.readyState=1,g&&m.trigger(\"ajaxSend\",[T,y]),h)return T;y.async&&0<y.timeout&&(d=C.setTimeout(function(){T.abort(\"timeout\")},y.timeout));try{h=!1,c.send(a,l)}catch(e){if(h)throw e;l(-1,e)}}else l(-1,\"No Transport\");function l(e,t,n,r){var i,o,a,s,u,l=t;h||(h=!0,d&&C.clearTimeout(d),c=void 0,p=r||\"\",T.readyState=0<e?4:0,i=200<=e&&e",
+    ":(l=s.state,o=s.data,i=!(a=s.error))):(a=l,!e&&l||(l=\"error\",e<0&&(e=0))),T.status=e,T.statusText=(t||l)+\"\",i?x.resolveWith(v,[o,l,T]):x.rejectWith(v,[T,l,a]),T.statusCode(w),w=void 0,g&&m.trigger(i?\"ajaxSuccess\":\"ajaxError\",[T,y,i?o:a]),b.fireWith(v,[T,l]),g&&(m.trigger(\"ajaxComplete\",[T,y]),--S.active||S.event.trigger(\"ajaxStop\")))}return T},getJSON:function(e,t,n){return S.get(e,t,n,\"json\")},getScript:function(e,t){return S.get(e,void 0,t,\"script\")}}),S.each([\"get\",\"post\"],function(e,i){S[i]=func",
+    "s.data,i=!(a=s.error))):(a=l,!e&&l||(l=\"error\",e<0&&(e=0))),T.status=e,T.statusText=(t||l)+\"\",i?x.resolveWith(v,[o,l,T]):x.rejectWith(v,[T,l,a]),T.statusCode(w),w=void 0,g&&m.trigger(i?\"ajaxSuccess\":\"ajaxError\",[T,y,i?o:a]),b.fireWith(v,[T,l]),g&&(m.trigger(\"ajaxComplete\",[T,y]),--S.active||S.event.trigger(\"ajaxStop\")))}return T},getJSON:function(e,t,n){return S.get(e,t,n,\"json\")},getScript:function(e,t){return S.get(e,void 0,t,\"script\")}}),S.each([\"get\",\"post\"],function(e,i){S[i]=function(e,t,n,r){",
+    ",T.status=e,T.statusText=(t||l)+\"\",i?x.resolveWith(v,[o,l,T]):x.rejectWith(v,[T,l,a]),T.statusCode(w),w=void 0,g&&m.trigger(i?\"ajaxSuccess\":\"ajaxError\",[T,y,i?o:a]),b.fireWith(v,[T,l]),g&&(m.trigger(\"ajaxComplete\",[T,y]),--S.active||S.event.trigger(\"ajaxStop\")))}return T},getJSON:function(e,t,n){return S.get(e,t,n,\"json\")},getScript:function(e,t){return S.get(e,void 0,t,\"script\")}}),S.each([\"get\",\"post\"],function(e,i){S[i]=function(e,t,n,r){return m(t)&&(r=r||n,n=t,t=void 0),S.ajax(S.extend({url:e,t",
+    "(v,[o,l,T]):x.rejectWith(v,[T,l,a]),T.statusCode(w),w=void 0,g&&m.trigger(i?\"ajaxSuccess\":\"ajaxError\",[T,y,i?o:a]),b.fireWith(v,[T,l]),g&&(m.trigger(\"ajaxComplete\",[T,y]),--S.active||S.event.trigger(\"ajaxStop\")))}return T},getJSON:function(e,t,n){return S.get(e,t,n,\"json\")},getScript:function(e,t){return S.get(e,void 0,t,\"script\")}}),S.each([\"get\",\"post\"],function(e,i){S[i]=function(e,t,n,r){return m(t)&&(r=r||n,n=t,t=void 0),S.ajax(S.extend({url:e,type:i,dataType:r,data:t,success:n},S.isPlainObject",
+    "h(v,[T,l,a]),T.statusCode(w),w=void 0,g&&m.trigger(i?\"ajaxSuccess\":\"ajaxError\",[T,y,i?o:a]),b.fireWith(v,[T,l]),g&&(m.trigger(\"ajaxComplete\",[T,y]),--S.active||S.event.trigger(\"ajaxStop\")))}return T},getJSON:function(e,t,n){return S.get(e,t,n,\"json\")},getScript:function(e,t){return S.get(e,void 0,t,\"script\")}}),S.each([\"get\",\"post\"],function(e,i){S[i]=function(e,t,n,r){return m(t)&&(r=r||n,n=t,t=void 0),S.ajax(S.extend({url:e,type:i,dataType:r,data:t,success:n},S.isPlainObject(e)&&e))}}),S.ajaxPrefilte",
+    "unction(e,t,n){return S.get(e,t,n,\"json\")},getScript:function(e,t){return S.get(e,void 0,t,\"script\")}}),S.each([\"get\",\"post\"],function(e,i){S[i]=function(e,t,n,r){return m(t)&&(r=r||n,n=t,t=void 0),S.ajax(S.extend({url:e,type:i,dataType:r,data:t,success:n},S.isPlainObject(e)&&e))}}),S.ajaxPrefilter(function(e){var t;for(t in e.headers)\"content-type\"===t.toLowerCase()&&(e.contentType=e.headers[t]||\"\")}),S._evalUrl=function(e,t,n){return S.ajax({url:e,type:\"GET\",dataType:\"script\",cache:!0,async:!1,glo",
+    " 0,t,\"script\")}}),S.each([\"get\",\"post\"],function(e,i){S[i]=function(e,t,n,r){return m(t)&&(r=r||n,n=t,t=void 0),S.ajax(S.extend({url:e,type:i,dataType:r,data:t,success:n},S.isPlainObject(e)&&e))}}),S.ajaxPrefilter(function(e){var t;for(t in e.headers)\"content-type\"===t.toLowerCase()&&(e.contentType=e.headers[t]||\"\")}),S._evalUrl=function(e,t,n){return S.ajax({url:e,type:\"GET\",dataType:\"script\",cache:!0,async:!1,global:!1,converters:{\"text script\":function(){}},dataFilter:function(e){S.globalEval(e,t",
+    "a:t,success:n},S.isPlainObject(e)&&e))}}),S.ajaxPrefilter(function(e){var t;for(t in e.headers)\"content-type\"===t.toLowerCase()&&(e.contentType=e.headers[t]||\"\")}),S._evalUrl=function(e,t,n){return S.ajax({url:e,type:\"GET\",dataType:\"script\",cache:!0,async:!1,global:!1,converters:{\"text script\":function(){}},dataFilter:function(e){S.globalEval(e,t,n)}})},S.fn.extend({wrapAll:function(e){var t;return this[0]&&(m(e)&&(e=e.call(this[0])),t=S(e,this[0].ownerDocument).eq(0).clone(!0),this[0].parentNode&&t"
+   ],
+   "links": []
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/templates/customized-solution/marketDataHubTemplate.html": {
+   "status": 200,
+   "ct": "text/html",
+   "len": 418961,
+   "head": "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">\n<meta http-equiv='content-type' content='text/html; charset=UTF-8'>\n\n<link type='text/css' href='https://eds.eex-group.com/widgets/pub/lib/v1/datepicker/datepicker-bs4.min.css' rel='stylesheet' />\n<link type='text/css' href='https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-icons.min.css' rel='stylesheet' />\n<link type='text/css' href='https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table.min.css' rel='stylesheet' />\n\n<script type='text/javascript' src='https://eds.eex-group.com/widgets/pub/lib/v1/jquery/jquery-3.6.4.min.js'></script>\n<script type='text/javascript' src='https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/jquery.tablednd-0.9.1.js'></script>\n<script type='text/javascript'\n        src='https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap_4_3_1.bundle.min.js'></script>\n<script type='text/javascript' src='https://eds.eex-group.com/widgets/pub/lib/v1/datepicker/datepicker-full.min.js'></script>\n<script type='text/javascript' src='https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table.min.js'></script>\n<script type='text/javascript'\n        src='https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table-en-US.min.js'></script>\n<script type='text/javascript'\n        src='https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table-de-DE.min.js'></script>\n\n<style>\n\t#{generatedIDi}.tableGraph {\n\t",
+   "ctx": [
+    "\t\t\t\t\t<table id='tableGraph_dataOptionsTable' style='border-collapse: collapse !important;'\n\t\t\t\t\t\t\t\t       data-classes='table table-hover'\n\t\t\t\t\t\t\t\t       data-sticky-header='true'\n\t\t\t\t\t\t\t\t       data-ajax='tableGraph_getTableData'\n\t\t\t\t\t\t\t\t       data-loading-template='tableGraph_loadingTemplate'\n\t\t\t\t\t\t\t\t       data-show-header='true'\n\t\t\t\t\t\t\t\t       data-sort-reset='true'\n\t\t\t\t\t\t\t\t       data-filter-control='true'>\n\t\t\t\t\t\t\t\t\t<thead>\n\t\t\t\t\t\t\t\t\t<tr id='optionsHeadersOne'>\n\t\t\t\t\t\t\t\t\t\t<th data-field='tradeDa",
+    "\t\t\t\n\t\t\t\t\t\t\t\t<table id='tableGraph_dataTable' style='border-collapse: collapse !important;'\n\t\t\t\t\t\t\t\t       data-classes='table table-hover'\n\t\t\t\t\t\t\t\t       data-sticky-header='true'\n\t\t\t\t\t\t\t\t       data-ajax='tableGraph_getTableData'\n\t\t\t\t\t\t\t\t       data-loading-template='tableGraph_loadingTemplate'\n\t\t\t\t\t\t\t\t       data-show-header='true'\n\t\t\t\t\t\t\t\t       data-sort-reset='true'\n\t\t\t\t\t\t\t\t       data-filter-control='true'>\n\t\t\t\t\t\t\t\t</table>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\n\t\t\t\t\t\t<div id='tableGraph_graphConte",
+    "rlyingShortCode) : '')\n        + (!generatedIDi.isEmptyNumber(generatedIDi.parameters.underlyingMaturity) ? ('&underlyingMaturity=' + generatedIDi.parameters.underlyingMaturity) : '');\n\n      await $.getJSON(endpointUrl, function (obj) {\n        if (obj === undefined || obj.series === undefined) {\n          return;\n        }\n\n        if (obj.lastUpdate !== undefined && obj.lastUpdate !== '') {\n          let tmpLastUpdate = new Date(obj.lastUpdate);\n          generatedIDi.values.chart.lastUpdatedAt = ge",
+    "e=' + generatedIDi.eexDateFormatterLocal.format(generatedIDi.elements.filters.selectedDateEleDatePicker.getDate())\n        + '&shortCode=' + generatedIDi.parameters.selectedInstrument;\n\n      await $.getJSON(endpointUrl, function (obj) {\n        if (obj === undefined || obj.series === undefined) {\n          return;\n        }\n\n        if (obj.lastUpdate !== undefined && obj.lastUpdate !== '') {\n          let tmpLastUpdate = new Date(obj.lastUpdate);\n          generatedIDi.values.chart.lastUpdatedAt = ge",
+    "n;\n      }\n\n      const encodedParams = btoa(JSON.stringify(mapParameters));\n      const endpointUrl = generatedIDi.customizeUrl + '/map-with-scope'\n        + '?data=' + encodedParams;\n\n      await $.ajax({\n        type: 'POST', url: endpointUrl, data: {'data': encodedParams}, success: function (obj) {\n          let areaIndex = obj.header.findIndex((element) => element === 'area');\n          let priceIndex = obj.header.findIndex((element) => element === 'price');\n          let priceCurrencyIndex = o",
+    "\n        + '&startDate=' + generatedIDi.eexDateFormatterLocal.format(startDate)\n        + '&endDate=' + generatedIDi.eexDateFormatterLocal.format(endDate);\n\n      const tableData = [];\n\n      await $.getJSON(endpointUrl, function (obj) {\n        let tradeDateIndex = obj.header.findIndex((element) => element === 'tradeDate');\n        let strikePriceIndex = obj.header.findIndex((element) => element === 'strikePrice');\n\n        let callTotVolTrddIndex = obj.header.findIndex((element) => element === 'callT",
+    ".format(startDate)\n        + '&endDate=' + generatedIDi.eexDateFormatterLocal.format(endDate)\n        + '&maturityType=' + generatedIDi.parameters.maturity\n        + '&isRolling=true';\n\n      await $.getJSON(endpointUrl, function (obj) {\n        let tradeDateIndex = obj.header.findIndex((element) => element === 'tradeDate');\n        let shortCodeIndex = obj.header.findIndex((element) => element === 'shortCode');\n        let maturityDateIndex = obj.header.findIndex((element) => element === 'maturityDate",
+    " }\n\n      const encodedParams = btoa(JSON.stringify(pictoParameters));\n      const endpointUrl = generatedIDi.customizeUrl + '/pictogram-with-scope'\n        + '?data=' + encodedParams;\n\n      await $.ajax({\n        type: 'POST', url: endpointUrl, data: {'data': encodedParams}, success: function (obj) {\n          let productIndex = obj.header.findIndex((element) => element === 'product');\n          let productSpecificIndex = obj.header.findIndex((element) => element === 'productSpecific');\n          ",
+    ".parameters.commodity\n        + '&pricing=' + generatedIDi.parameters.pricing\n        + '&area=' + generatedIDi.parameters.area\n        + '&product=' + generatedIDi.parameters.product;\n\n      await $.getJSON(moreDetailsEndpointUrl, function (obj) {\n        generatedIDi.values.priceTicker.contractDetails = obj.details;\n      }).fail(function () {\n        generatedIDi.values.priceTicker.contractDetails = undefined;\n      });\n\n      const shortCode = generatedIDi.parameters.selectedInstrument;\n      const",
+    "' + maturity\n        + (generatedIDi.isEmptyString(generatedIDi.parameters.underlyingShortCode)\n          ? '' : '&underlyingShortCode=' + generatedIDi.parameters.underlyingShortCode);\n\n      await $.getJSON(endpointUrl, function (obj) {\n        let lastUpdatedAtIndex = obj.header.findIndex((element) => element === 'lastUpdatedAt');\n        let settlPxIndex = obj.header.findIndex((element) => element === 'settlPx');\n        let currencyIndex = obj.header.findIndex((element) => element === 'currency');\n",
+    "'\n        + '?data=' + encodedParams;\n\n      if (withServerRequest) {\n        generatedIDi.values.filters.shortCodes = new Map();\n        generatedIDi.values.filters.commodities = [];\n        await $.ajax({\n          type: 'POST', url: endpointUrl, data: {'data': encodedParams}, success: function (obj) {\n            let shortCodeIndex = obj.header.findIndex((element) => element === 'shortCode');\n            let maturityIndex = obj.header.findIndex((element) => element === 'maturity');\n            le"
+   ],
+   "links": [
+    "https://eds.eex-group.com/lib/v1/highstock/accessibility-11.4.3.js",
+    "https://eds.eex-group.com/lib/v1/highstock/dk-all.topo.json.js",
+    "https://eds.eex-group.com/lib/v1/highstock/eex-france.geojson.js",
+    "https://eds.eex-group.com/lib/v1/highstock/eex-norway.geojson.js",
+    "https://eds.eex-group.com/lib/v1/highstock/eex-spain.geojson.js",
+    "https://eds.eex-group.com/lib/v1/highstock/eex-sweden.geojson.js",
+    "https://eds.eex-group.com/lib/v1/highstock/highstock-11.4.3.js",
+    "https://eds.eex-group.com/lib/v1/highstock/indicators-all-11.4.3.js",
+    "https://eds.eex-group.com/lib/v1/highstock/jp-all.topo.json.js",
+    "https://eds.eex-group.com/lib/v1/highstock/map11.4.3.js",
+    "https://eds.eex-group.com/lib/v1/highstock/no-data-to-display-11.4.3.js",
+    "https://eds.eex-group.com/lib/v1/highstock/world-highres.topo.json.js",
+    "https://eds.eex-group.com/widgets/pub",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-icons.min.css",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table-de-DE.min.js",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table-en-US.min.js",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table.min.css",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table.min.js",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap_4_3_1.bundle.min.js",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/jquery.tablednd-0.9.1.js",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/datepicker/datepicker-bs4.min.css",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/datepicker/datepicker-full.min.js",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/jquery/jquery-3.6.4.min.js"
+   ]
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/eex-norway.geojson.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-icons.min.css": {
+   "status": 200,
+   "ct": "text/css",
+   "len": 85875,
+   "head": "",
+   "ctx": [],
+   "links": []
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap_4_3_1.bundle.min.js": {
+   "status": 200,
+   "ct": "application/javascript",
+   "len": 78587,
+   "head": "",
+   "ctx": [
+    "ass(Ne),p(o).removeClass(Ne).trigger(p.Event(Ae.HIDDEN,s)))}}}},c._getParentFromElement=function(t){var e,n=m.getSelectorFromElement(t);return n&&(e=document.querySelector(n)),e||t.parentNode},c._dataApiKeydownHandler=function(t){if((/input|textarea/i.test(t.target.tagName)?!(32===t.which||27!==t.which&&(40!==t.which&&38!==t.which||p(t.target).closest(Fe).length)):Ie.test(t.which))&&(t.preventDefault(),t.stopPropagation(),!this.disabled&&!p(this).hasClass(Oe))){var e=c._getParentFromElement(this),n=p(",
+    "}},s(c,null,[{key:\"VERSION\",get:function(){return\"4.3.1\"}},{key:\"Default\",get:function(){return Ye}},{key:\"DefaultType\",get:function(){return ze}}]),c}();p(document).on(Ae.KEYDOWN_DATA_API,je,Xe._dataApiKeydownHandler).on(Ae.KEYDOWN_DATA_API,Fe,Xe._dataApiKeydownHandler).on(Ae.CLICK_DATA_API+\" \"+Ae.KEYUP_DATA_API,Xe._clearMenus).on(Ae.CLICK_DATA_API,je,function(t){t.preventDefault(),t.stopPropagation(),Xe._jQueryInterface.call(p(this),\"toggle\")}).on(Ae.CLICK_DATA_API,Re,function(t){t.stopPropagation()",
+    ".1\"}},{key:\"Default\",get:function(){return Ye}},{key:\"DefaultType\",get:function(){return ze}}]),c}();p(document).on(Ae.KEYDOWN_DATA_API,je,Xe._dataApiKeydownHandler).on(Ae.KEYDOWN_DATA_API,Fe,Xe._dataApiKeydownHandler).on(Ae.CLICK_DATA_API+\" \"+Ae.KEYUP_DATA_API,Xe._clearMenus).on(Ae.CLICK_DATA_API,je,function(t){t.preventDefault(),t.stopPropagation(),Xe._jQueryInterface.call(p(this),\"toggle\")}).on(Ae.CLICK_DATA_API,Re,function(t){t.stopPropagation()}),p.fn[we]=Xe._jQueryInterface,p.fn[we].Constructor="
+   ],
+   "links": [
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/'+e+'",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap_4_3_1.bundle.min.js#'+e.id+'"
+   ]
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/highstock-11.4.3.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/world-highres.topo.json.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/no-data-to-display-11.4.3.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/eex-spain.geojson.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/eex-france.geojson.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/jp-all.topo.json.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/indicators-all-11.4.3.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table.min.css": {
+   "status": 200,
+   "ct": "text/css",
+   "len": 9976,
+   "head": "",
+   "ctx": [],
+   "links": []
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/eex-sweden.geojson.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table-en-US.min.js": {
+   "status": 200,
+   "ct": "application/javascript",
+   "len": 15265,
+   "head": "",
+   "ctx": [],
+   "links": []
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/datepicker/datepicker-full.min.js": {
+   "status": 200,
+   "ct": "application/javascript",
+   "len": 35047,
+   "head": "",
+   "ctx": [],
+   "links": []
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/accessibility-11.4.3.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/datepicker/datepicker-bs4.min.css": {
+   "status": 200,
+   "ct": "text/css",
+   "len": 4531,
+   "head": "",
+   "ctx": [],
+   "links": []
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table-de-DE.min.js": {
+   "status": 200,
+   "ct": "application/javascript",
+   "len": 16111,
+   "head": "",
+   "ctx": [],
+   "links": []
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/map11.4.3.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/lib/v1/highstock/dk-all.topo.json.js": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/widgets/pub": {
+   "error": "HTTP Error 404: Not Found"
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table.min.js": {
+   "status": 200,
+   "ct": "application/javascript",
+   "len": 137728,
+   "head": "",
+   "ctx": [
+    ")||\"​᠎\"!==\"​᠎\"[t]()||Qf&&tg[t].name!==t}))}(\"trim\")},{trim:function(){return eg(this)}});var ig={CSSRuleList:0,CSSStyleDeclaration:0,CSSValueList:0,ClientRectList:0,DOMRectList:0,DOMStringList:0,DOMTokenList:1,DataTransferItemList:0,FileList:0,HTMLAllCollection:0,HTMLCollection:0,HTMLFormElement:0,HTMLSelectElement:0,MediaList:0,MimeTypeArray:0,NamedNodeMap:0,NodeList:1,PaintRequestList:0,Plugin:0,PluginArray:0,SVGLengthList:0,SVGNumberList:0,SVGPathSegList:0,SVGPointList:0,SVGStringList:0,SVGTrans",
+    "if(t[Sg]!==xg)try{yg(t,Sg,xg)}catch(e){t[Sg]=xg}if(wg(t,e,!0),vg[e])for(var i in mg)if(t[i]!==mg[i])try{yg(t,i,mg[i])}catch(e){t[i]=mg[i]}}};for(var kg in vg)Og(gg[kg]&&gg[kg].prototype,kg);Og(bg,\"DOMTokenList\");var Cg=Kt,Pg=Na,Tg=Ta;ho({target:\"Object\",stat:!0,forced:g((function(){Pg(1)})),sham:!Tg},{getPrototypeOf:function(t){return Pg(Cg(t))}});var Ig,Ag=ho,$g=gr,Rg=f.f,Eg=wn,jg=wl,_g=Xd,Ng=q,Fg=Zd,Dg=$g(\"\".slice),Vg=Math.min,Bg=Fg(\"endsWith\");Ag({target:\"String\",proto:!0,forced:!!(Bg||(Ig=Rg(Stri",
+    "oid 0,sortReset:!1,sortStable:!1,sortResetPage:!1,rememberOrder:!1,serverSort:!0,customSort:void 0,columns:[[]],data:[],url:void 0,method:\"get\",cache:!0,contentType:\"application/json\",dataType:\"json\",ajax:void 0,ajaxOptions:{},queryParams:function(t){return t},queryParamsType:\"limit\",responseHandler:function(t){return t},totalField:\"total\",totalNotFilteredField:\"totalNotFiltered\",dataField:\"rows\",footerField:\"footer\",pagination:!1,paginationParts:[\"pageInfo\",\"pageSize\",\"pageList\"],showExtendedPagina",
+    "set:!1,sortStable:!1,sortResetPage:!1,rememberOrder:!1,serverSort:!0,customSort:void 0,columns:[[]],data:[],url:void 0,method:\"get\",cache:!0,contentType:\"application/json\",dataType:\"json\",ajax:void 0,ajaxOptions:{},queryParams:function(t){return t},queryParamsType:\"limit\",responseHandler:function(t){return t},totalField:\"total\",totalNotFilteredField:\"totalNotFiltered\",dataField:\"rows\",footerField:\"footer\",pagination:!1,paginationParts:[\"pageInfo\",\"pageSize\",\"pageList\"],showExtendedPagination:!1,pagi",
+    "s.sidePagination&&(s.pageSize=this.options.pageSize===this.options.formatAllRows()?this.options.totalRows:this.options.pageSize,s.pageNumber=this.options.pageNumber),n||this.options.url||this.options.ajax){if(\"limit\"===this.options.queryParamsType&&(s={search:s.searchText,sort:s.sortName,order:s.sortOrder},this.options.pagination&&\"server\"===this.options.sidePagination&&(s.offset=this.options.pageSize===this.options.formatAllRows()?0:this.options.pageSize*(this.options.pageNumber-1),s.limit=this.opt",
+    "umnsPartial,null)),sv.extend(s,i||{}),!1!==(r=sv.calculateObjectValue(this.options,this.options.queryParams,[s],r))){e||this.showLoading();var d=sv.extend({},sv.calculateObjectValue(null,this.options.ajaxOptions),{type:this.options.method,url:n||this.options.url,data:\"application/json\"===this.options.contentType&&\"post\"===this.options.method?JSON.stringify(r):r,cache:this.options.cache,contentType:this.options.contentType,dataType:this.options.dataType,success:function(t,i,n){var r=sv.calculateObjec",
+    "lse{var i=[];\"server\"===o.options.sidePagination&&((i={})[o.options.totalField]=0,i[o.options.dataField]=[]),o.load(i),o.trigger(\"load-error\",t&&t.status,t),e||o.hideLoading()}}});return this.options.ajax?sv.calculateObjectValue(this,this.options.ajax,[d],null):(this._xhr&&4!==this._xhr.readyState&&(this._xhrAbort=!0,this._xhr.abort()),this._xhr=t.ajax(d)),r}}}},{key:\"initSearchText\",value:function(){if(this.options.search&&(this.searchText=\"\",\"\"!==this.options.searchText)){var t=sv.getSearchInput(t",
+    "n&&((i={})[o.options.totalField]=0,i[o.options.dataField]=[]),o.load(i),o.trigger(\"load-error\",t&&t.status,t),e||o.hideLoading()}}});return this.options.ajax?sv.calculateObjectValue(this,this.options.ajax,[d],null):(this._xhr&&4!==this._xhr.readyState&&(this._xhrAbort=!0,this._xhr.abort()),this._xhr=t.ajax(d)),r}}}},{key:\"initSearchText\",value:function(){if(this.options.search&&(this.searchText=\"\",\"\"!==this.options.searchText)){var t=sv.getSearchInput(this);t.val(this.options.searchText),this.onSear",
+    "tus,t),e||o.hideLoading()}}});return this.options.ajax?sv.calculateObjectValue(this,this.options.ajax,[d],null):(this._xhr&&4!==this._xhr.readyState&&(this._xhrAbort=!0,this._xhr.abort()),this._xhr=t.ajax(d)),r}}}},{key:\"initSearchText\",value:function(){if(this.options.search&&(this.searchText=\"\",\"\"!==this.options.searchText)){var t=sv.getSearchInput(this);t.val(this.options.searchText),this.onSearch({currentTarget:t,firedByInitSearchText:!0})}}},{key:\"getCaret\",value:function(){var e=this;this.$hea"
+   ],
+   "links": [
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap-table.min.js"
+   ]
+  },
+  "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap_4_3_1.bundle.min.js#'+e.id+'": {
+   "status": 200,
+   "ct": "application/javascript",
+   "len": 78587,
+   "head": "",
+   "ctx": [
+    "ass(Ne),p(o).removeClass(Ne).trigger(p.Event(Ae.HIDDEN,s)))}}}},c._getParentFromElement=function(t){var e,n=m.getSelectorFromElement(t);return n&&(e=document.querySelector(n)),e||t.parentNode},c._dataApiKeydownHandler=function(t){if((/input|textarea/i.test(t.target.tagName)?!(32===t.which||27!==t.which&&(40!==t.which&&38!==t.which||p(t.target).closest(Fe).length)):Ie.test(t.which))&&(t.preventDefault(),t.stopPropagation(),!this.disabled&&!p(this).hasClass(Oe))){var e=c._getParentFromElement(this),n=p(",
+    "}},s(c,null,[{key:\"VERSION\",get:function(){return\"4.3.1\"}},{key:\"Default\",get:function(){return Ye}},{key:\"DefaultType\",get:function(){return ze}}]),c}();p(document).on(Ae.KEYDOWN_DATA_API,je,Xe._dataApiKeydownHandler).on(Ae.KEYDOWN_DATA_API,Fe,Xe._dataApiKeydownHandler).on(Ae.CLICK_DATA_API+\" \"+Ae.KEYUP_DATA_API,Xe._clearMenus).on(Ae.CLICK_DATA_API,je,function(t){t.preventDefault(),t.stopPropagation(),Xe._jQueryInterface.call(p(this),\"toggle\")}).on(Ae.CLICK_DATA_API,Re,function(t){t.stopPropagation()",
+    ".1\"}},{key:\"Default\",get:function(){return Ye}},{key:\"DefaultType\",get:function(){return ze}}]),c}();p(document).on(Ae.KEYDOWN_DATA_API,je,Xe._dataApiKeydownHandler).on(Ae.KEYDOWN_DATA_API,Fe,Xe._dataApiKeydownHandler).on(Ae.CLICK_DATA_API+\" \"+Ae.KEYUP_DATA_API,Xe._clearMenus).on(Ae.CLICK_DATA_API,je,function(t){t.preventDefault(),t.stopPropagation(),Xe._jQueryInterface.call(p(this),\"toggle\")}).on(Ae.CLICK_DATA_API,Re,function(t){t.stopPropagation()}),p.fn[we]=Xe._jQueryInterface,p.fn[we].Constructor="
+   ],
+   "links": [
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/'+e+'",
+    "https://eds.eex-group.com/widgets/pub/lib/v1/bootstrap/bootstrap_4_3_1.bundle.min.js#'+e.id+'"
+   ]
+  }
+ },
+ "options": []
+}
