@@ -1,0 +1,87 @@
+{
+ "ctx": [
+  "              && generatedIDi.parameters.pricing === generatedIDi.supportedPricings.indices)) {\n              generatedIDi.createMap();\n            } else if (generatedIDi.parameters.commodity === generatedIDi.supportedCommodities.envrironmentals\n              || generatedIDi.parameters.commodity === generatedIDi.supportedCommodities.freight\n              || generatedIDi.parameters.commodity === generatedIDi.supportedCommodities.agriculturals\n              || generatedIDi.parameters.commodity === generatedIDi.supportedCommodities.go\n              || generatedIDi.parameters.commodity === generatedIDi.supportedCommodities.emission) {\n              generatedIDi.createPictogram();\n            }\n          }\n        }\n\n        if (generatedIDi.parameters.displayOptions.withTableView) {\n          generatedIDi.createTable();\n        }\n\n        if (generatedIDi.parameters.displayOptions.withChartView) {\n          generatedIDi.addChartEvents();\n        }\n\n        if (generatedIDi.parameters.displayOptions.withTableView || generatedIDi.parameters.displayOptions.withChartView) {\n          generatedIDi.getPriceTickerData().catch((err) => console.error(err?.responseJSON?.message));\n        }\n      }).catch((error) => {\n\n      }).finally(() => {\n        generatedIDi.getElement('#tableGraph_widgetLoading').hide();\n        generatedIDi.getElement('#tableGraph_widgetContent').css('visibility', 'visible');\n        generatedIDi.getElement('#filterPanelContainerContent').show();\n        generatedIDi.getElement('#tableGraph_tableGraphRightPanel').show();\n        generatedIDi.updateCalendarInFilterPanel();\n        generatedIDi.updateCalendarsInTableAndChartView();\n      });\n\n      if (generatedIDi.parameters.displayOptions.withOverview) {\n        addEventListener('resize', (event) => {\n          if (generatedIDi.elements.map.map === undefined) {\n            return;\n          }\n          generatedIDi.elements.map.map.mapView.zoom = generatedIDi.mapUtils.getMapZoom();\n          generatedIDi.setCssVariable('--map-default-price-label-font-size', generatedIDi.mapUtils.getMapPriceLabelFontSize());\n\n          generatedIDi.resizeShipMarker();\n          generatedIDi.resizeEuMarker();\n        });\n      }\n    },\n    initializeTooltips: () => {\n      const tooltipTriggers = generatedIDi.getElement('.tooltip-trigger');\n      if (tooltipTriggers === undefined || tooltipTriggers === null) {\n        return;\n      }\n      for (let i = 0; i < tooltipTriggers.length; i++) {\n        tooltipTriggers[i].addEventListener('mouseenter', (e) => {\n          e.stopPropagation();\n          tooltipTriggers[i].classList.toggle('active');\n        });\n\n        tooltipTriggers[i].addEventListener('click', (e) => {\n          e.stopPropagation();\n          tooltipTriggers[i].classList.toggle('active');\n        });\n      }\n    },\n    initializeFilters: async (withServerRequest) => {\n      const encodedParams = btoa(JSON.stringify(generatedIDi.parameters.contracts));\n      const endpointUrl = generatedIDi."
+ ],
+ "filter": {
+  "0": {
+   "status": 201,
+   "header": [
+    "shortCode",
+    "maturity",
+    "maturityType",
+    "commodity",
+    "pricing",
+    "area",
+    "product",
+    "productSpecific",
+    "displaySeason",
+    "displayQuarter",
+    "displayYear",
+    "displayMonth",
+    "displayWeek",
+    "displayDay",
+    "valuationMethod",
+    "underlyingShortCode",
+    "underlyingMaturity",
+    "underlyingPricing",
+    "underlyingMaturityType"
+   ],
+   "n": 0
+  },
+  "1": {
+   "status": 201,
+   "header": [
+    "shortCode",
+    "maturity",
+    "maturityType",
+    "commodity",
+    "pricing",
+    "area",
+    "product",
+    "productSpecific",
+    "displaySeason",
+    "displayQuarter",
+    "displayYear",
+    "displayMonth",
+    "displayWeek",
+    "displayDay",
+    "valuationMethod",
+    "underlyingShortCode",
+    "underlyingMaturity",
+    "underlyingPricing",
+    "underlyingMaturityType"
+   ],
+   "n": 0
+  },
+  "2": {
+   "status": 201,
+   "header": [
+    "shortCode",
+    "maturity",
+    "maturityType",
+    "commodity",
+    "pricing",
+    "area",
+    "product",
+    "productSpecific",
+    "displaySeason",
+    "displayQuarter",
+    "displayYear",
+    "displayMonth",
+    "displayWeek",
+    "displayDay",
+    "valuationMethod",
+    "underlyingShortCode",
+    "underlyingMaturity",
+    "underlyingPricing",
+    "underlyingMaturityType"
+   ],
+   "n": 7903
+  }
+ },
+ "fr": [],
+ "ticker": {},
+ "table": {},
+ "intraday": {},
+ "datefmt": "eexDateFormatterLocal: new Intl.DateTimeFormat('af-ZA', {\n      year: 'numeric',\n      month: '2-digit',\n      day: '2-digit'\n    }),\n    eexDateTimeFormatter: new Intl.DateTimeFormat('af-ZA', {\n      year: 'numeric',\n      month: '2-digit',\n      day: '2-digit',\n      hour: '2-digit',\n      minute: '2-digit',\n      hour12: false,\n      timeZone: 'CET'\n    }),\n    eexMonthFormatter: new Intl.DateTimeFormat('af-ZA', {\n      year: 'numeric',\n      month: '2-digit',\n      timeZone: 'CET'\n    }),\n    elements: {\n      chart: undefined,\n      chartElements: {\n        eodChartBtn: undefined,\n       "
+}
