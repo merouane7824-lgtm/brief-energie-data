@@ -15,7 +15,7 @@ OK   ENTSO-E prévision conso année (A65 A33)
 OK   ENTSO-E prévision éolien/solaire (A69)
 OK   RTE jeton OAuth
 OK   RTE consommation J/J+1 : 3 jours
-OK   RTE consommation hebdomadaire : 23 jours
+OK   RTE consommation hebdomadaire : 19 jours
 FAIL RTE prévision SOLAR D-1 : HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''
 FAIL RTE prévision SOLAR D-2 : HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''
 FAIL RTE prévision SOLAR D-3 : HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''
@@ -28,7 +28,7 @@ FAIL RTE prévision WIND_OFFSHORE D-3 : HTTP 403 sur /open_api/generation_foreca
 FAIL RTE prévisions éolien/solaire
 OK   ENTSO-E capacité nucléaire installée (A68)
 OK   ENTSO-E indisponibilités unités de production (A80)
-OK     nucléaire A80 : 2045 messages, 206 séries nucléaires
+OK     nucléaire A80 : 2044 messages, 209 séries nucléaires
 OK   OMIP séance la plus récente (semaines, week-ends, mois, années)
 OK   OMIP historique des Cal
 OK     OMIP historique : 11 séances lues, 466 au total
