@@ -18,7 +18,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Interroger le Market Data Hub EEX
         continue-on-error: true
-        run: mkdir -p data && python3 tools/eex_probe4.py
+        run: mkdir -p data && python3 tools/eex_probe5.py
       - name: Enregistrer le résultat
         if: always()
         run: |
