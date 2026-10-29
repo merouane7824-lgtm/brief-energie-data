@@ -1041,6 +1041,13 @@ table.trve td, table.trve th { padding: 6px 8px; }
     o.plugins.tooltip.callbacks.label = (c) => { if (c.parsed.y == null) return null; const k = c.dataset._k; if (k === "exch") return " " + (c.parsed.y <= 0 ? "Exports nets" : "Imports nets") + " : " + fmt(Math.abs(c.parsed.y), 1) + " GW"; if (k === "pump") return " Pompage (STEP) : " + fmt(-c.parsed.y, 1) + " GW"; return " " + c.dataset.label + " : " + fmt(c.parsed.y, 1) + " GW"; };
     o.plugins.tooltip.callbacks.afterBody = (items) => { const row = items.length ? rowsAll[items[0].dataIndex] : null; if (!row || !row.borders) return []; return ["Solde par frontière (+ = export) :"].concat(Object.keys(row.borders).map((b) => "  " + (BN[b] || b) + " : " + (row.borders[b] >= 0 ? "+" : "−") + fmt(Math.abs(row.borders[b]), 1) + " GW")); };
     o.plugins.tooltip.filter = (it) => it.parsed && it.parsed.y != null;
+    // Bulle déportée dans le coin opposé à la souris, pour garder visibles les barres survolées
+    if (!Chart.Tooltip.positioners.aside) Chart.Tooltip.positioners.aside = function (items, ev) {
+      if (!items.length) return false;
+      const a = this.chart.chartArea, px = ev && ev.x != null ? ev.x : items[0].element.x, left = px < (a.left + a.right) / 2;
+      return { x: left ? a.right : a.left, y: a.top, xAlign: left ? "right" : "left", yAlign: "top" };
+    };
+    Object.assign(o.plugins.tooltip, { position: "aside", caretSize: 0, padding: 8, bodySpacing: 1, backgroundColor: css("--surface") + "e6", titleFont: { family: "IBM Plex Mono", size: 11 }, bodyFont: { family: "IBM Plex Mono", size: 11 } });
     draw("c-fd", { type: "bar", data: { labels: dates.map((d) => shortDate(d)), datasets: [
       ...SER.map((x) => Object.assign(bar(x[0], x[1], x[2]), { _k: x[2] })), consDs
     ].concat(hasAv ? [{ type: "line", label: "Nucléaire disponible", stack: "nucav", order: 0, data: rowsAll.map((o) => o.nucav != null ? o.nucav : null),
