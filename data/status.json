@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-30T09:04:07Z",
+ "generated_at": "2026-10-30T10:19:19Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -148,13 +148,13 @@
   },
   {
    "step": "ENTSO-E indisponibilités unités de production (A80)",
-   "ok": false,
-   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"a4a570e9c998a40bc2dc7e017994c5d3\",\"timestamp\":\"2026-10-30T09:14:02.755Z\",\"type\":\"error\",\"m'"
+   "ok": true,
+   "msg": ""
   },
   {
-   "step": "ENTSO-E indisponibilités groupes de production (A77)",
-   "ok": false,
-   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"0abff956c6ad996f5af9765c450397aa\",\"timestamp\":\"2026-10-30T09:14:46.971Z\",\"type\":\"error\",\"m'"
+   "step": "  nucléaire A80",
+   "ok": true,
+   "msg": "2043 messages, 245 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",

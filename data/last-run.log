@@ -27,9 +27,9 @@ FAIL RTE prévision WIND_OFFSHORE D-2 : HTTP 403 sur /open_api/generation_foreca
 FAIL RTE prévision WIND_OFFSHORE D-3 : HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''
 FAIL RTE prévisions éolien/solaire
 OK   ENTSO-E capacité nucléaire installée (A68)
-FAIL ENTSO-E indisponibilités unités de production (A80) : HTTP 599, réponse non XML : b'{"uuAppErrorMap":{"uu-gateway-router/connectTimeout":{"id":"a4a570e9c998a40bc2dc7e017994c5d3","timestamp":"2026-10-30T09:14:02.755Z","type":"error","m'
-FAIL ENTSO-E indisponibilités groupes de production (A77) : HTTP 599, réponse non XML : b'{"uuAppErrorMap":{"uu-gateway-router/connectTimeout":{"id":"0abff956c6ad996f5af9765c450397aa","timestamp":"2026-10-30T09:14:46.971Z","type":"error","m'
+OK   ENTSO-E indisponibilités unités de production (A80)
+OK     nucléaire A80 : 2043 messages, 245 séries nucléaires
 OK   OMIP séance la plus récente (semaines, week-ends, mois, années)
 OK   OMIP historique des Cal
 OK     OMIP historique : 11 séances lues, 467 au total
-22 étapes OK, 12 en échec
+24 étapes OK, 10 en échec
