@@ -28,7 +28,7 @@ FAIL RTE prévision WIND_OFFSHORE D-3 : HTTP 403 sur /open_api/generation_foreca
 FAIL RTE prévisions éolien/solaire
 OK   ENTSO-E capacité nucléaire installée (A68)
 OK   ENTSO-E indisponibilités unités de production (A80)
-OK     nucléaire A80 : 2050 messages, 225 séries nucléaires
+OK     nucléaire A80 : 2052 messages, 256 séries nucléaires
 OK   OMIP séance la plus récente (semaines, week-ends, mois, années)
 OK   OMIP historique des Cal
 OK     OMIP historique : 11 séances lues, 467 au total
