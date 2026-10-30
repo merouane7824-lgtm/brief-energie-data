@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-30T18:08:57Z",
+ "generated_at": "2026-10-30T21:41:29Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -99,7 +99,7 @@
   {
    "step": "RTE prévision SOLAR D-2",
    "ok": false,
-   "msg": "HTTP 400 sur /open_api/generation_forecast/v2/forecasts : b'{\\r\\n\\t\"error\":\"GENFORECAST_FORECASTS_F04\",\\r\\n\\t\"error_description\":\"The value of \\\\\"end_date\\\\\" field is incorrect. It is not possible to recover data to this term.\",\\r\\n\\t\"error_uri\": \"\",\\r\\n\\t\"error_details\": {\\r\\n\\t\\t\"transaction_id\":\"Id-d5dde46a1517c63'"
+   "msg": "HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''"
   },
   {
    "step": "RTE prévision SOLAR D-3",
@@ -154,7 +154,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "2052 messages, 206 séries nucléaires"
+   "msg": "2052 messages, 241 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
@@ -169,7 +169,7 @@
   {
    "step": "  OMIP historique",
    "ok": true,
-   "msg": "11 séances lues, 467 au total"
+   "msg": "11 séances lues, 468 au total"
   }
  ]
 }
