@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-31T20:38:49Z",
+ "generated_at": "2026-11-01T11:59:51Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -58,8 +58,8 @@
   },
   {
    "step": "ENTSO-E prévision conso semaine (A65 A31)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"e536a441cd1c37be365b0c15630bfae5\",\"timestamp\":\"2026-11-01T12:05:22.199Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E prévision conso mois (A65 A32)",
@@ -89,7 +89,7 @@
   {
    "step": "RTE consommation hebdomadaire",
    "ok": true,
-   "msg": "22 jours"
+   "msg": "17 jours"
   },
   {
    "step": "RTE prévision SOLAR D-1",
@@ -154,7 +154,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "2032 messages, 222 séries nucléaires"
+   "msg": "2034 messages, 200 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
