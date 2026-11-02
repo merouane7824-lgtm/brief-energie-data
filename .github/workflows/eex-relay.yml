@@ -4,23 +4,54 @@ name: Relevé EEX intraday (vers le dépôt privé)
 # puis tourne en continu (jusqu'à ~5 h 45)
 # et relève EEX toutes les 15 minutes. Les prix sont écrits UNIQUEMENT dans le dépôt privé
 # brief-energie-prive : rien n'est enregistré ni affiché dans ce dépôt public.
+#
+# Les lancements programmés de GitHub sont souvent retardés, voire sautés : on en prévoit plusieurs
+# par créneau (matin avant 11 h UTC, après-midi ensuite). Le job « garde » ne laisse partir que le
+# premier du créneau ; les suivants s'arrêtent tout de suite si un relevé du même créneau tourne
+# déjà ou a réussi. Un lancement manuel compte comme un lancement normal.
 on:
   schedule:
     - cron: "3 7 * * 1-5"    # 8 h 03 à Paris (hiver)
+    - cron: "23 7 * * 1-5"   # secours
+    - cron: "43 7 * * 1-5"   # secours
+    - cron: "13 8 * * 1-5"   # secours
     - cron: "3 12 * * 1-5"   # 13 h 03 à Paris : prend le relais (attend la fin du premier s'il tourne encore)
+    - cron: "33 12 * * 1-5"  # secours
+    - cron: "3 13 * * 1-5"   # secours
   workflow_dispatch:
 
 permissions:
   contents: write
-
-concurrency:
-  group: eex-relay
-  cancel-in-progress: false
+  actions: read
 
 jobs:
+  garde:
+    runs-on: ubuntu-latest
+    outputs:
+      lancer: ${{ steps.check.outputs.lancer }}
+    steps:
+      - name: Un relevé de ce créneau existe-t-il déjà ?
+        id: check
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          today=$(date -u +%Y-%m-%d)
+          if [ $(date -u +%H) -lt 11 ]; then slot=matin; else slot=apres-midi; fi
+          others=$(gh api "repos/${{ github.repository }}/actions/workflows/eex-relay.yml/runs?created=$today&per_page=50" \
+            --jq "[.workflow_runs[] | select(.id < ${{ github.run_id }})
+                   | select(((.created_at[11:13] | tonumber) < 11) == (\"$slot\" == \"matin\"))
+                   | select(.status != \"completed\" or .conclusion == \"success\")] | length")
+          echo "Créneau $slot, autres lancements actifs ou réussis : $others"
+          if [ "$others" = "0" ]; then echo "lancer=true" >> "$GITHUB_OUTPUT"; else echo "lancer=false" >> "$GITHUB_OUTPUT"; fi
+
   releve:
+    needs: garde
+    if: needs.garde.outputs.lancer == 'true'
     runs-on: ubuntu-latest
     timeout-minutes: 355
+    concurrency:
+      group: eex-relay
+      cancel-in-progress: false
     steps:
       - uses: actions/checkout@v4
       - name: Collecte ENTSO-E, RTE et OMIP (production de la veille complète)
