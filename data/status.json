@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-02T21:52:22Z",
+ "generated_at": "2026-11-03T00:01:39Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -33,8 +33,8 @@
   },
   {
    "step": "  flux ES",
-   "ok": true,
-   "msg": "35 jours"
+   "ok": false,
+   "msg": "HTTP 527, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/interruptedConnection\":{\"id\":\"369f123176fa4f776fc8fd449c0115dd\",\"timestamp\":\"2026-11-03T00:06:05.085Z\",\"type\":\"er'"
   },
   {
    "step": "  flux GB",
@@ -84,12 +84,12 @@
   {
    "step": "RTE consommation J/J+1",
    "ok": true,
-   "msg": "3 jours"
+   "msg": "2 jours"
   },
   {
    "step": "RTE consommation hebdomadaire",
    "ok": true,
-   "msg": "19 jours"
+   "msg": "20 jours"
   },
   {
    "step": "RTE prévision SOLAR D-1",
@@ -154,7 +154,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "2047 messages, 193 séries nucléaires"
+   "msg": "2012 messages, 227 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
