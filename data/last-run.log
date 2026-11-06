@@ -1,11 +1,11 @@
 OK   ENTSO-E prix day-ahead (A44)
 OK   ENTSO-E production réalisée par filière (A75)
-OK     flux BE : 36 jours
-OK     flux DE : 36 jours
-OK     flux CH : 36 jours
-OK     flux IT : 36 jours
-OK     flux ES : 36 jours
-OK     flux GB : 35 jours
+OK     flux BE : 35 jours
+OK     flux DE : 35 jours
+OK     flux CH : 35 jours
+OK     flux IT : 35 jours
+OK     flux ES : 35 jours
+OK     flux GB : 34 jours
 OK   ENTSO-E échanges physiques aux frontières (A11)
 OK   ENTSO-E consommation réalisée (A65 A16)
 OK   ENTSO-E prévision conso J/J+1 (A65 A01)
@@ -15,7 +15,7 @@ OK   ENTSO-E prévision conso année (A65 A33)
 OK   ENTSO-E prévision éolien/solaire (A69)
 OK   RTE jeton OAuth
 OK   RTE consommation J/J+1 : 3 jours
-OK   RTE consommation hebdomadaire : 19 jours
+OK   RTE consommation hebdomadaire : 16 jours
 FAIL RTE prévision SOLAR D-1 : HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''
 FAIL RTE prévision SOLAR D-2 : HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''
 FAIL RTE prévision SOLAR D-3 : HTTP 403 sur /open_api/generation_forecast/v2/forecasts : b''
@@ -28,8 +28,8 @@ FAIL RTE prévision WIND_OFFSHORE D-3 : HTTP 403 sur /open_api/generation_foreca
 FAIL RTE prévisions éolien/solaire
 OK   ENTSO-E capacité nucléaire installée (A68)
 OK   ENTSO-E indisponibilités unités de production (A80)
-OK     nucléaire A80 : 2010 messages, 193 séries nucléaires
+OK     nucléaire A80 : 1979 messages, 220 séries nucléaires
 OK   OMIP séance la plus récente (semaines, week-ends, mois, années)
 OK   OMIP historique des Cal
-OK     OMIP historique : 10 séances lues, 472 au total
+OK     OMIP historique : 11 séances lues, 472 au total
 24 étapes OK, 10 en échec
