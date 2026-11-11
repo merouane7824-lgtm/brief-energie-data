@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T07:07:28Z",
+ "generated_at": "2026-11-11T12:55:27Z",
  "today": "2026-11-11",
  "series": {
   "2026-10-07": {
@@ -30,7 +30,6 @@
     149.53
    ],
    "spot_fr": 187.82,
-   "pump_gw": 0.18,
    "bio_gw": 0.75,
    "gas_gw": 3.53,
    "coal_gw": 0.04,
@@ -38,6 +37,7 @@
    "nuc_gw": 37.0,
    "solar_gw": 1.9,
    "wind_gw": 5.1,
+   "pump_gw": 0.18,
    "exp_borders": {
     "BE": 1.75,
     "DE": 0.85,
@@ -77,7 +77,6 @@
     159.69
    ],
    "spot_fr": 108.0,
-   "pump_gw": 0.99,
    "bio_gw": 0.76,
    "gas_gw": 1.13,
    "coal_gw": 0.04,
@@ -85,6 +84,7 @@
    "nuc_gw": 36.5,
    "solar_gw": 3.3,
    "wind_gw": 10.1,
+   "pump_gw": 0.99,
    "exp_borders": {
     "BE": 0.91,
     "DE": 0.64,
@@ -124,7 +124,6 @@
     41.39
    ],
    "spot_fr": 75.56,
-   "pump_gw": 1.65,
    "bio_gw": 0.76,
    "gas_gw": 0.58,
    "coal_gw": 0.04,
@@ -132,6 +131,7 @@
    "nuc_gw": 36.6,
    "solar_gw": 3.5,
    "wind_gw": 11.3,
+   "pump_gw": 1.65,
    "exp_borders": {
     "BE": 1.65,
     "DE": 0.99,
@@ -171,7 +171,6 @@
     124.3
    ],
    "spot_fr": 51.26,
-   "pump_gw": 1.25,
    "bio_gw": 0.78,
    "gas_gw": 0.53,
    "coal_gw": 0.04,
@@ -179,6 +178,7 @@
    "nuc_gw": 34.2,
    "solar_gw": 3.5,
    "wind_gw": 6.9,
+   "pump_gw": 1.25,
    "exp_borders": {
     "BE": 0.56,
     "DE": 1.04,
@@ -218,7 +218,6 @@
     185.31
    ],
    "spot_fr": 127.38,
-   "pump_gw": 1.06,
    "bio_gw": 0.77,
    "gas_gw": 1.34,
    "coal_gw": 0.04,
@@ -226,6 +225,7 @@
    "nuc_gw": 37.3,
    "solar_gw": 3.5,
    "wind_gw": 3.0,
+   "pump_gw": 1.06,
    "load_gw": 39.46
   },
   "2026-10-12": {
@@ -256,7 +256,6 @@
     180.0
    ],
    "spot_fr": 195.97,
-   "pump_gw": 0.34,
    "bio_gw": 0.76,
    "gas_gw": 2.35,
    "coal_gw": 0.05,
@@ -264,6 +263,7 @@
    "nuc_gw": 38.4,
    "solar_gw": 3.8,
    "wind_gw": 4.6,
+   "pump_gw": 0.34,
    "exp_borders": {
     "BE": 1.74,
     "DE": 1.06,
@@ -303,7 +303,6 @@
     187.57
    ],
    "spot_fr": 169.44,
-   "pump_gw": 0.51,
    "bio_gw": 0.74,
    "gas_gw": 1.36,
    "coal_gw": 0.04,
@@ -311,6 +310,7 @@
    "nuc_gw": 38.2,
    "solar_gw": 3.1,
    "wind_gw": 5.3,
+   "pump_gw": 0.51,
    "exp_borders": {
     "BE": 1.19,
     "DE": 0.34,
@@ -350,7 +350,6 @@
     197.38
    ],
    "spot_fr": 191.12,
-   "pump_gw": 0.46,
    "bio_gw": 0.78,
    "gas_gw": 2.53,
    "coal_gw": 0.04,
@@ -358,6 +357,7 @@
    "nuc_gw": 37.4,
    "solar_gw": 4.2,
    "wind_gw": 1.6,
+   "pump_gw": 0.46,
    "exp_borders": {
     "BE": 1.01,
     "DE": -0.67,
@@ -397,7 +397,6 @@
     197.52
    ],
    "spot_fr": 189.02,
-   "pump_gw": 0.36,
    "bio_gw": 0.76,
    "gas_gw": 2.94,
    "coal_gw": 0.04,
@@ -405,6 +404,7 @@
    "nuc_gw": 38.3,
    "solar_gw": 4.9,
    "wind_gw": 2.5,
+   "pump_gw": 0.36,
    "exp_borders": {
     "BE": 1.02,
     "DE": 1.04,
@@ -444,7 +444,6 @@
     196.25
    ],
    "spot_fr": 212.0,
-   "pump_gw": 0.35,
    "bio_gw": 0.75,
    "gas_gw": 3.1,
    "coal_gw": 0.04,
@@ -452,6 +451,7 @@
    "nuc_gw": 38.8,
    "solar_gw": 3.4,
    "wind_gw": 4.8,
+   "pump_gw": 0.35,
    "exp_borders": {
     "BE": 1.31,
     "DE": 1.27,
@@ -491,7 +491,6 @@
     166.85
    ],
    "spot_fr": 139.3,
-   "pump_gw": 1.32,
    "bio_gw": 0.76,
    "gas_gw": 0.64,
    "coal_gw": 0.04,
@@ -499,6 +498,7 @@
    "nuc_gw": 36.8,
    "solar_gw": 3.1,
    "wind_gw": 9.9,
+   "pump_gw": 1.32,
    "exp_borders": {
     "BE": 1.88,
     "DE": 1.57,
@@ -538,7 +538,6 @@
     195.39
    ],
    "spot_fr": 171.88,
-   "pump_gw": 0.76,
    "bio_gw": 0.73,
    "gas_gw": 2.66,
    "coal_gw": 0.1,
@@ -546,6 +545,7 @@
    "nuc_gw": 36.7,
    "solar_gw": 2.9,
    "wind_gw": 4.5,
+   "pump_gw": 0.76,
    "exp_borders": {
     "BE": 2.05,
     "DE": 0.65,
@@ -585,7 +585,6 @@
     194.51
    ],
    "spot_fr": 221.77,
-   "pump_gw": 0.17,
    "bio_gw": 0.74,
    "gas_gw": 4.06,
    "coal_gw": 0.2,
@@ -593,6 +592,7 @@
    "nuc_gw": 37.0,
    "solar_gw": 2.1,
    "wind_gw": 2.9,
+   "pump_gw": 0.17,
    "exp_borders": {
     "BE": -0.0,
     "DE": -0.23,
@@ -632,7 +632,6 @@
     201.02
    ],
    "spot_fr": 212.32,
-   "pump_gw": 0.24,
    "bio_gw": 0.7,
    "gas_gw": 2.66,
    "coal_gw": 0.04,
@@ -640,6 +639,7 @@
    "nuc_gw": 38.0,
    "solar_gw": 2.0,
    "wind_gw": 6.7,
+   "pump_gw": 0.24,
    "exp_borders": {
     "BE": -0.48,
     "DE": 0.59,
@@ -679,7 +679,6 @@
     168.34
    ],
    "spot_fr": 161.33,
-   "pump_gw": 0.62,
    "bio_gw": 0.73,
    "gas_gw": 1.18,
    "coal_gw": 0.04,
@@ -687,6 +686,7 @@
    "nuc_gw": 37.3,
    "solar_gw": 3.0,
    "wind_gw": 13.4,
+   "pump_gw": 0.62,
    "exp_borders": {
     "BE": 0.47,
     "DE": 1.38,
@@ -726,7 +726,6 @@
     186.24
    ],
    "spot_fr": 156.28,
-   "pump_gw": 1.06,
    "bio_gw": 0.73,
    "gas_gw": 1.0,
    "coal_gw": 0.04,
@@ -734,6 +733,7 @@
    "nuc_gw": 37.9,
    "solar_gw": 2.8,
    "wind_gw": 12.7,
+   "pump_gw": 1.06,
    "exp_borders": {
     "BE": 0.33,
     "DE": 0.21,
@@ -773,7 +773,6 @@
     83.99
    ],
    "spot_fr": 72.76,
-   "pump_gw": 1.2,
    "bio_gw": 0.73,
    "gas_gw": 1.22,
    "coal_gw": 0.15,
@@ -781,6 +780,7 @@
    "nuc_gw": 38.9,
    "solar_gw": 2.7,
    "wind_gw": 17.3,
+   "pump_gw": 1.2,
    "exp_borders": {
     "BE": 1.16,
     "DE": 1.52,
@@ -820,7 +820,6 @@
     31.03
    ],
    "spot_fr": 48.76,
-   "pump_gw": 2.08,
    "bio_gw": 0.75,
    "gas_gw": 0.7,
    "coal_gw": 0.04,
@@ -828,6 +827,7 @@
    "nuc_gw": 34.7,
    "solar_gw": 2.0,
    "wind_gw": 14.7,
+   "pump_gw": 2.08,
    "exp_borders": {
     "BE": -0.41,
     "DE": 0.24,
@@ -867,7 +867,6 @@
     35.46
    ],
    "spot_fr": 26.32,
-   "pump_gw": 1.83,
    "bio_gw": 0.75,
    "gas_gw": 0.71,
    "coal_gw": 0.04,
@@ -875,6 +874,7 @@
    "nuc_gw": 30.7,
    "solar_gw": 2.1,
    "wind_gw": 15.9,
+   "pump_gw": 1.83,
    "exp_borders": {
     "BE": 0.01,
     "DE": 1.05,
@@ -914,7 +914,6 @@
     118.54
    ],
    "spot_fr": 153.63,
-   "pump_gw": 0.74,
    "bio_gw": 0.78,
    "gas_gw": 1.06,
    "coal_gw": 0.04,
@@ -922,6 +921,7 @@
    "nuc_gw": 36.9,
    "solar_gw": 2.5,
    "wind_gw": 8.9,
+   "pump_gw": 0.74,
    "exp_borders": {
     "BE": -0.34,
     "DE": 0.28,
@@ -961,7 +961,6 @@
     217.11
    ],
    "spot_fr": 161.53,
-   "pump_gw": 0.97,
    "bio_gw": 0.75,
    "gas_gw": 2.66,
    "coal_gw": 0.04,
@@ -969,6 +968,7 @@
    "nuc_gw": 37.3,
    "solar_gw": 3.3,
    "wind_gw": 8.0,
+   "pump_gw": 0.97,
    "exp_borders": {
     "BE": 0.64,
     "DE": 1.37,
@@ -1008,7 +1008,6 @@
     236.91
    ],
    "spot_fr": 252.65,
-   "pump_gw": 0.56,
    "bio_gw": 0.75,
    "gas_gw": 3.74,
    "coal_gw": 0.04,
@@ -1016,6 +1015,7 @@
    "nuc_gw": 40.8,
    "solar_gw": 4.0,
    "wind_gw": 2.7,
+   "pump_gw": 0.56,
    "exp_borders": {
     "BE": 0.17,
     "DE": 1.69,
@@ -1055,7 +1055,6 @@
     256.56
    ],
    "spot_fr": 266.72,
-   "pump_gw": 0.29,
    "bio_gw": 0.76,
    "gas_gw": 4.28,
    "coal_gw": 0.07,
@@ -1063,6 +1062,7 @@
    "nuc_gw": 42.5,
    "solar_gw": 3.4,
    "wind_gw": 4.2,
+   "pump_gw": 0.29,
    "exp_borders": {
     "BE": 1.65,
     "DE": 2.09,
@@ -1102,7 +1102,6 @@
     235.84
    ],
    "spot_fr": 247.71,
-   "pump_gw": 0.72,
    "bio_gw": 0.74,
    "gas_gw": 4.12,
    "coal_gw": 0.05,
@@ -1110,6 +1109,7 @@
    "nuc_gw": 42.7,
    "solar_gw": 4.1,
    "wind_gw": 5.7,
+   "pump_gw": 0.72,
    "exp_borders": {
     "BE": 1.4,
     "DE": 2.09,
@@ -1149,7 +1149,6 @@
     244.88
    ],
    "spot_fr": 238.0,
-   "pump_gw": 0.68,
    "bio_gw": 0.71,
    "gas_gw": 3.14,
    "coal_gw": 0.04,
@@ -1157,6 +1156,7 @@
    "nuc_gw": 42.6,
    "solar_gw": 3.9,
    "wind_gw": 5.3,
+   "pump_gw": 0.68,
    "exp_borders": {
     "BE": 1.26,
     "DE": 1.88,
@@ -1196,7 +1196,6 @@
     234.77
    ],
    "spot_fr": 233.74,
-   "pump_gw": 0.9,
    "bio_gw": 0.73,
    "gas_gw": 3.26,
    "coal_gw": 0.04,
@@ -1204,6 +1203,7 @@
    "nuc_gw": 41.7,
    "solar_gw": 3.7,
    "wind_gw": 6.0,
+   "pump_gw": 0.9,
    "exp_borders": {
     "BE": 1.18,
     "DE": 1.89,
@@ -1243,7 +1243,6 @@
     229.28
    ],
    "spot_fr": 256.13,
-   "pump_gw": 0.53,
    "bio_gw": 0.8,
    "gas_gw": 4.83,
    "coal_gw": 0.04,
@@ -1251,6 +1250,7 @@
    "nuc_gw": 41.5,
    "solar_gw": 3.6,
    "wind_gw": 7.5,
+   "pump_gw": 0.53,
    "exp_borders": {
     "BE": 0.48,
     "DE": 2.33,
@@ -1290,7 +1290,6 @@
     229.85
    ],
    "spot_fr": 246.37,
-   "pump_gw": 1.03,
    "bio_gw": 0.75,
    "gas_gw": 5.8,
    "coal_gw": 0.48,
@@ -1298,6 +1297,7 @@
    "nuc_gw": 41.4,
    "solar_gw": 2.6,
    "wind_gw": 10.6,
+   "pump_gw": 1.03,
    "exp_borders": {
     "BE": 0.05,
     "DE": 2.26,
@@ -1337,7 +1337,6 @@
     227.09
    ],
    "spot_fr": 247.7,
-   "pump_gw": 0.68,
    "bio_gw": 0.72,
    "gas_gw": 5.88,
    "coal_gw": 0.58,
@@ -1345,6 +1344,7 @@
    "nuc_gw": 41.2,
    "solar_gw": 2.1,
    "wind_gw": 8.5,
+   "pump_gw": 0.68,
    "exp_borders": {
     "BE": -1.41,
     "DE": 0.8,
@@ -1384,7 +1384,6 @@
     253.04
    ],
    "spot_fr": 261.4,
-   "pump_gw": 0.69,
    "bio_gw": 0.71,
    "gas_gw": 5.95,
    "coal_gw": 0.67,
@@ -1392,6 +1391,7 @@
    "nuc_gw": 40.5,
    "solar_gw": 2.7,
    "wind_gw": 3.5,
+   "pump_gw": 0.69,
    "exp_borders": {
     "BE": -2.43,
     "DE": -0.34,
@@ -1431,7 +1431,6 @@
     252.58
    ],
    "spot_fr": 278.29,
-   "pump_gw": 0.31,
    "bio_gw": 0.72,
    "gas_gw": 6.84,
    "coal_gw": 0.99,
@@ -1439,6 +1438,7 @@
    "nuc_gw": 42.3,
    "solar_gw": 2.9,
    "wind_gw": 0.7,
+   "pump_gw": 0.31,
    "exp_borders": {
     "BE": -1.11,
     "DE": 0.07,
@@ -1478,7 +1478,6 @@
     238.65
    ],
    "spot_fr": 258.75,
-   "pump_gw": 0.53,
    "bio_gw": 0.72,
    "gas_gw": 6.61,
    "coal_gw": 0.04,
@@ -1486,6 +1485,7 @@
    "nuc_gw": 38.8,
    "solar_gw": 2.9,
    "wind_gw": 0.9,
+   "pump_gw": 0.53,
    "exp_borders": {
     "BE": -1.05,
     "DE": -0.04,
@@ -1525,7 +1525,6 @@
     223.07
    ],
    "spot_fr": 242.16,
-   "pump_gw": 1.08,
    "bio_gw": 0.73,
    "gas_gw": 5.87,
    "coal_gw": 0.04,
@@ -1533,6 +1532,7 @@
    "nuc_gw": 39.4,
    "solar_gw": 2.4,
    "wind_gw": 2.4,
+   "pump_gw": 1.08,
    "exp_borders": {
     "BE": -0.71,
     "DE": 0.34,
@@ -1572,7 +1572,6 @@
     254.21
    ],
    "spot_fr": 334.12,
-   "pump_gw": 0.67,
    "bio_gw": 0.75,
    "gas_gw": 6.73,
    "coal_gw": 0.49,
@@ -1580,6 +1579,7 @@
    "nuc_gw": 40.6,
    "solar_gw": 1.7,
    "wind_gw": 5.0,
+   "pump_gw": 0.67,
    "exp_borders": {
     "BE": 0.62,
     "DE": 1.96,
@@ -1619,7 +1619,6 @@
     220.64
    ],
    "spot_fr": 304.46,
-   "pump_gw": 0.73,
    "bio_gw": 0.75,
    "gas_gw": 6.98,
    "coal_gw": 0.47,
@@ -1627,6 +1626,7 @@
    "nuc_gw": 41.7,
    "solar_gw": 1.8,
    "wind_gw": 4.2,
+   "pump_gw": 0.73,
    "exp_borders": {
     "BE": 1.38,
     "DE": 2.79,
@@ -1666,6 +1666,35 @@
     210.12
    ],
    "spot_fr": 252.24
+  },
+  "2026-11-12": {
+   "spot_h": [
+    214.44,
+    210.29,
+    190.64,
+    175.0,
+    155.59,
+    177.38,
+    199.94,
+    255.09,
+    257.82,
+    253.73,
+    242.92,
+    213.28,
+    194.79,
+    186.94,
+    186.89,
+    198.03,
+    205.08,
+    233.5,
+    235.89,
+    225.32,
+    201.6,
+    185.96,
+    192.1,
+    164.76
+   ],
+   "spot_fr": 206.54
   }
  },
  "forecast": [
@@ -1683,7 +1712,7 @@
    "cons_min_gw": 38.92,
    "cons_max_gw": 50.14,
    "solar_gw": 1.98,
-   "nuc_avail_gw": 42.73,
+   "nuc_avail_gw": 43.07,
    "wind_gw": 3.12
   },
   {
@@ -1694,7 +1723,7 @@
     "cons_max_gw": "ENTSO-E week-ahead",
     "nuc_avail_gw": "ENTSO-E indisponibilités"
    },
-   "cons_gw": 52.58,
+   "cons_gw": 52.93,
    "cons_min_gw": 41.06,
    "cons_max_gw": 61.39,
    "nuc_avail_gw": 43.98
@@ -1709,8 +1738,8 @@
    },
    "cons_min_gw": 42.67,
    "cons_max_gw": 59.74,
-   "cons_gw": 56.31,
-   "nuc_avail_gw": 45.36
+   "cons_gw": 56.14,
+   "nuc_avail_gw": 45.31
   },
   {
    "date": "2026-11-14",
@@ -4397,183 +4426,183 @@
   ]
  },
  "nuclear": {
-  "asof": "2026-11-11T07:07:28Z",
+  "asof": "2026-11-11T12:55:27Z",
   "installed_gw": 62.99,
   "daily": [
    {
     "date": "2026-10-07",
     "unav_planned_gw": 22.33,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 22.33,
-    "avail_gw": 40.66,
+    "unav_forced_gw": 1.9,
+    "unav_gw": 24.24,
+    "avail_gw": 38.75,
     "actual_gw": 37.0
    },
    {
     "date": "2026-10-08",
     "unav_planned_gw": 21.97,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 21.97,
-    "avail_gw": 41.02,
+    "unav_forced_gw": 2.25,
+    "unav_gw": 24.22,
+    "avail_gw": 38.77,
     "actual_gw": 36.5
    },
    {
     "date": "2026-10-09",
     "unav_planned_gw": 21.64,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 21.64,
-    "avail_gw": 41.35,
+    "unav_forced_gw": 2.21,
+    "unav_gw": 23.85,
+    "avail_gw": 39.14,
     "actual_gw": 36.6
    },
    {
     "date": "2026-10-10",
     "unav_planned_gw": 22.71,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 22.71,
-    "avail_gw": 40.28,
+    "unav_forced_gw": 1.33,
+    "unav_gw": 24.04,
+    "avail_gw": 38.95,
     "actual_gw": 34.2
    },
    {
     "date": "2026-10-11",
     "unav_planned_gw": 22.56,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 22.56,
-    "avail_gw": 40.43,
+    "unav_forced_gw": 1.33,
+    "unav_gw": 23.89,
+    "avail_gw": 39.1,
     "actual_gw": 37.3
    },
    {
     "date": "2026-10-12",
     "unav_planned_gw": 21.91,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 21.91,
-    "avail_gw": 41.08,
+    "unav_forced_gw": 1.33,
+    "unav_gw": 23.24,
+    "avail_gw": 39.75,
     "actual_gw": 38.4
    },
    {
     "date": "2026-10-13",
     "unav_planned_gw": 21.94,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 21.94,
-    "avail_gw": 41.05,
+    "unav_forced_gw": 1.34,
+    "unav_gw": 23.28,
+    "avail_gw": 39.71,
     "actual_gw": 38.2
    },
    {
     "date": "2026-10-14",
     "unav_planned_gw": 21.56,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 21.56,
-    "avail_gw": 41.43,
+    "unav_forced_gw": 2.58,
+    "unav_gw": 24.13,
+    "avail_gw": 38.86,
     "actual_gw": 37.4
    },
    {
     "date": "2026-10-15",
     "unav_planned_gw": 21.48,
-    "unav_forced_gw": 0.08,
-    "unav_gw": 21.56,
-    "avail_gw": 41.43,
+    "unav_forced_gw": 2.32,
+    "unav_gw": 23.8,
+    "avail_gw": 39.19,
     "actual_gw": 38.3
    },
    {
     "date": "2026-10-16",
     "unav_planned_gw": 20.59,
-    "unav_forced_gw": 0.13,
-    "unav_gw": 20.72,
-    "avail_gw": 42.27,
+    "unav_forced_gw": 2.57,
+    "unav_gw": 23.16,
+    "avail_gw": 39.83,
     "actual_gw": 38.8
    },
    {
     "date": "2026-10-17",
     "unav_planned_gw": 22.3,
-    "unav_forced_gw": 0.13,
-    "unav_gw": 22.43,
-    "avail_gw": 40.56,
+    "unav_forced_gw": 2.27,
+    "unav_gw": 24.57,
+    "avail_gw": 38.42,
     "actual_gw": 36.8
    },
    {
     "date": "2026-10-18",
     "unav_planned_gw": 23.09,
-    "unav_forced_gw": 0.13,
-    "unav_gw": 23.22,
-    "avail_gw": 39.77,
+    "unav_forced_gw": 2.24,
+    "unav_gw": 25.33,
+    "avail_gw": 37.66,
     "actual_gw": 36.7
    },
    {
     "date": "2026-10-19",
     "unav_planned_gw": 23.53,
-    "unav_forced_gw": 0.13,
-    "unav_gw": 23.66,
-    "avail_gw": 39.33,
+    "unav_forced_gw": 1.44,
+    "unav_gw": 24.97,
+    "avail_gw": 38.02,
     "actual_gw": 37.0
    },
    {
     "date": "2026-10-20",
     "unav_planned_gw": 22.06,
-    "unav_forced_gw": 0.13,
-    "unav_gw": 22.19,
-    "avail_gw": 40.8,
+    "unav_forced_gw": 1.7,
+    "unav_gw": 23.76,
+    "avail_gw": 39.23,
     "actual_gw": 38.0
    },
    {
     "date": "2026-10-21",
     "unav_planned_gw": 21.73,
-    "unav_forced_gw": 0.13,
-    "unav_gw": 21.86,
-    "avail_gw": 41.13,
+    "unav_forced_gw": 2.44,
+    "unav_gw": 24.18,
+    "avail_gw": 38.81,
     "actual_gw": 37.3
    },
    {
     "date": "2026-10-22",
     "unav_planned_gw": 22.02,
-    "unav_forced_gw": 0.13,
-    "unav_gw": 22.15,
-    "avail_gw": 40.84,
+    "unav_forced_gw": 1.45,
+    "unav_gw": 23.46,
+    "avail_gw": 39.53,
     "actual_gw": 37.9
    },
    {
     "date": "2026-10-23",
     "unav_planned_gw": 22.28,
-    "unav_forced_gw": 0.13,
-    "unav_gw": 22.41,
-    "avail_gw": 40.58,
+    "unav_forced_gw": 0.45,
+    "unav_gw": 22.73,
+    "avail_gw": 40.26,
     "actual_gw": 38.9
    },
    {
     "date": "2026-10-24",
     "unav_planned_gw": 25.76,
-    "unav_forced_gw": 0.13,
-    "unav_gw": 25.89,
-    "avail_gw": 37.1,
+    "unav_forced_gw": 0.74,
+    "unav_gw": 26.49,
+    "avail_gw": 36.5,
     "actual_gw": 34.7
    },
    {
     "date": "2026-10-25",
     "unav_planned_gw": 25.56,
-    "unav_forced_gw": 0.12,
-    "unav_gw": 25.68,
-    "avail_gw": 37.31,
+    "unav_forced_gw": 1.91,
+    "unav_gw": 27.47,
+    "avail_gw": 35.52,
     "actual_gw": 30.7
    },
    {
     "date": "2026-10-26",
     "unav_planned_gw": 22.32,
-    "unav_forced_gw": 1.17,
-    "unav_gw": 23.48,
-    "avail_gw": 39.51,
+    "unav_forced_gw": 2.49,
+    "unav_gw": 24.81,
+    "avail_gw": 38.18,
     "actual_gw": 36.9
    },
    {
     "date": "2026-10-27",
     "unav_planned_gw": 21.38,
-    "unav_forced_gw": 2.02,
-    "unav_gw": 23.4,
-    "avail_gw": 39.59,
+    "unav_forced_gw": 2.93,
+    "unav_gw": 24.31,
+    "avail_gw": 38.68,
     "actual_gw": 37.3
    },
    {
     "date": "2026-10-28",
     "unav_planned_gw": 20.1,
-    "unav_forced_gw": 0.38,
-    "unav_gw": 20.49,
-    "avail_gw": 42.5,
+    "unav_forced_gw": 0.53,
+    "unav_gw": 20.64,
+    "avail_gw": 42.35,
     "actual_gw": 40.8
    },
    {
@@ -4602,90 +4631,90 @@
    },
    {
     "date": "2026-11-01",
-    "unav_planned_gw": 18.11,
+    "unav_planned_gw": 18.27,
     "unav_forced_gw": 1.82,
-    "unav_gw": 19.93,
-    "avail_gw": 43.06,
+    "unav_gw": 20.09,
+    "avail_gw": 42.9,
     "actual_gw": 41.7
    },
    {
     "date": "2026-11-02",
-    "unav_planned_gw": 17.66,
+    "unav_planned_gw": 18.63,
     "unav_forced_gw": 1.86,
-    "unav_gw": 19.52,
-    "avail_gw": 43.47,
+    "unav_gw": 20.48,
+    "avail_gw": 42.51,
     "actual_gw": 41.5
    },
    {
     "date": "2026-11-03",
-    "unav_planned_gw": 17.66,
+    "unav_planned_gw": 18.6,
     "unav_forced_gw": 2.17,
-    "unav_gw": 19.84,
-    "avail_gw": 43.16,
+    "unav_gw": 20.77,
+    "avail_gw": 42.22,
     "actual_gw": 41.4
    },
    {
     "date": "2026-11-04",
-    "unav_planned_gw": 17.66,
+    "unav_planned_gw": 18.66,
     "unav_forced_gw": 2.3,
-    "unav_gw": 19.96,
-    "avail_gw": 43.03,
+    "unav_gw": 20.96,
+    "avail_gw": 42.03,
     "actual_gw": 41.2
    },
    {
     "date": "2026-11-05",
-    "unav_planned_gw": 16.83,
-    "unav_forced_gw": 4.38,
-    "unav_gw": 21.21,
-    "avail_gw": 41.78,
+    "unav_planned_gw": 17.22,
+    "unav_forced_gw": 4.33,
+    "unav_gw": 21.55,
+    "avail_gw": 41.44,
     "actual_gw": 40.5
    },
    {
     "date": "2026-11-06",
-    "unav_planned_gw": 16.39,
+    "unav_planned_gw": 16.74,
     "unav_forced_gw": 2.6,
-    "unav_gw": 18.99,
-    "avail_gw": 44.0,
+    "unav_gw": 19.35,
+    "avail_gw": 43.64,
     "actual_gw": 42.3
    },
    {
     "date": "2026-11-07",
-    "unav_planned_gw": 17.66,
-    "unav_forced_gw": 2.93,
-    "unav_gw": 20.59,
-    "avail_gw": 42.4,
+    "unav_planned_gw": 20.18,
+    "unav_forced_gw": 2.92,
+    "unav_gw": 23.1,
+    "avail_gw": 39.89,
     "actual_gw": 38.8
    },
    {
     "date": "2026-11-08",
-    "unav_planned_gw": 17.66,
-    "unav_forced_gw": 2.97,
-    "unav_gw": 20.63,
-    "avail_gw": 42.36,
+    "unav_planned_gw": 19.76,
+    "unav_forced_gw": 2.96,
+    "unav_gw": 22.73,
+    "avail_gw": 40.26,
     "actual_gw": 39.4
    },
    {
     "date": "2026-11-09",
-    "unav_planned_gw": 17.66,
+    "unav_planned_gw": 19.11,
     "unav_forced_gw": 2.39,
-    "unav_gw": 20.05,
-    "avail_gw": 42.94,
+    "unav_gw": 21.49,
+    "avail_gw": 41.5,
     "actual_gw": 40.6
    },
    {
     "date": "2026-11-10",
-    "unav_planned_gw": 17.66,
-    "unav_forced_gw": 2.37,
-    "unav_gw": 20.03,
-    "avail_gw": 42.96,
+    "unav_planned_gw": 18.08,
+    "unav_forced_gw": 2.29,
+    "unav_gw": 20.37,
+    "avail_gw": 42.62,
     "actual_gw": 41.7
    },
    {
     "date": "2026-11-11",
-    "unav_planned_gw": 18.71,
-    "unav_forced_gw": 1.55,
-    "unav_gw": 20.26,
-    "avail_gw": 42.73
+    "unav_planned_gw": 18.35,
+    "unav_forced_gw": 1.56,
+    "unav_gw": 19.92,
+    "avail_gw": 43.07
    },
    {
     "date": "2026-11-12",
@@ -4696,10 +4725,10 @@
    },
    {
     "date": "2026-11-13",
-    "unav_planned_gw": 16.33,
+    "unav_planned_gw": 16.38,
     "unav_forced_gw": 1.3,
-    "unav_gw": 17.63,
-    "avail_gw": 45.36
+    "unav_gw": 17.68,
+    "avail_gw": 45.31
    },
    {
     "date": "2026-11-14",
@@ -8185,7 +8214,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "1926 messages, 179 séries nucléaires"
+   "msg": "1927 messages, 221 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
@@ -8367,7 +8396,7 @@
        "0.52525",
        "83.78573"
       ],
-      "max": 8615.48145
+      "max": 8180.73389
      }
     ]
    },
@@ -8388,7 +8417,7 @@
        "370.56",
        "347.20001"
       ],
-      "max": 561.27002
+      "max": 558.57996
      }
     ]
    },
