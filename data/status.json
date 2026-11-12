@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-12T20:16:25Z",
+ "generated_at": "2026-11-12T22:50:39Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -14,32 +14,32 @@
   {
    "step": "  flux BE",
    "ok": true,
-   "msg": "35 jours"
+   "msg": "36 jours"
   },
   {
    "step": "  flux DE",
    "ok": true,
-   "msg": "35 jours"
+   "msg": "36 jours"
   },
   {
    "step": "  flux CH",
    "ok": true,
-   "msg": "35 jours"
+   "msg": "36 jours"
   },
   {
    "step": "  flux IT",
    "ok": true,
-   "msg": "35 jours"
+   "msg": "36 jours"
   },
   {
    "step": "  flux ES",
    "ok": true,
-   "msg": "35 jours"
+   "msg": "36 jours"
   },
   {
    "step": "  flux GB",
    "ok": true,
-   "msg": "34 jours"
+   "msg": "35 jours"
   },
   {
    "step": "ENTSO-E échanges physiques aux frontières (A11)",
@@ -154,7 +154,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "1916 messages, 206 séries nucléaires"
+   "msg": "1917 messages, 202 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
@@ -169,7 +169,7 @@
   {
    "step": "  OMIP historique",
    "ok": true,
-   "msg": "11 séances lues, 476 au total"
+   "msg": "11 séances lues, 477 au total"
   }
  ]
 }
