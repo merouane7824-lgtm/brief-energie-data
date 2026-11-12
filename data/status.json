@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T23:40:23Z",
+ "generated_at": "2026-11-12T07:07:02Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -84,12 +84,12 @@
   {
    "step": "RTE consommation J/J+1",
    "ok": true,
-   "msg": "2 jours"
+   "msg": "3 jours"
   },
   {
    "step": "RTE consommation hebdomadaire",
    "ok": true,
-   "msg": "13 jours"
+   "msg": "10 jours"
   },
   {
    "step": "RTE prévision SOLAR D-1",
@@ -154,7 +154,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "1890 messages, 153 séries nucléaires"
+   "msg": "1895 messages, 206 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
