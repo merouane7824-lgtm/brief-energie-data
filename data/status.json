@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-15T19:01:21Z",
+ "generated_at": "2026-11-15T22:02:05Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -14,7 +14,7 @@
   {
    "step": "  flux BE",
    "ok": true,
-   "msg": "35 jours"
+   "msg": "36 jours"
   },
   {
    "step": "  flux DE",
@@ -34,7 +34,7 @@
   {
    "step": "  flux ES",
    "ok": true,
-   "msg": "35 jours"
+   "msg": "36 jours"
   },
   {
    "step": "  flux GB",
@@ -154,7 +154,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "1882 messages, 209 séries nucléaires"
+   "msg": "1883 messages, 192 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
