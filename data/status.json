@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-16T08:22:27Z",
+ "generated_at": "2026-11-16T13:57:19Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -28,8 +28,8 @@
   },
   {
    "step": "  flux IT",
-   "ok": true,
-   "msg": "35 jours"
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"3c9be81c0d4bcd79108dfda716c69a52\",\"timestamp\":\"2026-11-16T14:01:13.999Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "  flux ES",
@@ -53,8 +53,8 @@
   },
   {
    "step": "ENTSO-E prévision conso J/J+1 (A65 A01)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"9c80beda223372c13b6d5febca229f60\",\"timestamp\":\"2026-11-16T14:04:16.908Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E prévision conso semaine (A65 A31)",
@@ -63,8 +63,8 @@
   },
   {
    "step": "ENTSO-E prévision conso mois (A65 A32)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"feec5dbc3b7039e20666fcb25b2d52bc\",\"timestamp\":\"2026-11-16T14:04:47.965Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E prévision conso année (A65 A33)",
@@ -89,7 +89,7 @@
   {
    "step": "RTE consommation hebdomadaire",
    "ok": true,
-   "msg": "12 jours"
+   "msg": "18 jours"
   },
   {
    "step": "RTE prévision SOLAR D-1",
@@ -143,18 +143,23 @@
   },
   {
    "step": "ENTSO-E capacité nucléaire installée (A68)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"86b80dcab249ce1cf392bcdeb5ddaaa6\",\"timestamp\":\"2026-11-16T14:06:07.899Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E indisponibilités unités de production (A80)",
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"58d619395e0aa8101762a38f885073c4\",\"timestamp\":\"2026-11-16T14:08:36.180Z\",\"type\":\"error\",\"m'"
+  },
+  {
+   "step": "ENTSO-E indisponibilités groupes de production (A77)",
    "ok": true,
    "msg": ""
   },
   {
-   "step": "  nucléaire A80",
+   "step": "  nucléaire A77",
    "ok": true,
-   "msg": "1892 messages, 220 séries nucléaires"
+   "msg": "913 messages, 0 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
