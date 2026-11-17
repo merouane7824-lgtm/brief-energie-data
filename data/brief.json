@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T14:50:56Z",
+ "generated_at": "2026-11-17T16:50:35Z",
  "today": "2026-11-17",
  "series": {
   "2026-10-13": {
@@ -1730,12 +1730,16 @@
     "cons_gw": "RTE D-1",
     "cons_min_gw": "ENTSO-E week-ahead",
     "cons_max_gw": "ENTSO-E week-ahead",
-    "nuc_avail_gw": "ENTSO-E indisponibilités"
+    "solar_gw": "ENTSO-E day-ahead",
+    "nuc_avail_gw": "ENTSO-E indisponibilités",
+    "wind_gw": "ENTSO-E day-ahead"
    },
-   "cons_gw": 53.83,
+   "cons_gw": 54.22,
    "cons_min_gw": 46.45,
    "cons_max_gw": 63.78,
-   "nuc_avail_gw": 45.75
+   "solar_gw": 2.13,
+   "nuc_avail_gw": 45.67,
+   "wind_gw": 17.61
   },
   {
    "date": "2026-11-19",
@@ -1747,7 +1751,7 @@
    },
    "cons_min_gw": 46.21,
    "cons_max_gw": 63.12,
-   "cons_gw": 54.32,
+   "cons_gw": 54.24,
    "nuc_avail_gw": 45.18
   },
   {
@@ -4751,7 +4755,7 @@
   ]
  },
  "nuclear": {
-  "asof": "2026-11-17T14:50:56Z",
+  "asof": "2026-11-17T16:50:35Z",
   "installed_gw": 62.99,
   "daily": [
    {
@@ -4788,58 +4792,58 @@
    },
    {
     "date": "2026-10-17",
-    "unav_planned_gw": 21.23,
+    "unav_planned_gw": 22.3,
     "unav_forced_gw": 2.27,
-    "unav_gw": 23.5,
-    "avail_gw": 39.49,
+    "unav_gw": 24.57,
+    "avail_gw": 38.42,
     "actual_gw": 36.8
    },
    {
     "date": "2026-10-18",
-    "unav_planned_gw": 21.04,
+    "unav_planned_gw": 23.09,
     "unav_forced_gw": 2.24,
-    "unav_gw": 23.28,
-    "avail_gw": 39.71,
+    "unav_gw": 25.33,
+    "avail_gw": 37.66,
     "actual_gw": 36.7
    },
    {
     "date": "2026-10-19",
-    "unav_planned_gw": 21.04,
+    "unav_planned_gw": 23.53,
     "unav_forced_gw": 1.44,
-    "unav_gw": 22.48,
-    "avail_gw": 40.51,
+    "unav_gw": 24.97,
+    "avail_gw": 38.02,
     "actual_gw": 37.0
    },
    {
     "date": "2026-10-20",
-    "unav_planned_gw": 21.04,
+    "unav_planned_gw": 22.06,
     "unav_forced_gw": 1.7,
-    "unav_gw": 22.74,
-    "avail_gw": 40.25,
+    "unav_gw": 23.76,
+    "avail_gw": 39.23,
     "actual_gw": 38.0
    },
    {
     "date": "2026-10-21",
-    "unav_planned_gw": 21.04,
+    "unav_planned_gw": 21.73,
     "unav_forced_gw": 2.44,
-    "unav_gw": 23.48,
-    "avail_gw": 39.51,
+    "unav_gw": 24.18,
+    "avail_gw": 38.81,
     "actual_gw": 37.3
    },
    {
     "date": "2026-10-22",
-    "unav_planned_gw": 21.37,
+    "unav_planned_gw": 22.02,
     "unav_forced_gw": 1.45,
-    "unav_gw": 22.81,
-    "avail_gw": 40.18,
+    "unav_gw": 23.46,
+    "avail_gw": 39.53,
     "actual_gw": 37.9
    },
    {
     "date": "2026-10-23",
-    "unav_planned_gw": 21.66,
+    "unav_planned_gw": 22.28,
     "unav_forced_gw": 0.45,
-    "unav_gw": 22.11,
-    "avail_gw": 40.88,
+    "unav_gw": 22.73,
+    "avail_gw": 40.26,
     "actual_gw": 38.9
    },
    {
@@ -5043,10 +5047,10 @@
    },
    {
     "date": "2026-11-18",
-    "unav_planned_gw": 15.94,
+    "unav_planned_gw": 16.02,
     "unav_forced_gw": 1.3,
-    "unav_gw": 17.24,
-    "avail_gw": 45.75
+    "unav_gw": 17.32,
+    "avail_gw": 45.67
    },
    {
     "date": "2026-11-19",
@@ -7759,7 +7763,7 @@
     "type": "planned",
     "unav_mw": 915,
     "nominal_mw": 915,
-    "start": "2026-11-18T20:30",
+    "start": "2026-11-18T18:00",
     "end": "2026-11-25T02:30",
     "ongoing": false,
     "reason": "En fonction d'analyses techniques, cette intervention pourra être annulée ou rep"
@@ -8389,7 +8393,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "1909 messages, 193 séries nucléaires"
+   "msg": "1909 messages, 203 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
@@ -8433,15 +8437,15 @@
     "periods": [
      {
       "start": "2026-11-16T23:00Z",
-      "end": "2026-11-17T23:00Z",
+      "end": "2026-11-18T23:00Z",
       "res": "PT15M",
-      "n": 42,
+      "n": 83,
       "first": [
        "0",
        "36.32035",
        "219.8595"
       ],
-      "max": 7033.75
+      "max": 9563.66895
      }
     ]
    },
@@ -8454,9 +8458,9 @@
     "periods": [
      {
       "start": "2026-11-16T23:00Z",
-      "end": "2026-11-17T23:00Z",
+      "end": "2026-11-18T23:00Z",
       "res": "PT15M",
-      "n": 96,
+      "n": 192,
       "first": [
        "1552.25",
        "1566.85999",
@@ -8475,9 +8479,9 @@
     "periods": [
      {
       "start": "2026-11-16T23:00Z",
-      "end": "2026-11-17T23:00Z",
+      "end": "2026-11-18T23:00Z",
       "res": "PT15M",
-      "n": 96,
+      "n": 192,
       "first": [
        "12277.05957",
        "12629.87012",
@@ -8563,15 +8567,15 @@
     "periods": [
      {
       "start": "2026-11-16T23:00Z",
-      "end": "2026-11-17T23:00Z",
+      "end": "2026-11-18T23:00Z",
       "res": "PT15M",
-      "n": 42,
+      "n": 83,
       "first": [
        "0",
        "34.82235",
        "219.21916"
       ],
-      "max": 8203.37207
+      "max": 9563.66895
      }
     ]
    },
@@ -8584,9 +8588,9 @@
     "periods": [
      {
       "start": "2026-11-16T23:00Z",
-      "end": "2026-11-17T23:00Z",
+      "end": "2026-11-18T23:00Z",
       "res": "PT15M",
-      "n": 95,
+      "n": 191,
       "first": [
        "1529.40002",
        "1545.53003",
@@ -8605,9 +8609,9 @@
     "periods": [
      {
       "start": "2026-11-16T23:00Z",
-      "end": "2026-11-17T23:00Z",
+      "end": "2026-11-18T23:00Z",
       "res": "PT15M",
-      "n": 96,
+      "n": 192,
       "first": [
        "12200.06934",
        "12556.87012",
