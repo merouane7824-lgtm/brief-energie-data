@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-19T16:29:46Z",
+ "generated_at": "2026-11-19T20:53:30Z",
  "today": "2026-11-19",
  "series": {
   "2026-10-15": {
@@ -1721,7 +1721,7 @@
    "cons_min_gw": 46.21,
    "cons_max_gw": 63.12,
    "solar_gw": 2.08,
-   "nuc_avail_gw": 44.71,
+   "nuc_avail_gw": 44.78,
    "wind_gw": 17.65
   },
   {
@@ -1751,7 +1751,7 @@
    },
    "cons_min_gw": 45.28,
    "cons_max_gw": 56.49,
-   "cons_gw": 51.98,
+   "cons_gw": 52.26,
    "nuc_avail_gw": 45.1
   },
   {
@@ -1759,10 +1759,12 @@
    "src": {
     "cons_min_gw": "ENTSO-E week-ahead",
     "cons_max_gw": "ENTSO-E week-ahead",
+    "cons_gw": "RTE WEEKLY",
     "nuc_avail_gw": "ENTSO-E indisponibilités"
    },
    "cons_min_gw": 43.4,
    "cons_max_gw": 55.01,
+   "cons_gw": 51.33,
    "nuc_avail_gw": 45.46
   },
   {
@@ -1770,10 +1772,12 @@
    "src": {
     "cons_min_gw": "ENTSO-E week-ahead",
     "cons_max_gw": "ENTSO-E week-ahead",
+    "cons_gw": "RTE WEEKLY",
     "nuc_avail_gw": "ENTSO-E indisponibilités"
    },
    "cons_min_gw": 46.25,
    "cons_max_gw": 67.38,
+   "cons_gw": 58.61,
    "nuc_avail_gw": 45.32
   },
   {
@@ -1781,10 +1785,12 @@
    "src": {
     "cons_min_gw": "ENTSO-E week-ahead",
     "cons_max_gw": "ENTSO-E week-ahead",
+    "cons_gw": "RTE WEEKLY",
     "nuc_avail_gw": "ENTSO-E indisponibilités"
    },
    "cons_min_gw": 50.43,
    "cons_max_gw": 68.44,
+   "cons_gw": 61.26,
    "nuc_avail_gw": 45.32
   },
   {
@@ -1792,10 +1798,12 @@
    "src": {
     "cons_min_gw": "ENTSO-E week-ahead",
     "cons_max_gw": "ENTSO-E week-ahead",
+    "cons_gw": "RTE WEEKLY",
     "nuc_avail_gw": "ENTSO-E indisponibilités"
    },
    "cons_min_gw": 50.67,
    "cons_max_gw": 68.24,
+   "cons_gw": 61.05,
    "nuc_avail_gw": 45.16
   },
   {
@@ -1803,10 +1811,12 @@
    "src": {
     "cons_min_gw": "ENTSO-E week-ahead",
     "cons_max_gw": "ENTSO-E week-ahead",
+    "cons_gw": "RTE WEEKLY",
     "nuc_avail_gw": "ENTSO-E indisponibilités"
    },
    "cons_min_gw": 50.67,
    "cons_max_gw": 68.37,
+   "cons_gw": 61.1,
    "nuc_avail_gw": 45.35
   },
   {
@@ -1814,17 +1824,21 @@
    "src": {
     "cons_min_gw": "ENTSO-E week-ahead",
     "cons_max_gw": "ENTSO-E week-ahead",
+    "cons_gw": "RTE WEEKLY",
     "nuc_avail_gw": "ENTSO-E indisponibilités"
    },
    "cons_min_gw": 51.05,
    "cons_max_gw": 66.03,
+   "cons_gw": 60.44,
    "nuc_avail_gw": 46.21
   },
   {
    "date": "2026-11-28",
    "src": {
+    "cons_gw": "RTE WEEKLY",
     "nuc_avail_gw": "ENTSO-E indisponibilités"
    },
+   "cons_gw": 55.09,
    "nuc_avail_gw": 46.21
   },
   {
@@ -4741,247 +4755,247 @@
   ]
  },
  "nuclear": {
-  "asof": "2026-11-19T16:29:46Z",
+  "asof": "2026-11-19T20:53:30Z",
   "installed_gw": 62.99,
   "daily": [
    {
     "date": "2026-10-15",
     "unav_planned_gw": 21.48,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 21.48,
-    "avail_gw": 41.51,
+    "unav_forced_gw": 2.32,
+    "unav_gw": 23.8,
+    "avail_gw": 39.19,
     "actual_gw": 38.3
    },
    {
     "date": "2026-10-16",
     "unav_planned_gw": 20.59,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 20.59,
-    "avail_gw": 42.4,
+    "unav_forced_gw": 2.57,
+    "unav_gw": 23.16,
+    "avail_gw": 39.83,
     "actual_gw": 38.8
    },
    {
     "date": "2026-10-17",
     "unav_planned_gw": 22.3,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 22.3,
-    "avail_gw": 40.69,
+    "unav_forced_gw": 2.27,
+    "unav_gw": 24.57,
+    "avail_gw": 38.42,
     "actual_gw": 36.8
    },
    {
     "date": "2026-10-18",
     "unav_planned_gw": 23.09,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 23.09,
-    "avail_gw": 39.9,
+    "unav_forced_gw": 2.24,
+    "unav_gw": 25.33,
+    "avail_gw": 37.66,
     "actual_gw": 36.7
    },
    {
     "date": "2026-10-19",
     "unav_planned_gw": 23.53,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 23.53,
-    "avail_gw": 39.46,
+    "unav_forced_gw": 1.44,
+    "unav_gw": 24.97,
+    "avail_gw": 38.02,
     "actual_gw": 37.0
    },
    {
     "date": "2026-10-20",
     "unav_planned_gw": 22.06,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 22.06,
-    "avail_gw": 40.93,
+    "unav_forced_gw": 1.7,
+    "unav_gw": 23.76,
+    "avail_gw": 39.23,
     "actual_gw": 38.0
    },
    {
     "date": "2026-10-21",
     "unav_planned_gw": 21.73,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 21.73,
-    "avail_gw": 41.26,
+    "unav_forced_gw": 2.44,
+    "unav_gw": 24.18,
+    "avail_gw": 38.81,
     "actual_gw": 37.3
    },
    {
     "date": "2026-10-22",
     "unav_planned_gw": 22.02,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 22.02,
-    "avail_gw": 40.97,
+    "unav_forced_gw": 1.45,
+    "unav_gw": 23.46,
+    "avail_gw": 39.53,
     "actual_gw": 37.9
    },
    {
     "date": "2026-10-23",
     "unav_planned_gw": 22.28,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 22.28,
-    "avail_gw": 40.71,
+    "unav_forced_gw": 0.45,
+    "unav_gw": 22.73,
+    "avail_gw": 40.26,
     "actual_gw": 38.9
    },
    {
     "date": "2026-10-24",
     "unav_planned_gw": 25.76,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 25.76,
-    "avail_gw": 37.23,
+    "unav_forced_gw": 0.74,
+    "unav_gw": 26.49,
+    "avail_gw": 36.5,
     "actual_gw": 34.7
    },
    {
     "date": "2026-10-25",
     "unav_planned_gw": 25.56,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 25.56,
-    "avail_gw": 37.43,
+    "unav_forced_gw": 1.91,
+    "unav_gw": 27.47,
+    "avail_gw": 35.52,
     "actual_gw": 30.7
    },
    {
     "date": "2026-10-26",
     "unav_planned_gw": 22.32,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 22.32,
-    "avail_gw": 40.67,
+    "unav_forced_gw": 2.49,
+    "unav_gw": 24.81,
+    "avail_gw": 38.18,
     "actual_gw": 36.9
    },
    {
     "date": "2026-10-27",
     "unav_planned_gw": 21.38,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 21.38,
-    "avail_gw": 41.61,
+    "unav_forced_gw": 2.93,
+    "unav_gw": 24.31,
+    "avail_gw": 38.68,
     "actual_gw": 37.3
    },
    {
     "date": "2026-10-28",
     "unav_planned_gw": 20.1,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 20.1,
-    "avail_gw": 42.89,
+    "unav_forced_gw": 0.53,
+    "unav_gw": 20.64,
+    "avail_gw": 42.35,
     "actual_gw": 40.8
    },
    {
     "date": "2026-10-29",
     "unav_planned_gw": 19.31,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 19.31,
-    "avail_gw": 43.68,
+    "unav_forced_gw": 0.15,
+    "unav_gw": 19.46,
+    "avail_gw": 43.53,
     "actual_gw": 42.5
    },
    {
     "date": "2026-10-30",
     "unav_planned_gw": 19.16,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 19.16,
-    "avail_gw": 43.83,
+    "unav_forced_gw": 0.13,
+    "unav_gw": 19.29,
+    "avail_gw": 43.7,
     "actual_gw": 42.7
    },
    {
     "date": "2026-10-31",
     "unav_planned_gw": 18.87,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 18.87,
-    "avail_gw": 44.12,
+    "unav_forced_gw": 0.44,
+    "unav_gw": 19.31,
+    "avail_gw": 43.68,
     "actual_gw": 42.6
    },
    {
     "date": "2026-11-01",
     "unav_planned_gw": 18.27,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 18.27,
-    "avail_gw": 44.72,
+    "unav_forced_gw": 1.82,
+    "unav_gw": 20.09,
+    "avail_gw": 42.9,
     "actual_gw": 41.7
    },
    {
     "date": "2026-11-02",
     "unav_planned_gw": 18.63,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 18.63,
-    "avail_gw": 44.36,
+    "unav_forced_gw": 1.86,
+    "unav_gw": 20.48,
+    "avail_gw": 42.51,
     "actual_gw": 41.5
    },
    {
     "date": "2026-11-03",
     "unav_planned_gw": 18.6,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 18.6,
-    "avail_gw": 44.39,
+    "unav_forced_gw": 2.17,
+    "unav_gw": 20.77,
+    "avail_gw": 42.22,
     "actual_gw": 41.4
    },
    {
     "date": "2026-11-04",
     "unav_planned_gw": 18.66,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 18.66,
-    "avail_gw": 44.33,
+    "unav_forced_gw": 2.3,
+    "unav_gw": 20.96,
+    "avail_gw": 42.03,
     "actual_gw": 41.2
    },
    {
     "date": "2026-11-05",
     "unav_planned_gw": 17.22,
-    "unav_forced_gw": 0.0,
-    "unav_gw": 17.22,
-    "avail_gw": 45.77,
+    "unav_forced_gw": 4.33,
+    "unav_gw": 21.55,
+    "avail_gw": 41.44,
     "actual_gw": 40.5
    },
    {
     "date": "2026-11-06",
     "unav_planned_gw": 16.74,
-    "unav_forced_gw": 0.97,
-    "unav_gw": 17.72,
-    "avail_gw": 45.27,
+    "unav_forced_gw": 2.6,
+    "unav_gw": 19.35,
+    "avail_gw": 43.64,
     "actual_gw": 42.3
    },
    {
     "date": "2026-11-07",
     "unav_planned_gw": 20.18,
-    "unav_forced_gw": 1.3,
-    "unav_gw": 21.48,
-    "avail_gw": 41.51,
+    "unav_forced_gw": 2.92,
+    "unav_gw": 23.1,
+    "avail_gw": 39.89,
     "actual_gw": 38.8
    },
    {
     "date": "2026-11-08",
     "unav_planned_gw": 19.76,
-    "unav_forced_gw": 1.3,
-    "unav_gw": 21.06,
-    "avail_gw": 41.93,
+    "unav_forced_gw": 2.96,
+    "unav_gw": 22.73,
+    "avail_gw": 40.26,
     "actual_gw": 39.4
    },
    {
     "date": "2026-11-09",
     "unav_planned_gw": 19.11,
-    "unav_forced_gw": 1.3,
-    "unav_gw": 20.41,
-    "avail_gw": 42.58,
+    "unav_forced_gw": 2.39,
+    "unav_gw": 21.49,
+    "avail_gw": 41.5,
     "actual_gw": 40.6
    },
    {
     "date": "2026-11-10",
     "unav_planned_gw": 18.08,
-    "unav_forced_gw": 1.3,
-    "unav_gw": 19.38,
-    "avail_gw": 43.61,
+    "unav_forced_gw": 2.29,
+    "unav_gw": 20.37,
+    "avail_gw": 42.62,
     "actual_gw": 41.7
    },
    {
     "date": "2026-11-11",
     "unav_planned_gw": 18.05,
-    "unav_forced_gw": 1.3,
-    "unav_gw": 19.35,
-    "avail_gw": 43.64,
+    "unav_forced_gw": 1.58,
+    "unav_gw": 19.63,
+    "avail_gw": 43.36,
     "actual_gw": 42.0
    },
    {
     "date": "2026-11-12",
     "unav_planned_gw": 17.56,
-    "unav_forced_gw": 1.3,
-    "unav_gw": 18.86,
-    "avail_gw": 44.13,
+    "unav_forced_gw": 1.55,
+    "unav_gw": 19.11,
+    "avail_gw": 43.88,
     "actual_gw": 43.0
    },
    {
     "date": "2026-11-13",
     "unav_planned_gw": 16.33,
-    "unav_forced_gw": 1.3,
-    "unav_gw": 17.63,
-    "avail_gw": 45.36,
+    "unav_forced_gw": 1.33,
+    "unav_gw": 17.66,
+    "avail_gw": 45.33,
     "actual_gw": 44.3
    },
    {
@@ -5003,33 +5017,33 @@
    {
     "date": "2026-11-16",
     "unav_planned_gw": 14.69,
-    "unav_forced_gw": 1.3,
-    "unav_gw": 15.99,
-    "avail_gw": 47.0,
+    "unav_forced_gw": 1.37,
+    "unav_gw": 16.06,
+    "avail_gw": 46.93,
     "actual_gw": 45.0
    },
    {
     "date": "2026-11-17",
     "unav_planned_gw": 14.31,
-    "unav_forced_gw": 1.3,
-    "unav_gw": 15.61,
-    "avail_gw": 47.38,
+    "unav_forced_gw": 1.48,
+    "unav_gw": 15.79,
+    "avail_gw": 47.2,
     "actual_gw": 44.2
    },
    {
     "date": "2026-11-18",
-    "unav_planned_gw": 15.07,
-    "unav_forced_gw": 1.47,
-    "unav_gw": 16.54,
-    "avail_gw": 46.45,
+    "unav_planned_gw": 15.15,
+    "unav_forced_gw": 2.17,
+    "unav_gw": 17.32,
+    "avail_gw": 45.67,
     "actual_gw": 42.9
    },
    {
     "date": "2026-11-19",
     "unav_planned_gw": 15.49,
-    "unav_forced_gw": 2.78,
-    "unav_gw": 18.28,
-    "avail_gw": 44.71
+    "unav_forced_gw": 2.72,
+    "unav_gw": 18.21,
+    "avail_gw": 44.78
    },
    {
     "date": "2026-11-20",
@@ -7755,16 +7769,6 @@
     "reason": "Grève"
    },
    {
-    "unit": "ST LAURENT 2",
-    "type": "forced",
-    "unav_mw": 735,
-    "nominal_mw": 915,
-    "start": "2026-11-19T07:27",
-    "end": "2026-11-19T22:00",
-    "ongoing": true,
-    "reason": "Grève"
-   },
-   {
     "unit": "PALUEL 2",
     "type": "planned",
     "unav_mw": 1330,
@@ -8262,43 +8266,43 @@
  },
  "sources": {},
  "omip": {
-  "session": "2026-11-18",
+  "session": "2026-11-19",
   "weeks": [
    {
     "label": "S48",
     "from": "2026-11-23",
     "to": "2026-11-29",
-    "base": 194.11,
-    "base_d1": 193.89,
+    "base": 205.28,
+    "base_d1": 194.11,
     "peak": null,
-    "asof": "2026-11-18"
+    "asof": "2026-11-19"
    },
    {
     "label": "S49",
     "from": "2026-11-30",
     "to": "2026-12-06",
-    "base": 185.11,
-    "base_d1": 196.72,
+    "base": 192.98,
+    "base_d1": 185.11,
     "peak": null,
-    "asof": "2026-11-18"
+    "asof": "2026-11-19"
    },
    {
     "label": "S50",
     "from": "2026-12-07",
     "to": "2026-12-13",
-    "base": 197.51,
-    "base_d1": 207.75,
+    "base": 202.76,
+    "base_d1": 197.51,
     "peak": null,
-    "asof": "2026-11-18"
+    "asof": "2026-11-19"
    },
    {
     "label": "S51",
     "from": "2026-12-14",
     "to": "2026-12-20",
-    "base": 187.0,
-    "base_d1": 197.0,
+    "base": 200.0,
+    "base_d1": 187.0,
     "peak": null,
-    "asof": "2026-11-18"
+    "asof": "2026-11-19"
    }
   ],
   "weekends": [
@@ -8306,92 +8310,92 @@
     "label": "WE 21Nov-26",
     "from": "2026-11-21",
     "to": "2026-11-22",
-    "base": 143.63,
-    "base_d1": 157.14,
+    "base": 164.78,
+    "base_d1": 143.63,
     "peak": null,
-    "asof": "2026-11-18"
+    "asof": "2026-11-19"
    }
   ],
   "months": [
    {
     "contract": "M Dec-26",
-    "base": 175.75,
-    "base_d1": 186.42,
-    "asof": "2026-11-18"
+    "base": 185.58,
+    "base_d1": 175.75,
+    "asof": "2026-11-19"
    },
    {
     "contract": "M Jan-27",
-    "base": 190.28,
-    "base_d1": 200.55,
-    "asof": "2026-11-18"
+    "base": 199.16,
+    "base_d1": 190.28,
+    "asof": "2026-11-19"
    },
    {
     "contract": "M Feb-27",
-    "base": 176.04,
-    "base_d1": 185.99,
-    "asof": "2026-11-18"
+    "base": 183.71,
+    "base_d1": 176.04,
+    "asof": "2026-11-19"
    },
    {
     "contract": "M Mar-27",
-    "base": 126.41,
-    "base_d1": 134.39,
-    "asof": "2026-11-18"
+    "base": 129.85,
+    "base_d1": 126.41,
+    "asof": "2026-11-19"
    },
    {
     "contract": "M Apr-27",
-    "base": 85.49,
-    "base_d1": 89.82,
-    "asof": "2026-11-18"
+    "base": 87.45,
+    "base_d1": 85.49,
+    "asof": "2026-11-19"
    },
    {
     "contract": "M May-27",
-    "base": 54.68,
-    "base_d1": 57.22,
-    "asof": "2026-11-18"
+    "base": 55.87,
+    "base_d1": 54.68,
+    "asof": "2026-11-19"
    }
   ],
   "years": [
    {
     "contract": "YR-27",
-    "base": 108.08,
-    "base_d1": 113.42,
-    "asof": "2026-11-18"
+    "base": 110.99,
+    "base_d1": 108.08,
+    "asof": "2026-11-19"
    },
    {
     "contract": "YR-28",
-    "base": 60.63,
-    "base_d1": 63.62,
-    "asof": "2026-11-18"
+    "base": 62.02,
+    "base_d1": 60.63,
+    "asof": "2026-11-19"
    },
    {
     "contract": "YR-29",
-    "base": 56.62,
-    "base_d1": 58.55,
-    "asof": "2026-11-18"
+    "base": 57.27,
+    "base_d1": 56.62,
+    "asof": "2026-11-19"
    },
    {
     "contract": "YR-30",
-    "base": 58.5,
-    "base_d1": 60.2,
-    "asof": "2026-11-18"
+    "base": 58.91,
+    "base_d1": 58.5,
+    "asof": "2026-11-19"
    },
    {
     "contract": "YR-31",
-    "base": 61.2,
-    "base_d1": 63.13,
-    "asof": "2026-11-18"
+    "base": 61.4,
+    "base_d1": 61.2,
+    "asof": "2026-11-19"
    },
    {
     "contract": "YR-32",
-    "base": 62.66,
-    "base_d1": 64.59,
-    "asof": "2026-11-18"
+    "base": 62.86,
+    "base_d1": 62.66,
+    "asof": "2026-11-19"
    },
    {
     "contract": "YR-33",
-    "base": 62.91,
-    "base_d1": 64.84,
-    "asof": "2026-11-18"
+    "base": 63.11,
+    "base_d1": 62.91,
+    "asof": "2026-11-19"
    }
   ]
  },
@@ -8483,8 +8487,8 @@
   },
   {
    "step": "RTE consommation hebdomadaire",
-   "ok": false,
-   "msg": "HTTP 403 sur /open_api/consumption/v1/weekly_forecasts : b''"
+   "ok": true,
+   "msg": "25 jours"
   },
   {
    "step": "RTE prévision SOLAR D-1",
@@ -8549,7 +8553,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "1885 messages, 179 séries nucléaires"
+   "msg": "1885 messages, 226 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
@@ -8564,7 +8568,7 @@
   {
    "step": "  OMIP historique",
    "ok": true,
-   "msg": "11 séances lues, 481 au total"
+   "msg": "11 séances lues, 482 au total"
   }
  ],
  "diag": {
@@ -8658,9 +8662,9 @@
     "periods": [
      {
       "start": "2026-11-18T23:00Z",
-      "end": "2026-11-19T23:00Z",
+      "end": "2026-11-20T23:00Z",
       "res": "PT15M",
-      "n": 42,
+      "n": 83,
       "first": [
        "0",
        "26.29654",
@@ -8679,15 +8683,15 @@
     "periods": [
      {
       "start": "2026-11-18T23:00Z",
-      "end": "2026-11-19T23:00Z",
+      "end": "2026-11-20T23:00Z",
       "res": "PT15M",
-      "n": 96,
+      "n": 192,
       "first": [
        "1594.1499",
        "1618.17993",
        "1642.22998"
       ],
-      "max": 1852.45996
+      "max": 1863.49988
      }
     ]
    },
@@ -8700,9 +8704,9 @@
     "periods": [
      {
       "start": "2026-11-18T23:00Z",
-      "end": "2026-11-19T23:00Z",
+      "end": "2026-11-20T23:00Z",
       "res": "PT15M",
-      "n": 96,
+      "n": 192,
       "first": [
        "13026.93945",
        "12991.36035",
@@ -8752,7 +8756,7 @@
        "1618.17993",
        "1642.22998"
       ],
-      "max": 1862.08997
+      "max": 1863.49988
      }
     ]
    },
