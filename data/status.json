@@ -1,45 +1,45 @@
 {
- "generated_at": "2026-11-19T08:21:36Z",
+ "generated_at": "2026-11-19T14:39:27Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"32e147265bfb09a95fd1cd59f531a0d6\",\"timestamp\":\"2026-11-19T14:39:33.318Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E production réalisée par filière (A75)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"cc8906fded42c158e2fd393d35db833d\",\"timestamp\":\"2026-11-19T14:39:38.793Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "  flux BE",
-   "ok": true,
-   "msg": "35 jours"
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"06f8642f05f71061c22ab10a0512454d\",\"timestamp\":\"2026-11-19T14:39:44.202Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "  flux DE",
-   "ok": true,
-   "msg": "35 jours"
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"2ddbffccca22ba685574c7fa07248482\",\"timestamp\":\"2026-11-19T14:39:50.608Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "  flux CH",
-   "ok": true,
-   "msg": "35 jours"
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"1e6f55bf3f9e3cea3b50349c1a7d2b49\",\"timestamp\":\"2026-11-19T14:39:57.188Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "  flux IT",
-   "ok": true,
-   "msg": "35 jours"
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"f488475fa358f4ef6079a87a58a4aed1\",\"timestamp\":\"2026-11-19T14:40:03.653Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "  flux ES",
-   "ok": true,
-   "msg": "35 jours"
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"0d54ee9000aecc84de5c4ad05de6a63b\",\"timestamp\":\"2026-11-19T14:40:10.157Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "  flux GB",
-   "ok": true,
-   "msg": "35 jours"
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"b89063c1cec7aa2050020afc01a0d4ef\",\"timestamp\":\"2026-11-19T14:40:16.732Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E échanges physiques aux frontières (A11)",
@@ -48,28 +48,28 @@
   },
   {
    "step": "ENTSO-E consommation réalisée (A65 A16)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"a75c649b30fbddd835fe54cad8d41408\",\"timestamp\":\"2026-11-19T14:40:23.318Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E prévision conso J/J+1 (A65 A01)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"92973c443f92fa32f34553cc17594221\",\"timestamp\":\"2026-11-19T14:40:28.722Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E prévision conso semaine (A65 A31)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"af2ca188c567cf8bc00c530d2f1473af\",\"timestamp\":\"2026-11-19T14:40:34.222Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E prévision conso mois (A65 A32)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"b2059f6cc3d8eac8cdd3cc810f0a5431\",\"timestamp\":\"2026-11-19T14:40:39.628Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E prévision conso année (A65 A33)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"e5e23b8cc26ee19f0712a595e5ffc057\",\"timestamp\":\"2026-11-19T14:40:45.101Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E prévision éolien/solaire (A69)",
@@ -89,7 +89,7 @@
   {
    "step": "RTE consommation hebdomadaire",
    "ok": true,
-   "msg": "19 jours"
+   "msg": "25 jours"
   },
   {
    "step": "RTE prévision SOLAR D-1",
@@ -143,18 +143,18 @@
   },
   {
    "step": "ENTSO-E capacité nucléaire installée (A68)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"1a8dfd26291f50150155f21c71d45a54\",\"timestamp\":\"2026-11-19T14:41:14.541Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E indisponibilités unités de production (A80)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"bfddc8d55d622c5c51bd26dec0b399f3\",\"timestamp\":\"2026-11-19T14:41:19.962Z\",\"type\":\"error\",\"m'"
   },
   {
-   "step": "  nucléaire A80",
-   "ok": true,
-   "msg": "1873 messages, 218 séries nucléaires"
+   "step": "ENTSO-E indisponibilités groupes de production (A77)",
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"8c7fff2cfc5b2d0c1358d9e736110754\",\"timestamp\":\"2026-11-19T14:41:25.369Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
