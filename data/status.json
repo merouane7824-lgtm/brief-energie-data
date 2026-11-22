@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-22T13:34:05Z",
+ "generated_at": "2026-11-22T19:54:30Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -68,8 +68,8 @@
   },
   {
    "step": "ENTSO-E prévision conso année (A65 A33)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"f57c545f98a869323654e64ee8c53cea\",\"timestamp\":\"2026-11-22T20:00:16.382Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "ENTSO-E prévision éolien/solaire (A69)",
@@ -154,7 +154,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "1817 messages, 178 séries nucléaires"
+   "msg": "1820 messages, 153 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
