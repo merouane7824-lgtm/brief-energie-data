@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-23T08:21:44Z",
+ "generated_at": "2026-11-23T16:25:26Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -89,7 +89,7 @@
   {
    "step": "RTE consommation hebdomadaire",
    "ok": true,
-   "msg": "13 jours"
+   "msg": "19 jours"
   },
   {
    "step": "RTE prévision SOLAR D-1",
@@ -148,13 +148,13 @@
   },
   {
    "step": "ENTSO-E indisponibilités unités de production (A80)",
-   "ok": true,
-   "msg": ""
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"8f65aa3268270168d11a95e267c294f0\",\"timestamp\":\"2026-11-23T16:35:38.159Z\",\"type\":\"error\",\"m'"
   },
   {
-   "step": "  nucléaire A80",
-   "ok": true,
-   "msg": "1817 messages, 164 séries nucléaires"
+   "step": "ENTSO-E indisponibilités groupes de production (A77)",
+   "ok": false,
+   "msg": "HTTP 599, réponse non XML : b'{\"uuAppErrorMap\":{\"uu-gateway-router/connectTimeout\":{\"id\":\"10d1ce1ff4cd6f6e1cf83f7dc2316c55\",\"timestamp\":\"2026-11-23T16:36:06.992Z\",\"type\":\"error\",\"m'"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
