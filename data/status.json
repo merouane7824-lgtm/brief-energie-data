@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-25T17:55:05Z",
+ "generated_at": "2026-11-25T21:55:43Z",
  "steps": [
   {
    "step": "ENTSO-E prix day-ahead (A44)",
@@ -154,7 +154,7 @@
   {
    "step": "  nucléaire A80",
    "ok": true,
-   "msg": "1807 messages, 182 séries nucléaires"
+   "msg": "1807 messages, 153 séries nucléaires"
   },
   {
    "step": "OMIP séance la plus récente (semaines, week-ends, mois, années)",
@@ -169,7 +169,7 @@
   {
    "step": "  OMIP historique",
    "ok": true,
-   "msg": "11 séances lues, 485 au total"
+   "msg": "11 séances lues, 486 au total"
   }
  ]
 }
